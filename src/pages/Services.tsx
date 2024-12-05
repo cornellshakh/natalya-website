@@ -44,7 +44,6 @@ export default function Services() {
 
   const currentContent = contentByLanguage[language] || '';
   const sections = currentContent.split('###').filter(Boolean);
-  const mainSection = sections[0];
   const serviceSections = sections.slice(1);
 
   const serviceCategories = [
@@ -131,7 +130,7 @@ export default function Services() {
               animate="show"
               className="grid md:grid-cols-3 gap-6 sm:gap-8"
             >
-              {serviceCategories.map((category, index) => (
+              {serviceCategories.map((category) => (
                 <motion.div
                   key={category.id}
                   variants={fadeInUp}

@@ -6,7 +6,7 @@ import { useState } from 'react';
 export default function Contact() {
   const { t } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error] = useState<string | null>(null);
 
   const container = {
     hidden: { opacity: 0 },

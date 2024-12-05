@@ -9,7 +9,6 @@ import Services from './pages/Services';
 import Contact from './pages/Contact';
 import LoadingScreen from './components/LoadingScreen';
 import ScrollToTop from './components/ScrollToTop';
-import ContactButton from './components/ContactButton';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Suspense, useEffect } from 'react';
 import './index.css';
