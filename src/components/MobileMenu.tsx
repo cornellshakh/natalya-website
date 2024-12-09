@@ -62,7 +62,7 @@ export default function MobileMenu({ navItems, isActive, onClose }: MobileMenuPr
               `}
             >
               <span>{label}</span>
-              <ChevronRight className={`w-4 h-4 transition-transform ${isActive(path) ? 'text-[#fd8e81]' : 'text-gray-400'}`} />
+              <ChevronRight className={`w-4 h-4 transition-transform ${isActive(path) ? 'text-[#4c7c42]' : 'text-gray-400'}`} />
             </Link>
           </motion.div>
         ))}
