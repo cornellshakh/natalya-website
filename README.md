@@ -22,22 +22,6 @@ Add packages via pnpm manually, or use:
 ./add.sh <pnpm add package-name>      # or add.bat on Windows
 ```
 
-### Start development server
-```sh
-npm run dev
-```
-Visit [http://localhost:5173](http://localhost:5173) in your browser.
-
-### Build for production
-```sh
-npm run build
-```
-
-### Preview production build
-```sh
-npm run preview
-```
-
 ## Roadmap / TODO
 - Add automated tests (unit, integration, E2E)
 - Improve accessibility and keyboard navigation
