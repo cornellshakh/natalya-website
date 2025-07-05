@@ -23,12 +23,13 @@ Add packages via pnpm manually, or use:
 ```
 
 ## Roadmap / TODO
-- Add automated tests (unit, integration, E2E)
-- Improve accessibility and keyboard navigation
-- Add admin/content editing interface
-- Expand language support (e.g., English)
-- Add analytics and SEO improvements
-- Refactor for better code splitting and performance
+- [x] Custom install/start/add scripts for setup and package management
+- [ ] Add automated tests (unit, integration, E2E)
+- [ ] Improve accessibility and keyboard navigation
+- [ ] Add admin/content editing interface
+- [ ] Expand language support (e.g., English)
+- [ ] Add analytics and SEO improvements
+- [ ] Refactor for better code splitting and performance
 
 ## Known Issues
 - No automated tests yet
