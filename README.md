@@ -1,9 +1,6 @@
 # Natalya Accounting Website
 Built with React, TypeScript, and Tailwind CSS.
 
-## Screenshot
-![screenshot](https://i.imgur.com/6xXSX8Y.png "Website screenshot")
-
 ## Setup
 ### Prerequisites
 - Node.js (v16+ recommended)
