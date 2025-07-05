@@ -3,8 +3,8 @@ Built with React, TypeScript, and Tailwind CSS.
 
 ## Setup
 ### Prerequisites
-- Node.js (v16+ recommended)
-- pnpm (recommended for package management)
+- Node.js
+- pnpm 
 
 ### Installation (once)
 ```sh
