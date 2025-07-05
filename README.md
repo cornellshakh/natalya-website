@@ -8,18 +8,18 @@ Wwebsite for an accounting and consulting business. Built with React, TypeScript
 
 ### Installation (once)
 ```sh
-./install.sh    # or install.bat on Windows
+./install.<sh|bat>
 ```
 
 ### Start (every time)
 ```sh
-./start.sh      # or start.bat on Windows
+./start.<sh|bat>
 ```
 
 ### Package Management
 Add packages via pnpm manually, or use:
 ```sh
-./add.sh <pnpm add package-name>      # or add.bat on Windows
+./add.<sh|bat> <pnpm add package-name>
 ```
 
 ## Roadmap / TODO
