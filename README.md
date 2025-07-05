@@ -1,14 +1,25 @@
 # Natalya Website
 Wwebsite for an accounting and consulting business. Built with React, TypeScript, and Tailwind CSS.
 
-## Quickstart
+## Setup
 ### Prerequisites
 - Node.js (v16+ recommended)
-- npm (comes with Node.js)
+- pnpm (recommended for package management)
 
-### Install dependencies
+### Installation (once)
 ```sh
-npm install
+./install.sh    # or install.bat on Windows
+```
+
+### Start (every time)
+```sh
+./start.sh      # or start.bat on Windows
+```
+
+### Package Management
+Add packages via pnpm manually, or use:
+```sh
+./add.sh <pnpm add package-name>      # or add.bat on Windows
 ```
 
 ### Start development server
