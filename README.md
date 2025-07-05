@@ -1,5 +1,5 @@
-# Natalya Website
-Wwebsite for an accounting and consulting business. Built with React, TypeScript, and Tailwind CSS.
+# Natalya Accounting Website
+Website for accounting and consulting business, built with React, TypeScript, and Tailwind CSS.
 
 ## Setup
 ### Prerequisites
