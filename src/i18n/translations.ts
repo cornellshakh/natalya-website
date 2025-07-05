@@ -54,28 +54,130 @@ export const translations: Record<'cs' | 'ru', Translation> = {
     },
     about: {
       title: 'O nás',
+      mainTitle: 'Natalya Shakh',
       experience: 'Více než 10 let zkušeností v účetnictví a daňovém poradenství.',
       description: 'Nabízíme komplexní služby s důrazem na detail, efektivitu a osobní přístup.',
-      approach: 'Naším cílem je podpořit vás při správě financí a minimalizaci nákladů, vždy v souladu s legislativou.'
+      approach: 'Naším cílem je podpořit vás při správě financí a minimalizaci nákladů, vždy v souladu s legislativou.',
+      experienceSection: {
+        longTermTitle: 'Dlouholetá praxe',
+        longTermDesc: 'Více než 10 let aktivního působení v oblasti účetnictví a daňového poradenství v České republice.',
+        qualificationTitle: 'Odborná kvalifikace',
+        qualificationDesc: 'Průběžné vzdělávání a certifikace v oblasti účetnictví, daní a české legislativy.',
+        clientsTitle: 'Široké spektrum klientů',
+        clientsDesc: 'Zkušenosti s vedením účetnictví pro české i mezinárodní společnosti různých velikostí a zaměření.',
+        approachTitle: 'Profesionální přístup',
+        approachDesc: 'Důraz na přesnost, spolehlivost a individuální přístup ke každému klientovi.'
+      }
     },
     services: {
       title: 'Naše služby',
-      subtitle: 'Účetní a daňové služby, které vám usnadní život.',
-      taxServices: {
-        title: 'Daňové služby',
-        description: 'Kompletní správa daňových povinností bez stresu.'
+      mainTitle: 'Komplexní účetní služby',
+      subtitle: 'Profesionální účetní služby přizpůsobené vašim potřebám',
+      pricingTitle: 'Transparentní cenová nabídka',
+      pricingSubtitle: 'Jasné ceny bez skrytých poplatků. Začněte s námi bez závazků.',
+      detailedTitle: 'Detailní přehled služeb',
+      startCooperation: 'Začít spolupráci',
+      detailedServices: 'Detailní přehled služeb',
+      currency: 'Kč',
+      serviceCategories: {
+        tax: {
+          title: 'Daňové služby',
+          description: 'Komplexní daňové poradenství a optimalizace pro fyzické i právnické osoby',
+          features: [
+            'Daňové přiznání',
+            'Daňová optimalizace',
+            'DPH',
+            'Kontrolní hlášení'
+          ]
+        },
+        accounting: {
+          title: 'Účetnictví',
+          description: 'Profesionální vedení účetnictví a zpracování finančních výkazů',
+          features: [
+            'Vedení účetnictví',
+            'Finanční výkazy',
+            'Analýza nákladů',
+            'Reporting'
+          ]
+        },
+        payroll: {
+          title: 'Mzdy a personalistika',
+          description: 'Kompletní správa mezd a personální agenda pro vaše zaměstnance',
+          features: [
+            'Zpracování mezd',
+            'Personální agenda',
+            'Sociální pojištění',
+            'Zdravotní pojištění'
+          ]
+        }
       },
-      bookkeeping: {
-        title: 'Účetnictví',
-        description: 'Přehledné a profesionální vedení účetnictví.'
+      pricing: {
+        accountingBasic: {
+          title: 'Vedení účetnictví',
+          price: '4.999',
+          period: 'měsíčně',
+          description: 'Pro malé podnikatele a OSVČ',
+          features: [
+            'Vedení účetních knih',
+            'Zpracování faktur',
+            'Účetní uzávěrka',
+            'Online přístup 24/7',
+            'Elektronická archivace'
+          ]
+        },
+        payroll: {
+          title: 'Zpracování mezd',
+          price: '299',
+          period: 'za zaměstnance/měsíc',
+          description: 'Kompletní mzdová agenda',
+          features: [
+            'Výpočet mezd',
+            'Zpracování výplat',
+            'Sociální pojištění',
+            'Zdravotní pojištění',
+            'Roční zúčtování'
+          ]
+        },
+        taxConsulting: {
+          title: 'Daňové poradenství',
+          price: '2.499',
+          period: 'měsíčně',
+          description: 'Optimalizace daňové zátěže',
+          features: [
+            'Daňová optimalizace',
+            'Daňové přiznání',
+            'Zastupování před úřady',
+            'DPH přiznání',
+            'Kontrolní hlášení'
+          ]
+        },
+        financialAdvisory: {
+          title: 'Finanční poradenství',
+          price: '1.999',
+          period: 'měsíčně',
+          description: 'Strategické finanční plánování',
+          features: [
+            'Finanční analýza',
+            'Rozpočtové plánování',
+            'Cash-flow management',
+            'Investiční strategie',
+            'Kvartální reporty'
+          ]
+        }
       },
-      payroll: {
-        title: 'Mzdy',
-        description: 'Komplexní zpracování mezd na míru.'
-      },
-      financial: {
-        title: 'Finanční poradenství',
-        description: 'Praktické rady a plánování pro váš finanční úspěch.'
+      trustSignals: {
+        quality: {
+          title: 'Garantovaná kvalita',
+          description: 'Pojištění odpovědnosti do 10 mil. Kč'
+        },
+        support: {
+          title: 'Rychlá podpora',
+          description: 'Reakce do 24 hodin'
+        },
+        certification: {
+          title: 'Certifikace',
+          description: 'Certifikovaní účetní profesionálové'
+        }
       }
     },
     contact: {
@@ -91,7 +193,8 @@ export const translations: Record<'cs' | 'ru', Translation> = {
           name: 'Vaše jméno',
           email: 'Váš e-mail',
           message: 'Vaše zpráva'
-        }
+        },
+        success: 'Děkujeme za vaši zprávu!'
       },
       info: {
         title: 'Kontaktní údaje',
@@ -100,7 +203,8 @@ export const translations: Record<'cs' | 'ru', Translation> = {
         location: 'Kancelář',
         hours: 'Otevírací doba',
         response: 'Reagujeme obvykle do 24 hodin',
-        workdays: 'Pondělí - Pátek: 9:00 - 17:00'
+        workdays: 'Pondělí - Pátek: 9:00 - 17:00',
+        address: 'Vodičkova 39, 110 00 Praha'
       }
     },
     error: {
@@ -162,28 +266,130 @@ export const translations: Record<'cs' | 'ru', Translation> = {
     },
     about: {
       title: 'О нас',
+      mainTitle: 'Наталья Шах',
       experience: 'Более 10 лет опыта в бухгалтерии и налоговом консультировании.',
       description: 'Мы предлагаем услуги с вниманием к деталям, эффективностью и индивидуальным подходом.',
-      approach: 'Наша цель - помочь вам управлять финансами и минимизировать налоги, соблюдая законодательство.'
+      approach: 'Наша цель - помочь вам управлять финансами и минимизировать налоги, соблюдая законодательство.',
+      experienceSection: {
+        longTermTitle: 'Многолетний опыт',
+        longTermDesc: 'Более 10 лет активной деятельности в сфере бухгалтерского учета и налогового консультирования в Чешской Республике.',
+        qualificationTitle: 'Профессиональная квалификация',
+        qualificationDesc: 'Непрерывное образование и сертификация в области бухгалтерского учета, налогов и чешского законодательства.',
+        clientsTitle: 'Широкий спектр клиентов',
+        clientsDesc: 'Опыт ведения бухгалтерского учета для чешских и международных компаний различных размеров и направлений.',
+        approachTitle: 'Профессиональный подход',
+        approachDesc: 'Акцент на точность, надежность и индивидуальный подход к каждому клиенту.'
+      }
     },
     services: {
       title: 'Наши услуги',
-      subtitle: 'Бухгалтерские и налоговые услуги, которые облегчают ваш бизнес.',
-      taxServices: {
-        title: 'Налоговые услуги',
-        description: 'Полный контроль над налогами без лишних забот.'
+      mainTitle: 'Комплексные бухгалтерские услуги',
+      subtitle: 'Профессиональные бухгалтерские услуги, адаптированные под ваши потребности',
+      pricingTitle: 'Прозрачное ценовое предложение',
+      pricingSubtitle: 'Четкие цены без скрытых платежей. Начните с нами без обязательств.',
+      detailedTitle: 'Подробный обзор услуг',
+      startCooperation: 'Начать сотрудничество',
+      detailedServices: 'Подробный обзор услуг',
+      currency: 'крон',
+      serviceCategories: {
+        tax: {
+          title: 'Налоговые услуги',
+          description: 'Комплексное налоговое консультирование и оптимизация для физ��ческих и юридических лиц',
+          features: [
+            'Налоговая декларация',
+            'Налоговая оптимизация',
+            'НДС',
+            'Контрольная отчетность'
+          ]
+        },
+        accounting: {
+          title: 'Бухгалтерия',
+          description: 'Профессиональное ведение бухгалтерского учета и подготовка финансовой отчетности',
+          features: [
+            'Ведение бухгалтерии',
+            'Финансовая отчетность',
+            'Анализ затрат',
+            'Отчетность'
+          ]
+        },
+        payroll: {
+          title: 'Зарплата и кадры',
+          description: 'Полное управление заработной платой и кадровое делопроизводство',
+          features: [
+            'Расчет зарплаты',
+            'Кадровое делопроизводство',
+            'Социальное страхование',
+            'Медицинское страхование'
+          ]
+        }
       },
-      bookkeeping: {
-        title: 'Бухгалтерия',
-        description: 'Прозрачное и профессиональное ведение учета.'
+      pricing: {
+        accountingBasic: {
+          title: 'Ведение бухгалтерии',
+          price: '4.999',
+          period: 'в месяц',
+          description: 'Для малого бизнеса и ИП',
+          features: [
+            'Ведение бухгалтерских книг',
+            'Обработка счетов',
+            'Бухгалтерская отчетность',
+            'Онлайн доступ 24/7',
+            'Электронный архив'
+          ]
+        },
+        payroll: {
+          title: 'Расчет зарплаты',
+          price: '299',
+          period: 'за сотрудника/месяц',
+          description: 'Полное управление зарплатой',
+          features: [
+            'Расчет зарплаты',
+            'Обработка выплат',
+            'Социальное страхование',
+            'Медицинское страхование',
+            'Годовой расчет'
+          ]
+        },
+        taxConsulting: {
+          title: 'Налоговое к��нсультирование',
+          price: '2.499',
+          period: 'в месяц',
+          description: 'Оптимизация налоговой нагрузки',
+          features: [
+            'Налоговая оптимизация',
+            'Налоговая декларация',
+            'Представление в органах',
+            'Декларация НДС',
+            'Контрольная отчетность'
+          ]
+        },
+        financialAdvisory: {
+          title: 'Финансовое консультирование',
+          price: '1.999',
+          period: 'в месяц',
+          description: 'Стратегическое финансовое планирование',
+          features: [
+            'Финансовый анализ',
+            'Бюджетное планирование',
+            'Управление денежными потоками',
+            'Инвестиционная стратегия',
+            'Квартальные отчеты'
+          ]
+        }
       },
-      payroll: {
-        title: 'Зарплата',
-        description: 'Комплексный расчет заработной платы.'
-      },
-      financial: {
-        title: 'Финансовое консультирование',
-        description: 'Практичные советы и планирование для вашего успеха.'
+      trustSignals: {
+        quality: {
+          title: 'Гарантированное качество',
+          description: 'Страхование ответственности до 10 млн. крон'
+        },
+        support: {
+          title: 'Быстрая поддержка',
+          description: 'Ответ в течение 24 часов'
+        },
+        certification: {
+          title: 'Сертификация',
+          description: 'Сертифицированные бухгалтеры'
+        }
       }
     },
     contact: {
@@ -199,7 +405,8 @@ export const translations: Record<'cs' | 'ru', Translation> = {
           name: 'Ваше имя',
           email: 'Ваш e-mail',
           message: 'Ваше сообщение'
-        }
+        },
+        success: 'Спасибо за ваше сообщение!'
       },
       info: {
         title: 'Контактная информация',
@@ -208,7 +415,8 @@ export const translations: Record<'cs' | 'ru', Translation> = {
         location: 'Офис',
         hours: 'Рабочее время',
         response: 'Ответим в течение 24 часов',
-        workdays: 'Понедельник - Пятница: 9:00 - 17:00'
+        workdays: 'Понедельник - Пятница: 9:00 - 17:00',
+        address: 'Водичкова 39, 110 00 Прага'
       }
     },
     error: {

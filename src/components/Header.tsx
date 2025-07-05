@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { Globe, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import MobileMenu from './MobileMenu';
@@ -11,10 +11,6 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isActive = (path: string) => location.pathname === path;
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'cs' ? 'ru' : 'cs');
-  };
 
   const navItems = [
     { path: '/', label: t('nav.home') },
@@ -63,32 +59,34 @@ export default function Header() {
 
           <div className="flex items-center space-x-4">
             {/* Language Switcher */}
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={toggleLanguage}
-              className={`
-                flex items-center space-x-2 px-3 py-1.5 rounded-lg border border-gray-200
-                transition-all duration-200
-                ${language === 'ru' 
-                  ? 'bg-[#eaf4e5] border-[#fdd5d0] text-[#4c7c42]' 
-                  : 'bg-white text-gray-700 hover:border-gray-300 hover:bg-gray-50'
-                }
-              `}
-            >
-              <Globe className="w-4 h-4" />
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={language}
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                  className="text-sm font-medium uppercase"
-                >
-                  {language}
-                </motion.span>
-              </AnimatePresence>
-            </motion.button>
+            <div className="flex bg-gray-100 p-1 rounded-lg">
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setLanguage('cs')}
+                className={`
+                  px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200
+                  ${language === 'cs'
+                    ? 'bg-white text-[#4c7c42] shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                  }
+                `}
+              >
+                CS
+              </motion.button>
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setLanguage('ru')}
+                className={`
+                  px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200
+                  ${language === 'ru'
+                    ? 'bg-white text-[#4c7c42] shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                  }
+                `}
+              >
+                RU
+              </motion.button>
+            </div>
 
             {/* Mobile Menu Button */}
             <button

@@ -10,9 +10,17 @@ export default function Footer() {
           <p className="text-sm text-gray-500 mb-4">
             {t('footer.description')}
           </p>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-400 mb-4">
             &copy; {new Date().getFullYear()} Natalya Shakh · {t('footer.rights')}
           </p>
+          <a
+            href="https://instagram.com/kornelshakh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-gray-400 hover:text-gray-600 flex items-center justify-center"
+          >
+            Made by Kornel <span className="mx-1 text-red-500">❤️</span>
+          </a>
         </div>
       </div>
     </footer>
