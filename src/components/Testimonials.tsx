@@ -37,8 +37,8 @@ export default function Testimonials() {
       company: 'Café Praha',
       content:
         language === 'cs'
-          ? 'Natalya mi pomohla s účetnictvím mé kavárny od samého začátku. Její profesionalita a ochota jsou na nejvyšší úrovni. Díky jejím radám jsem ušetřila spoustu času i peněz.'
-          : 'Наталья помогла мне с бухгалтерией моего кафе с самого начала. Ее профессионализм и готовность помочь на высшем уровне. Благодаря ее советам я сэкономила много времени и денег.',
+          ? 'Předtím jsem trávila 20+ hodin měsíčně účetnictvím a žila ve strachu z chyb. Natalya mi pomohla od samého začátku - teď se soustředím jen na kavárnu a klienty. Ušetřím 15 hodin měsíčně a konečně spím v klidu.'
+          : 'Раньше я тратила 20+ часов в месяц на бухгалтерию и жила в страхе ошибок. Наталья помогла мне с самого начала - теперь я фокусируюсь только на кафе и клиентах. Экономлю 15 часов в месяц и наконец сплю спокойно.',
       rating: 5,
       location: 'Praha, ČR',
     },
@@ -49,8 +49,8 @@ export default function Testimonials() {
       company: 'TechSolutions s.r.o.',
       content:
         language === 'cs'
-          ? 'Vynikající služby! Natalya mi nejen vedla účetnictví, ale také poradila s optimalizací daní. Její znalost českého i ruského trhu je neocenitelná.'
-          : 'Превосходные услуги! Наталья не только вела мою бухгалтерию, но и посоветовала оптимизацию налогов. Ее знание чешского и российского рынка бесценно.',
+          ? 'Díky Natalye jsem snížil daně o 30% zcela legálně a automatizoval všechny procesy. Místo složitých tabulek mám přehledné reporty a vím přesně, kde stojím finančně. Investice se vrátila už za 3 měsíce.'
+          : 'Благодаря Наталье я снизил налоги на 30% абсолютно легально и автоматизировал все процессы. Вместо сложных таблиц у меня понятные отчеты и я точно знаю свое финансовое положение. Инвестиция окупилась за 3 месяца.',
       rating: 5,
       location: 'Brno, ČR',
     },
@@ -61,8 +61,8 @@ export default function Testimonials() {
       company: 'Creative Studio',
       content:
         language === 'cs'
-          ? 'S Natalyou spolupracuji už tři roky a jsem naprosto spokojená. Vždy se na ni mohu spolehnout a její rady mi pomáhají v rozvoji podnikání.'
-          : 'Я сотрудничаю с Натальей уже три года и полностью довольна. Всегда могу на нее положиться, и ее советы помогают мне в развитии бизнеса.',
+          ? 'Konečně rozumím svým financím! Natalya mi vysvětlila vše v jasných pojmech a nastavila systém, který funguje automaticky. Tržby vzrostly o 40%, protože se můžu soustředit na klienty místo na papírování.'
+          : 'Наконец-то понимаю свои финансы! Наталья объяснила все простыми словами и настроила систему, которая работает автоматически. Выручка выросла на 40%, потому что я могу сосредоточиться на клиентах вместо бумажной работы.',
       rating: 5,
       location: 'Ostrava, ČR',
     },
@@ -73,8 +73,8 @@ export default function Testimonials() {
       company: 'Import/Export CZ',
       content:
         language === 'cs'
-          ? 'Díky Natalye mám účetnictví konečně pod kontrolou. Její komunikace v češtině i ruštině je pro můj mezinárodní byznys zásadní.'
-          : 'Благодаря Наталье у меня наконец-то под контролем бухгалтерия. Ее общение на чешском и русском языках критично для моего международного бизнеса.',
+          ? 'Mezinárodní obchod je složitý, ale s Natalyou je to snadné. Vyřídí vše v češtině i ruštině, DPH i celní deklarace. Žádné pokuty za 2 roky spolupráce a finanční přehled v reálném čase. Stojí to za každou korunu.'
+          : 'Международная торговля сложна, но с Натальей это просто. Она решает все на чешском и русском, НДС и таможенные декларации. Никаких штрафов за 2 года сотрудничества и финансовая отчетность в реальном времени. Стоит каждой кроны.',
       rating: 5,
       location: 'Praha, ČR',
     },

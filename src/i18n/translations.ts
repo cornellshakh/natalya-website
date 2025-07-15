@@ -277,34 +277,34 @@ export const translations: Record<'cs' | 'ru', Translation> = {
       subtitle: 'Nejčastější dotazy našich klientů',
       items: {
         0: {
-          question: 'Jak dlouho trvá zpracování účetnictví?',
+          question: 'Kolik skutečně ušetřím outsourcingem účetnictví?',
           answer:
-            'Standardně zpracováváme účetní agendu do 5 pracovních dnů od obdržení podkladů. U jednodušších případů je to často rychlejší.',
+            'Průměrný klient ušetří 15-20 hodin měsíčně a sníží náklady o 20-30% oproti vlastnímu účetnímu. Navíc eliminujete riziko pokut a chyb. Investice se většinou vrátí už za 2-3 měsíce díky úspoře času a optimalizaci daní.',
         },
         1: {
-          question: 'Jaké dokumenty potřebujete pro vedení účetnictví?',
+          question: 'Jak rychle můžete převzít mé chaotické účetnictví?',
           answer:
-            'Potřebujeme všechny účetní doklady - faktury, pokladní doklady, bankovní výpisy, mzdové podklady a další relevantní dokumenty týkající se vaší činnosti.',
+            'Standardně do 5 pracovních dnů provedeme audit a nastavíme systém. I nejsložitější případy vyřešíme do 2 týdnů. Máme zkušenosti s převzetím účetnictví ze všech stavů - od úplného chaosu po částečně vedené knihy.',
         },
         2: {
-          question: 'Nabízíte služby v češtině a ruštině?',
+          question: 'Co když nerozumím tomu, co mi vysvětlujete?',
           answer:
-            'Ano, poskytujeme všechny naše služby v češtině i ruštině. Naše tým je plně dvojjazyčný a dokáže komunikovat v obou jazycích.',
+            'Vysvětlujeme vše v jasných pojmech bez složité terminologie. Naši klienti často říkají "konečně rozumím svým financím". Komunikujeme v češtině i ruštině a věnujeme čas tomu, aby bylo vše srozumitelné.',
         },
         3: {
-          question: 'Kolik stojí vedení účetnictví pro malou firmu?',
+          question: 'Jaké jsou skutečné náklady bez skrytých poplatků?',
           answer:
-            'Cena závisí na složitosti a rozsahu vaší činnosti. Základní balíček začíná na 4.999 Kč měsíčně. Rádi vám připravíme individuální nabídku.',
+            'Základní balíček začíná na 4.999 Kč měsíčně, mzdy od 299 Kč za zaměstnance. Všechny ceny jsou transparentní a domluvíme je předem. Žádné skryté poplatky, žádná překvapení na faktuře.',
         },
         4: {
-          question: 'Můžete zastupovat naši firmu před finančním úřadem?',
+          question: 'Kdo zajistí zastupování při kontrole finančního úřadu?',
           answer:
-            'Ano, nabízíme kompletní zastupování před finančními úřady, včetně daňových kontrol a vyřizování všech potřebných formalit.',
+            'Osobně vás zastoupím při všech kontrolách a komunikaci s úřady. Máte pojištění odpovědnosti 10 milionů Kč. Za 12 let praxe jsme nikdy neměli problém s kontrolou díky preciznímu vedení.',
         },
         5: {
-          question: 'Jak často dostanu finanční výkazy?',
+          question: 'Jak často dostanu přehled o stavu financí?',
           answer:
-            'Standardně poskytujeme měsíční výkazy do 10 dnů po ukončení měsíce. Podle potřeby můžeme připravit i čtvrtletní nebo roční souhrny.',
+            'Měsíční výkazy do 10 dnů po uzávěrce, online přístup k datům 24/7. Na dotazy odpovídám do 24 hodin. Můžete mít přehled o financích kdykoliv v reálném čase.',
         },
       },
     },
@@ -907,34 +907,34 @@ export const translations: Record<'cs' | 'ru', Translation> = {
       subtitle: 'Самые частые вопросы наших клиентов',
       items: {
         0: {
-          question: 'Как долго занимает обработка бухгалтерии?',
+          question: 'Сколько реально сэкономлю на аутсорсинге бухгалтерии?',
           answer:
-            'Стандартно мы обрабатываем бухгалтерскую документацию в течение 5 рабочих дней с момента получения документов. В простых случаях это часто быстрее.',
+            'Средний клиент экономит 15-20 часов в месяц и снижает затраты на 20-30% по сравнению с собственным бухгалтером. Плюс устраняете риск штрафов и ошибок. Инвестиции обычно окупаются за 2-3 месяца благодаря экономии времени и оптимизации налогов.',
         },
         1: {
-          question: 'Какие документы нужны для ведения бухгалтерии?',
+          question: 'Как быстро можете взять мою хаотичную бухгалтерию?',
           answer:
-            'Нам нужны все бухгалтерские документы - счета, кассовые документы, банковские выписки, зарплатные документы и другие релевантные документы, касающиеся вашей деятельности.',
+            'Стандартно за 5 рабочих дней проведем аудит и настроим систему. Даже самые сложные случаи решаем за 2 недели. У нас есть опыт приема бухгалтерии в любом состоянии - от полного хаоса до частично ведущихся книг.',
         },
         2: {
-          question: 'Предоставляете ли вы услуги на чешском и русском языках?',
+          question: 'Что если я не пойму ваши объяснения?',
           answer:
-            'Да, мы предоставляем все наши услуги на чешском и русском языках. Наша команда полностью двуязычна и может общаться на обоих языках.',
+            'Объясняем все простыми словами без сложной терминологии. Наши клиенты часто говорят "наконец-то понимаю свои финансы". Общаемся на чешском и русском языках и уделяем время, чтобы все было понятно.',
         },
         3: {
-          question: 'Сколько стоит ведение бухгалтерии для малой фирмы?',
+          question: 'Какие реальные затраты без скрытых платежей?',
           answer:
-            'Цена зависит от сложности и объема вашей деятельности. Базовый пакет начинается с 4.999 крон в месяц. Мы с удовольствием подготовим индивидуальное предложение.',
+            'Базовый пакет начинается с 4.999 крон в месяц, зарплаты от 299 крон за сотрудника. Все цены прозрачны и согласовываются заранее. Никаких скрытых платежей, никаких сюрпризов в счете.',
         },
         4: {
-          question: 'Можете ли вы представлять нашу фирму в финансовых органах?',
+          question: 'Кто обеспечит представительство при проверке налоговой?',
           answer:
-            'Да, мы предлагаем полное представительство в финансовых органах, включая налоговые проверки и решение всех необходимых формальностей.',
+            'Лично представлю вас при всех проверках и общении с органами. У вас есть страхование ответственности на 10 миллионов крон. За 12 лет практики у нас никогда не было проблем с проверками благодаря точному ведению.',
         },
         5: {
-          question: 'Как часто я получу финансовые отчеты?',
+          question: 'Как часто получу обзор состояния финансов?',
           answer:
-            'Стандартно мы предоставляем месячные отчеты в течение 10 дней после окончания месяца. По необходимости можем подготовить квартальные или годовые сводки.',
+            'Месячные отчеты в течение 10 дней после закрытия, онлайн доступ к данным 24/7. На вопросы отвечаю в течение 24 часов. Можете иметь обзор финансов в любое время в реальном времени.',
         },
       },
     },

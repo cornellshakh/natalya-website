@@ -44,7 +44,7 @@ export default function FAQ() {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-white">
       <div className="container-pad">
         <div className="max-w-3xl mx-auto">
           <motion.div

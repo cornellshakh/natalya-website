@@ -146,94 +146,134 @@ export default function Home() {
       {/* Hero Section */}
       <Hero />
 
-
-
-            {/* Combined Expertise & Solutions Section */}
+      {/* Combined Expertise & Benefits Section - Redesigned */}
       <Section spacing="sm" background="white" containerSize="default">
         <motion.div {...fadeInUp}>
-          <div className="text-center mb-12">
+          <div className="text-center mb-0">
             <h2 className="text-unified-3xl font-bold text-neutral-900 mb-4">
-              {language === 'cs' ? 'Naše expertíza' : 'Наша экспертиза'}
+              {language === 'cs' ? 'Proč si nás vybrat' : 'Почему выбирают нас'}
             </h2>
-            <p className="text-unified-lg text-neutral-600 max-w-3xl mx-auto">
+            <p className="text-unified-lg text-neutral-600 max-w-2xl mx-auto">
               {language === 'cs'
-                ? 'Specializujeme se na účetnictví pro moderní odvětví a platformy'
-                : 'Специализируемся на бухгалтерии для современных отраслей и платформ'}
+                ? 'Specializujeme se na moderní odvětví s garantovanými výsledky'
+                : 'Специализируемся на современnіх отраслях с гарантированными результатами'}
             </p>
           </div>
 
-          {/* Expertise Areas Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-            {expertiseAreas.map((area, index) => (
-              <motion.div 
-                key={index}
-                className="group cursor-pointer"
-                {...fadeInUp} 
-                transition={{ delay: 0.4 + index * 0.05 }}
-              >
-                <div className="relative bg-white rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-neutral-100 hover:border-neutral-300 group-hover:-translate-y-1">
-                  <div className={`w-12 h-12 mx-auto mb-3 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 ${area.color === 'emerald' ? 'bg-emerald-50' : area.color === 'blue' ? 'bg-blue-50' : area.color === 'purple' ? 'bg-purple-50' : area.color === 'yellow' ? 'bg-yellow-50' : area.color === 'red' ? 'bg-red-50' : area.color === 'indigo' ? 'bg-indigo-50' : area.color === 'teal' ? 'bg-teal-50' : 'bg-orange-50'}`}>
-                    <area.icon className={`w-6 h-6 ${area.color === 'emerald' ? 'text-emerald-600' : area.color === 'blue' ? 'text-blue-600' : area.color === 'purple' ? 'text-purple-600' : area.color === 'yellow' ? 'text-yellow-600' : area.color === 'red' ? 'text-red-600' : area.color === 'indigo' ? 'text-indigo-600' : area.color === 'teal' ? 'text-teal-600' : 'text-orange-600'}`} />
+          {/* Key Benefits & Top Expertise - Two column layout */}
+          <div className="bg-gradient-to-r from-brand-emerald/5 to-brand-emerald/10 rounded-2xl p-12 mb-8">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-12">
+                {/* Left side - Benefits */}
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <CheckCircle2 className="w-6 h-6 text-brand-emerald flex-shrink-0 mt-1" />
+                    <div className="flex-1">
+                      <h4 className="font-bold text-neutral-900 text-lg mb-1">
+                        {language === 'cs' ? 'Ušetříte 15+ hodin měsíčně' : 'Экономьте 15+ часов в месяц'}
+                      </h4>
+                      <p className="text-neutral-600">
+                        {language === 'cs' ? 'Místo papírování se věnujte růstu svého byznysu' : 'Вместо бумажной работы сосредоточьтесь на развитии бизнеса'}
+                      </p>
+                    </div>
                   </div>
-                  <h4 className="font-semibold text-neutral-900 mb-1 text-unified-sm">{area.title}</h4>
-                  <p className="text-neutral-600 text-xs leading-relaxed">{area.description}</p>
+                  <div className="flex items-start gap-4">
+                    <CheckCircle2 className="w-6 h-6 text-brand-emerald flex-shrink-0 mt-1" />
+                    <div className="flex-1">
+                      <h4 className="font-bold text-neutral-900 text-lg mb-1">
+                        {language === 'cs' ? 'Snížíte daňovou zátěž o 20-40%' : 'Сократите налоговую нагрузку на 20-40%'}
+                      </h4>
+                      <p className="text-neutral-600">
+                        {language === 'cs' ? 'Využijeme všechny zákonné odpočty a optimalizace' : 'Используем все законные вычеты и оптимизации'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <CheckCircle2 className="w-6 h-6 text-brand-emerald flex-shrink-0 mt-1" />
+                    <div className="flex-1">
+                      <h4 className="font-bold text-neutral-900 text-lg mb-1">
+                        {language === 'cs' ? 'Nikdy nepropásnete termín' : 'Никогда не пропустите сроки'}
+                      </h4>
+                      <p className="text-neutral-600">
+                        {language === 'cs' ? 'Automatické připomínky a dodávky před deadliny' : 'Автоматические напоминания и подача до дедлайнов'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <CheckCircle2 className="w-6 h-6 text-brand-emerald flex-shrink-0 mt-1" />
+                    <div className="flex-1">
+                      <h4 className="font-bold text-neutral-900 text-lg mb-1">
+                        {language === 'cs' ? 'Máte přehled o financích 24/7' : 'Контроль финансов 24/7'}
+                      </h4>
+                      <p className="text-neutral-600">
+                        {language === 'cs' ? 'Realtime reporty a analýzy přímo do vašeho telefonu' : 'Отчеты и аналитика в реальном времени на ваш телефон'}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
+
+                {/* Right side - Top 4 Expertise Areas */}
+                <div className="space-y-11">
+                  {expertiseAreas.slice(0, 4).map((area, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                      <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                        <area.icon className="w-8 h-8 text-neutral-700" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold text-neutral-900 text-lg mb-1">
+                          {area.title}
+                        </h4>
+                        <p className="text-neutral-600">
+                          {area.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Key Benefits Section */}
-          <div className="bg-gradient-to-br from-brand-emerald/5 to-brand-emerald/10 rounded-2xl p-8">
-            <div className="text-center mb-8">
-              <h3 className="text-unified-2xl font-bold text-neutral-900 mb-2">
-                {language === 'cs' ? 'Proč si nás vybrat' : 'Почему выбирают нас'}
-              </h3>
-              <p className="text-neutral-600">
-                {language === 'cs'
-                  ? 'Konkrétní výsledky, které dokážeme garantovat'
-                  : 'Конкретные результаты, которые мы можем гарантировать'}
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {keyBenefits.map((benefit, index) => (
+          {/* Remaining Expertise Areas - Wide cards with dark background */}
+          <div className="mb-0 mt-4">
+            <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+              {expertiseAreas.slice(4).map((area, index) => (
                 <motion.div 
-                  key={index}
-                  className="text-center group"
+                  key={index + 4}
+                  className="group cursor-pointer"
                   {...fadeInUp} 
-                  transition={{ delay: 0.6 + index * 0.1 }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300 group-hover:-translate-y-1">
-                    <benefit.icon className="w-8 h-8 text-brand-emerald" />
+                  <div className="bg-neutral-50 rounded-lg p-4 hover:bg-white hover:shadow-md transition-all duration-300 border border-transparent hover:border-neutral-200">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
+                        <area.icon className="w-6 h-6 text-neutral-700 group-hover:text-brand-emerald transition-colors duration-300" />
+                      </div>
+                      <div>
+                        <h5 className="font-semibold text-neutral-900">{area.title}</h5>
+                        <p className="text-neutral-600 text-sm">{area.description}</p>
+                      </div>
+                    </div>
                   </div>
-                  <h4 className="font-bold text-neutral-900 mb-1 text-unified-sm">{benefit.title}</h4>
-                  <p className="text-neutral-600 text-xs">{benefit.subtitle}</p>
                 </motion.div>
               ))}
             </div>
           </div>
-        </motion.div>
 
-        {/* Bottom CTA */}
-        <motion.div className="text-center mt-12 pt-8 border-t border-neutral-200" {...fadeInUp} transition={{ delay: 1.0 }}>
-          <p className="text-neutral-600 mb-6 max-w-2xl mx-auto">
-            {language === 'cs'
-              ? 'Chcete vědět, jak vám můžeme pomoci optimalizovat vaše účetnictví?'
-              : 'Хотите узнать, как мы можем помочь оптимизировать вашу отчетность?'}
-          </p>
-          <Link to="/contact">
-            <Button size="lg" className="bg-brand-emerald hover:bg-brand-emerald/90 text-white font-semibold">
-              <Calendar className="mr-2 w-5 h-5" />
-              {language === 'cs' ? 'Konzultace zdarma' : 'Бесплатная консультация'}
-            </Button>
-          </Link>
+          {/* Bottom CTA */}
+          <motion.div className="text-center pt-8" {...fadeInUp} transition={{ delay: 0.8 }}>
+            <Link to="/contact">
+              <Button size="lg" className="bg-brand-emerald hover:bg-brand-emerald/90 text-white font-semibold">
+                <Calendar className="mr-2 w-5 h-5" />
+                {language === 'cs' ? 'Konzultace zdarma' : 'Бесплатная консультация'}
+              </Button>
+            </Link>
+          </motion.div>
         </motion.div>
       </Section>
 
-
-
       {/* How We Work Section */}
-      <Section spacing="sm" background="gray" containerSize="default">
+      <Section spacing="lg" background="gray" containerSize="default">
         <motion.div className="text-center mb-10" {...fadeInUp}>
           <h2 className="text-unified-3xl font-bold text-neutral-900 mb-4">
             {language === 'cs' ? 'Jak spolupracujeme' : 'Как мы работаем'}
@@ -274,50 +314,35 @@ export default function Home() {
         </div>
       </Section>
 
-
-
-      {/* CTA Section - Enhanced */}
-      <Section spacing="sm" background="emerald" containerSize="content">
-        <div className="text-center relative">
+      {/* CTA Section - Clean & Minimal */}
+      <Section spacing="lg" background="emerald" containerSize="content">
+        <div className="text-center">
           <motion.div {...fadeInUp}>
-            <h2 className="text-unified-3xl font-bold text-white mb-4">
-              {language === 'cs' ? 'Začněte ještě dnes' : 'Начните уже сегодня'}
+            <h2 className="text-4xl font-bold text-white mb-6">
+              {language === 'cs' ? 'Začněte ušetřovat čas už dnes' : 'Начните экономить время уже сегодня'}
             </h2>
-            <p className="text-unified-lg text-white/90 mb-6 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               {language === 'cs'
-                ? 'Získejte bezplatnou konzultaci a zjistěte, jak vám můžeme pomoci optimalizovat finance'
-                : 'Получите бесплатную консультацию и узнайте, как мы можем помочь оптимизировать финансы'}
+                ? 'Bezplatná konzultace vám ukáže, kolik můžete ušetřit'
+                : 'Бесплатная консультация покажет, сколько вы можете сэкономить'}
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-              <Link to="/contact">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  className="bg-white text-brand-emerald hover:bg-neutral-50 font-semibold"
-                >
-                  <Calendar className="mr-2 w-5 h-5" />
-                  {language === 'cs' ? 'Objednat konzultaci' : 'Записаться на консультацию'}
-                </Button>
-              </Link>
-              <a href="tel:+420722243337">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-white text-white hover:bg-white/10 font-semibold"
-                >
-                  <Phone className="mr-2 w-5 h-5" />
-                  +420 722 243 337
-                </Button>
-              </a>
-            </div>
+            <Link to="/contact">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-brand-emerald hover:bg-neutral-50 font-semibold px-8 py-4 text-lg"
+              >
+                <Calendar className="mr-3 w-6 h-6" />
+                {language === 'cs' ? 'Objednat konzultaci' : 'Записаться на консультацию'}
+              </Button>
+            </Link>
 
-            <div className="flex items-center justify-center text-white/80 text-unified-sm">
-              <CheckCircle2 className="w-4 h-4 mr-2" />
+            <p className="text-white/80 text-sm mt-6">
               {language === 'cs' 
-                ? 'Konzultace je zcela zdarma a nezávazná'
-                : 'Консультация абсолютно бесплатная и необязательная'}
-            </div>
+                ? 'Zdarma • Bez závazků • Odpověď do 24 hodin'
+                : 'Бесплатно • Без обязательств • Ответ в течение 24 часов'}
+            </p>
           </motion.div>
         </div>
       </Section>
