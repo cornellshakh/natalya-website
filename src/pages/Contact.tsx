@@ -1,152 +1,386 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { Mail, Phone, MapPin, Clock, ExternalLink } from 'lucide-react';
+import { Button } from '../components/ui/button';
+import Section from '../components/layout/Section';
+import SEOHead from '../components/SEO/SEOHead';
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  MessageSquare,
+  Send,
+  Users,
+  Calendar,
+  Shield
+} from 'lucide-react';
 
 export default function Contact() {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    serviceType: '',
+    message: ''
+  });
 
-  const contactItems = [
-    {
-      icon: Mail,
-      title: t('contact.info.email'),
-      value: 'ucetnipraha@atlas.cz',
-      link: 'mailto:ucetnipraha@atlas.cz',
-      showExternalIcon: false
-    },
-    {
-      icon: Phone,
-      title: t('contact.info.phone'),
-      value: '+420 722 243 337',
-      link: 'tel:+420722243337',
-      showExternalIcon: false
-    },
-    {
-      icon: MapPin,
-      title: t('contact.info.location'),
-      value: 'Vodičkova 39, 110 00 Praha',
-      link: 'https://maps.google.com/?q=Vodičkova+39+Praha',
-      showExternalIcon: true
-    },
-    {
-      icon: Clock,
-      title: t('contact.info.hours'),
-      value: t('contact.info.workdays'),
-      subtext: t('contact.info.response'),
-      link: null,
-      showExternalIcon: false
-    }
-  ];
-
-  const fadeIn = {
+  const fadeInUp = {
     initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
     transition: { duration: 0.6 }
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission
+    console.log('Form submitted:', formData);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const contactMethods = [
+    {
+      icon: Phone,
+      title: language === 'cs' ? 'Telefon' : 'Телефон',
+      value: '+420 722 243 337',
+      description: language === 'cs' ? 'Po-Pá 9:00-17:00' : 'Пн-Пт 9:00-17:00',
+      action: () => window.open('tel:+420722243337')
+    },
+    {
+      icon: Mail,
+      title: language === 'cs' ? 'Email' : 'Email',
+      value: 'info@natalyashakh.cz',
+      description: language === 'cs' ? 'Odpovídáme do 24h' : 'Отвечаем в течение 24ч',
+      action: () => window.open('mailto:info@natalyashakh.cz')
+    },
+    {
+      icon: MapPin,
+      title: language === 'cs' ? 'Adresa' : 'Адрес',
+      value: 'Praha, Česká republika',
+      description: language === 'cs' ? 'Schůzky po dohodě' : 'Встречи по договоренности',
+      action: () => {}
+    }
+  ];
+
+  const serviceTypes = [
+    language === 'cs' ? 'Vedení účetnictví' : 'Ведение бухгалтерии',
+    language === 'cs' ? 'Daňové poradenství' : 'Налоговое консультирование',
+    language === 'cs' ? 'Mzdová agenda' : 'Расчет зарплат',
+    language === 'cs' ? 'Zakládání společnosti' : 'Регистрация компании',
+    language === 'cs' ? 'Právní služby' : 'Юридические услуги',
+    language === 'cs' ? 'Jiné' : 'Другое'
+  ];
+
+  const benefits = [
+    {
+      icon: Clock,
+      title: language === 'cs' ? 'Rychlá odpověď' : 'Быстрый ответ',
+      description: language === 'cs' ? 'Odpovídáme do 2 hodin v pracovní době' : 'Отвечаем в течение 2 часов в рабочее время'
+    },
+    {
+      icon: Shield,
+      title: language === 'cs' ? 'Diskrétnost' : 'Конфиденциальность',
+      description: language === 'cs' ? 'Vaše údaje jsou v bezpečí' : 'Ваши данные в безопасности'
+    },
+    {
+      icon: Users,
+      title: language === 'cs' ? 'Osobní přístup' : 'Персональный подход',
+      description: language === 'cs' ? 'Řešení šité na míru vašim potřebám' : 'Решения, адаптированные под ваши потребности'
+    }
+  ];
+
   return (
-    <div className="min-h-screen relative">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-50 via-blue-50/50 to-white pointer-events-none" />
+    <div className="min-h-screen bg-white">
+      <SEOHead
+        title={language === 'cs' ? 'Kontakt - Natalya Shakh' : 'Контакт - Natalya Shakh'}
+        description={language === 'cs'
+          ? 'Kontaktujte nás pro profesionální účetní služby. Nabízíme bezplatnou konzultaci a rychlou odpověď na všechny dotazy.'
+          : 'Свяжитесь с нами для получения профессиональных бухгалтерских услуг. Предлагаем бесплатную консультацию и быстрый ответ на все вопросы.'
+        }
+        canonical="https://natalya-website.vercel.app/contact"
+      />
 
-      {/* Content */}
-      <div className="relative">
-        {/* Hero Section */}
-        <section className="py-20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid-pattern opacity-10" />
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="container-pad relative z-10 text-center max-w-3xl mx-auto"
-          >
-            <h1 className="text-3xl font-bold mb-3">{t('contact.title')}</h1>
-            <p className="text-lg text-gray-600">{t('contact.subtitle')}</p>
+      {/* Hero Section */}
+      <Section spacing="lg" background="gray" containerSize="default">
+        <div className="text-center">
+          <motion.div {...fadeInUp}>
+            <div className="inline-flex items-center gap-3 border border-brand-emerald/20 rounded-full px-6 py-3 mb-6">
+              <MessageSquare className="w-5 h-5 text-brand-emerald" />
+              <span className="text-unified-sm font-medium text-brand-emerald">
+                {language === 'cs' ? 'Máte otázky? Jsme tu pro vás!' : 'Есть вопросы? Мы здесь для вас!'}
+              </span>
+            </div>
+            
+            <h1 className="text-unified-6xl font-serif font-bold text-brand-navy mb-6">
+              {language === 'cs' ? 'Spojte se s námi' : 'Свяжитесь с нами'}
+            </h1>
+            
+            <p className="text-unified-xl text-neutral-600 max-w-3xl mx-auto">
+              {language === 'cs'
+                ? 'Získejte bezplatnou konzultaci a zjistěte, jak vám můžeme pomoci s účetnictvím a daňovými povinnostmi. Odpovídáme rychle a nabízíme řešení šitá na míru.'
+                : 'Получите бесплатную консультацию и узнайте, как мы можем помочь с бухгалтерией и налоговыми обязательствами. Отвечаем быстро и предлагаем индивидуальные решения.'}
+            </p>
           </motion.div>
-        </section>
+        </div>
+      </Section>
 
-        {/* Main Content */}
-        <section className="pt-0 pb-8">
-          <div className="container-pad">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid lg:grid-cols-2 gap-6">
-                {/* Map Section */}
-                <motion.div
-                  {...fadeIn}
-                  className="relative rounded-2xl overflow-hidden shadow-lg bg-white h-[500px]"
-                >
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d710.0648202803447!2d14.4244006!3d50.0819109!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b94ed1314beb3%3A0x16e2c05fb02d34eb!2zVm9kacSNa292YSAzOSwgMTEwIDAwIE5vdsOpIE3Em3N0bw!5e1!3m2!1sen!2scz!4v1733218460959!5m2!1sen!2scz"
-                    className="absolute inset-0 w-full h-full border-0"
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Office Location"
-                  ></iframe>
-                </motion.div>
+      {/* Contact Methods */}
+      <Section spacing="md" background="white" containerSize="default">
+        <motion.div 
+          className="text-center mb-12"
+          {...fadeInUp}
+        >
+          <h2 className="text-unified-3xl font-bold text-neutral-900 mb-4">
+            {language === 'cs' ? 'Jak nás můžete kontaktovat' : 'Как с нами связаться'}
+          </h2>
+        </motion.div>
 
-                {/* Contact Information */}
-                <motion.div
-                  {...fadeIn}
-                  transition={{ delay: 0.2 }}
-                  className="h-[500px]"
-                >
-                  <div className="bg-white rounded-2xl shadow-lg h-full">
-                    <div className="p-6 space-y-4">
-                      {contactItems.map((item, index) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.3 + index * 0.1 }}
-                          className="group"
-                        >
-                          {item.link ? (
-                            <a
-                              href={item.link}
-                              target={item.showExternalIcon ? "_blank" : undefined}
-                              rel={item.showExternalIcon ? "noopener noreferrer" : undefined}
-                              className="flex items-start space-x-4 p-4 rounded-xl hover:bg-blue-50 transition-colors"
-                            >
-                              <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                                <item.icon className="w-5 h-5 text-blue-600" />
-                              </div>
-                              <div className="flex-1">
-                                <p className="font-medium text-gray-900 text-sm">{item.title}</p>
-                                <p className="text-blue-600 flex items-center">
-                                  {item.value}
-                                  {item.showExternalIcon && (
-                                    <ExternalLink className="w-4 h-4 ml-1 inline-block" />
-                                  )}
-                                </p>
-                              </div>
-                            </a>
-                          ) : (
-                            <div className="flex items-start space-x-4 p-4">
-                              <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                                <item.icon className="w-5 h-5 text-blue-600" />
-                              </div>
-                              <div>
-                                <p className="font-medium text-gray-900 text-sm">{item.title}</p>
-                                <p className="text-gray-600">{item.value}</p>
-                              </div>
-                            </div>
-                          )}
-                        </motion.div>
-                      ))}
-
-                      {/* Additional Information */}
-                      <div className="mt-6 pt-6 border-t border-gray-100">
-                        <p className="text-sm text-gray-500 text-center">
-                          {t('contact.info.response')}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {contactMethods.map((method, index) => (
+            <motion.div
+              key={index}
+              {...fadeInUp}
+              transition={{ delay: index * 0.1 }}
+              className="text-center group cursor-pointer"
+              onClick={method.action}
+            >
+              <div className="w-16 h-16 mx-auto mb-4 bg-brand-emerald/10 rounded-full flex items-center justify-center group-hover:bg-brand-emerald/20 transition-colors">
+                <method.icon className="w-8 h-8 text-brand-emerald" />
               </div>
+              <h3 className="text-unified-xl font-semibold text-neutral-900 mb-2">{method.title}</h3>
+              <p className="text-unified-lg font-medium text-brand-emerald mb-1">{method.value}</p>
+              <p className="text-unified-sm text-neutral-600">{method.description}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <motion.div {...fadeInUp} transition={{ delay: 0.4 }}>
+            <p className="text-unified-base text-neutral-600 mb-6">
+              {language === 'cs' 
+                ? 'Preferujete osobní schůzku? Rádi se s vámi setkáme v naší kanceláři nebo u vás.'
+                : 'Предпочитаете личную встречу? Мы с радостью встретимся с вами в нашем офисе или у вас.'}
+            </p>
+            <Button size="lg" className="bg-brand-emerald hover:bg-brand-emerald/90">
+              <Calendar className="mr-2 w-5 h-5" />
+              {language === 'cs' ? 'Objednat schůzku' : 'Записаться на встречу'}
+            </Button>
+          </motion.div>
+        </div>
+      </Section>
+
+      {/* Contact Form */}
+      <Section spacing="md" background="gray" containerSize="content">
+        <motion.div 
+          className="text-center mb-12"
+          {...fadeInUp}
+        >
+          <h2 className="text-unified-3xl font-bold text-neutral-900 mb-4">
+            {language === 'cs' ? 'Napište nám' : 'Напишите нам'}
+          </h2>
+          <p className="text-unified-lg text-neutral-600">
+            {language === 'cs'
+              ? 'Vyplňte formulář a my se vám ozveme do 24 hodin'
+              : 'Заполните форму, и мы свяжемся с вами в течение 24 часов'}
+          </p>
+        </motion.div>
+
+        <motion.form 
+          onSubmit={handleSubmit}
+          className="space-y-6"
+          {...fadeInUp}
+          transition={{ delay: 0.2 }}
+        >
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="name" className="block text-unified-sm font-medium text-neutral-700 mb-2">
+                {language === 'cs' ? 'Jméno a příjmení *' : 'Имя и фамилия *'}
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base"
+                placeholder={language === 'cs' ? 'Vaše jméno' : 'Ваше имя'}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-unified-sm font-medium text-neutral-700 mb-2">
+                {language === 'cs' ? 'Email *' : 'Email *'}
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base"
+                placeholder={language === 'cs' ? 'vas@email.cz' : 'your@email.com'}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="phone" className="block text-unified-sm font-medium text-neutral-700 mb-2">
+                {language === 'cs' ? 'Telefon' : 'Телефон'}
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base"
+                placeholder="+420 123 456 789"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="company" className="block text-unified-sm font-medium text-neutral-700 mb-2">
+                {language === 'cs' ? 'Společnost' : 'Компания'}
+              </label>
+              <input
+                type="text"
+                id="company"
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base"
+                placeholder={language === 'cs' ? 'Název společnosti' : 'Название компании'}
+              />
+            </div>
+
+            <div className="md:col-span-2">
+              <label htmlFor="serviceType" className="block text-unified-sm font-medium text-neutral-700 mb-2">
+                {language === 'cs' ? 'Typ služby' : 'Тип услуги'}
+              </label>
+              <select
+                id="serviceType"
+                name="serviceType"
+                value={formData.serviceType}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base"
+              >
+                <option value="">
+                  {language === 'cs' ? 'Vyberte službu' : 'Выберите услугу'}
+                </option>
+                {serviceTypes.map((service, index) => (
+                  <option key={index} value={service}>{service}</option>
+                ))}
+              </select>
             </div>
           </div>
-        </section>
-      </div>
+
+          <div>
+            <label htmlFor="message" className="block text-unified-sm font-medium text-neutral-700 mb-2">
+              {language === 'cs' ? 'Zpráva *' : 'Сообщение *'}
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows={6}
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors resize-none text-unified-base"
+              placeholder={language === 'cs' 
+                ? 'Popište vaše potřeby a my vám připravíme nabídku na míru...'
+                : 'Опишите ваши потребности, и мы подготовим персональное предложение...'}
+            />
+          </div>
+
+          <div className="text-center">
+            <Button 
+              type="submit" 
+              size="lg" 
+              className="bg-brand-emerald hover:bg-brand-emerald/90 min-w-[200px]"
+            >
+              <Send className="mr-2 w-5 h-5" />
+              {language === 'cs' ? 'Odeslat zprávu' : 'Отправить сообщение'}
+            </Button>
+            
+            <p className="text-unified-sm text-neutral-600 mt-4">
+              {language === 'cs'
+                ? 'Odesláním souhlasíte s našimi podmínkami ochrany osobních údajů'
+                : 'Отправляя форму, вы соглашаетесь с нашими условиями защиты персональных данных'}
+            </p>
+          </div>
+        </motion.form>
+      </Section>
+
+      {/* Benefits */}
+      <Section spacing="md" background="white" containerSize="default">
+        <motion.div 
+          className="text-center mb-12"
+          {...fadeInUp}
+        >
+          <h2 className="text-unified-3xl font-bold text-neutral-900 mb-4">
+            {language === 'cs' ? 'Proč nás kontaktovat' : 'Почему стоит связаться с нами'}
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {benefits.map((benefit, index) => (
+            <motion.div
+              key={index}
+              {...fadeInUp}
+              transition={{ delay: index * 0.1 }}
+              className="text-center"
+            >
+              <div className="w-16 h-16 mx-auto mb-4 bg-brand-emerald/10 rounded-full flex items-center justify-center">
+                <benefit.icon className="w-8 h-8 text-brand-emerald" />
+              </div>
+              <h3 className="text-unified-xl font-semibold text-neutral-900 mb-2">{benefit.title}</h3>
+              <p className="text-unified-base text-neutral-600">{benefit.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Final CTA */}
+      <Section spacing="md" background="emerald" containerSize="content">
+        <div className="text-center">
+          <motion.div {...fadeInUp}>
+            <h2 className="text-unified-3xl font-bold text-white mb-6">
+              {language === 'cs' 
+                ? 'Začněme spolupracovat ještě dnes' 
+                : 'Начнем сотрудничество уже сегодня'}
+            </h2>
+            <p className="text-unified-xl text-white/90 mb-8">
+              {language === 'cs'
+                ? 'Získejte bezplatnou konzultaci v hodnotě 2.500 Kč a zjistěte, jak vám můžeme ušetřit čas i peníze.'
+                : 'Получите бесплатную консультацию стоимостью 2.500 крон и узнайте, как мы можем сэкономить ваше время и деньги.'}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="tel:+420722243337">
+                <Button size="lg" variant="secondary" className="bg-white text-brand-emerald hover:bg-neutral-50">
+                  <Phone className="mr-2 w-5 h-5" />
+                  {language === 'cs' ? 'Zavolejte nyní' : 'Позвонить сейчас'}
+                </Button>
+              </a>
+              <a href="mailto:info@natalyashakh.cz">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  <Mail className="mr-2 w-5 h-5" />
+                  {language === 'cs' ? 'Napište email' : 'Написать email'}
+                </Button>
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </Section>
     </div>
   );
 }

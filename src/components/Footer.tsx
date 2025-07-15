@@ -1,4 +1,5 @@
 import { useLanguage } from '../context/LanguageContext';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -10,17 +11,15 @@ export default function Footer() {
           <p className="text-sm text-gray-500 mb-4">
             {t('footer.description')}
           </p>
-          <p className="text-sm text-gray-400 mb-4">
-            &copy; {new Date().getFullYear()} Natalya Shakh · {t('footer.rights')}
-          </p>
-          <a
-            href="https://instagram.com/kornelshakh"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-gray-400 hover:text-gray-600 flex items-center justify-center"
-          >
-            Made by Kornel <span className="mx-1 text-red-500">❤️</span>
-          </a>
+          <div className="flex flex-wrap justify-center gap-4 mb-4">
+            <Link to="/privacy" className="text-sm text-gray-400 hover:text-gray-600">
+              {t('privacy.title')}
+            </Link>
+            <span className="text-gray-300">•</span>
+            <Link to="/terms" className="text-sm text-gray-400 hover:text-gray-600">
+              {t('terms.title')}
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

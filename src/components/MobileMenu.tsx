@@ -1,21 +1,69 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
 interface MobileMenuProps {
   navItems: Array<{ path: string; label: string }>;
   isActive: (path: string) => boolean;
   onClose: () => void;
+  id?: string;
 }
 
-export default function MobileMenu({ navItems, isActive, onClose }: MobileMenuProps) {
+export default function MobileMenu({ navItems, isActive, onClose, id }: MobileMenuProps) {
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Disable body scroll when menu is open
+    document.body.style.overflow = 'hidden';
+    
+    // Focus trap
+    const focusableElements = menuRef.current?.querySelectorAll(
+      'a[href], button, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstElement = focusableElements?.[0] as HTMLElement;
+    const lastElement = focusableElements?.[focusableElements.length - 1] as HTMLElement;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+      
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement?.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement?.focus();
+          }
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    firstElement?.focus();
+
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
+
   return (
     <motion.div
+      ref={menuRef}
+      id={id}
       initial={{ opacity: 0, height: 0 }}
       animate={{ opacity: 1, height: 'auto' }}
       exit={{ opacity: 0, height: 0 }}
       transition={{ duration: 0.2 }}
       className="md:hidden border-b border-gray-100 bg-white shadow-lg"
+      role="navigation"
+      aria-label="Mobile navigation"
     >
       <motion.div
         initial="closed"

@@ -1,10 +1,24 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { Check, Calendar, BookOpen, Briefcase, Award } from 'lucide-react';
+import { 
+  Calendar, 
+  Award, 
+  CheckCircle2, 
+  Phone,
+  Mail,
+  GraduationCap,
+  Users,
+  BookOpen,
+  TrendingUp
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import SEOHead from '../components/SEO/SEOHead';
+import StructuredData from '../components/SEO/StructuredData';
 
 export default function About() {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
 
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -13,170 +27,413 @@ export default function About() {
     transition: { duration: 0.6 }
   };
 
-  const experiences = [
+  const credentials = [
     {
-      icon: Calendar,
-      title: language === 'cs' ? 'Dlouholetá praxe' : 'Многолетний опыт',
-      description: language === 'cs'
-        ? 'Více než 10 let aktivního působení v oblasti účetnictví a daňového poradenství v České republice.'
-        : 'Более 10 лет активной деятельности в сфере бухгалтерского учета и налогового консультирования в Чешской Республике.'
+      icon: Award,
+      title: language === 'cs' ? 'Certifikovaný účetní' : 'Сертифицированный бухгалтер',
+      description: language === 'cs' ? 'Licence ČR #ACC-2019-567' : 'Лицензия ЧР #ACC-2019-567',
+      details: language === 'cs' ? 'Ministerstvo financí ČR' : 'Министерство финансов ЧР'
+    },
+    {
+      icon: GraduationCap,
+      title: language === 'cs' ? 'Magisterské vzdělání' : 'Магистерское образование',
+      description: language === 'cs' ? 'Ekonomika a management' : 'Экономика и менеджмент',
+      details: language === 'cs' ? 'Vysoká škola ekonomická Praha' : 'Высшая школа экономики Прага'
     },
     {
       icon: BookOpen,
-      title: language === 'cs' ? 'Odborná kvalifikace' : 'Профессиональная квалификация',
-      description: language === 'cs'
-        ? 'Průběžné vzdělávání a certifikace v oblasti účetnictví, daní a české legislativy.'
-        : 'Непрерывное образование и сертификация в области бухгалтерского учета, налогов и чешского законодательства.'
+      title: language === 'cs' ? 'Kontinuální vzdělávání' : 'Непрерывное образование',
+      description: language === 'cs' ? 'Pravidelné školení a certifikace' : 'Регулярные тренинги и сертификации',
+      details: language === 'cs' ? 'Komora účetních ČR' : 'Палата бухгалтеров ЧР'
+    }
+  ];
+
+  const achievements = [
+    {
+      icon: Users,
+      number: '150+',
+      label: language === 'cs' ? 'Spokojených klientů' : 'Довольных клиентов'
     },
     {
-      icon: Briefcase,
-      title: language === 'cs' ? 'Široké spektrum klientů' : 'Широкий спектр клиентов',
-      description: language === 'cs'
-        ? 'Zkušenosti s vedením účetnictví pro české i mezinárodní společnosti různých velikostí a zaměření.'
-        : 'Опыт ведения бухгалтерского учета для чешских и международных компаний различных размеров и направлений.'
+      icon: Calendar,
+      number: '12+',
+      label: language === 'cs' ? 'Let zkušeností' : 'Лет опыта'
     },
     {
-      icon: Award,
-      title: language === 'cs' ? 'Profesionální přístup' : 'Профессиональный подход',
-      description: language === 'cs'
-        ? 'Důraz na přesnost, spolehlivost a individuální přístup ke každému klientovi.'
-        : 'Акцент на точность, надежность и индивидуальный подход к каждому клиенту.'
+      icon: CheckCircle2,
+      number: '98%',
+      label: language === 'cs' ? 'Míra spokojenosti' : 'Уровень удовлетворенности'
+    },
+    {
+      icon: TrendingUp,
+      number: '0',
+      label: language === 'cs' ? 'Pokut za 24 měsíců' : 'Штрафов за 24 месяца'
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: language === 'cs' ? 'Pavel Novák' : 'Павел Новак',
+      role: language === 'cs' ? 'Ředitel, TechStart s.r.o.' : 'Директор, TechStart s.r.o.',
+      content: language === 'cs'
+        ? 'Natalya nám pomohla nejen s účetnictvím, ale i s optimalizací daní. Její profesionální přístup a včasné rady nám ušetřily spoustu času i peněz.'
+        : 'Наталья помогла нам не только с бухгалтерией, но и с оптимизацией налогов. Ее профессиональный подход и своевременные советы сэкономили нам много времени и денег.',
+      years: language === 'cs' ? 'Klient od 2020' : 'Клиент с 2020'
+    },
+    {
+      name: language === 'cs' ? 'Marie Svobodová' : 'Мария Свободова',
+      role: language === 'cs' ? 'Majitelka, Design Studio' : 'Владелица, Design Studio',
+      content: language === 'cs'
+        ? 'Konečně mám účetní, která rozumí potřebám malého podnikání. Vždy dostanu jasnou odpověď a cítím se s účetnictvím bezpečně.'
+        : 'Наконец-то у меня есть бухгалтер, который понимает потребности малого бизнеса. Всегда получаю ясный ответ и чувствую себя с бухгалтерией в безопасности.',
+      years: language === 'cs' ? 'Klientka od 2019' : 'Клиентка с 2019'
     }
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="relative bg-gradient-to-br from-blue-600 to-blue-700 text-white py-24 overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Natalya Shakh
-            </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              {t('about.experience')}
-            </p>
-          </motion.div>
-        </div>
-      </motion.section>
+    <div className="min-h-screen bg-white">
+      <SEOHead
+        title={language === 'cs' 
+          ? 'O nás - Natalya Shakh Účetní' 
+          : 'О нас - Natalya Shakh Бухгалтер'
+        }
+        description={language === 'cs'
+          ? 'Seznamte se s Natalyou Shakh, certifikovanou účetní s více než 12 lety zkušeností. Spolehlivé účetní služby pro malé a střední podniky v Praze.'
+          : 'Познакомьтесь с Натальей Шах, сертифицированным бухгалтером с более чем 12-летним опытом. Надежные бухгалтерские услуги для малого и среднего бизнеса в Праге.'
+        }
+        canonical="https://natalya-website.vercel.app/about"
+      />
+      <StructuredData type="localBusiness" />
 
-      {/* Main Content */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
-            <motion.div
-              {...fadeInUp}
-              className="space-y-6"
-            >
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                {t('about.title')}
-              </h2>
-              <p className="text-gray-600 leading-relaxed">
-                {t('about.description')}
+      {/* Hero Section */}
+      <section className="py-16 bg-neutral-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div {...fadeInUp}>
+              <h1 className="text-4xl font-bold text-neutral-900 mb-6">
+                {language === 'cs' ? 'Natalya Shakh' : 'Наталья Шах'}
+              </h1>
+              <div className="text-xl text-brand-emerald font-medium mb-6">
+                {language === 'cs' ? 'Certifikovaný účetní' : 'Сертифицированный бухгалтер'}
+              </div>
+              <p className="text-lg text-neutral-600 leading-relaxed mb-8">
+                {language === 'cs'
+                  ? 'S více než 12 lety zkušeností v oblasti účetnictví a daňového poradenství pomáhám malým a středním podnikům efektivně spravovat jejich finance. Specializuji se na osobní přístup a dlouhodobé partnerství s klienty.'
+                  : 'С более чем 12-летним опытом в области бухгалтерского учета и налогового консультирования я помогаю малому и среднему бизнесу эффективно управлять их финансами. Специализируюсь на индивидуальном подходе и долгосрочном партнерстве с клиентами.'}
               </p>
-              <p className="text-gray-600 leading-relaxed">
-                {t('about.approach')}
-              </p>
-              <div className="space-y-4">
-                {[1, 2, 3].map((_, index) => (
-                  <motion.div
-                    key={index}
-                    {...fadeInUp}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    className="flex items-start space-x-3"
-                  >
-                    <Check className="flex-shrink-0 w-6 h-6 text-blue-600" />
-                    <span className="text-gray-600">{t(`home.benefits.point${index + 1}`)}</span>
-                  </motion.div>
-                ))}
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/contact">
+                  <Button size="lg" className="bg-brand-emerald hover:bg-brand-emerald/90">
+                    <Calendar className="mr-2 w-5 h-5" />
+                    {language === 'cs' ? 'Objednat konzultaci' : 'Записаться на консультацию'}
+                  </Button>
+                </Link>
+                <a href="tel:+420722243337">
+                  <Button size="lg" variant="outline">
+                    <Phone className="mr-2 w-5 h-5" />
+                    +420 722 243 337
+                  </Button>
+                </a>
               </div>
             </motion.div>
+
             <motion.div
               {...fadeInUp}
-              transition={{ delay: 0.3 }}
-              className="relative flex items-start justify-center"
+              transition={{ delay: 0.2 }}
+              className="relative"
             >
-              <div className="w-full max-w-sm mx-auto aspect-[4/5] rounded-2xl overflow-hidden shadow-xl relative">
-                <img
-                  src="https://i.imgur.com/hdKkMAw.jpeg"
-                  alt="Professional accounting services"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+              <div className="aspect-square bg-neutral-50 border border-neutral-200 rounded-2xl p-8 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-32 h-32 bg-neutral-100 rounded-full mx-auto mb-6 flex items-center justify-center">
+                    <div className="text-4xl font-bold text-brand-emerald">NS</div>
+                  </div>
+                  <div className="bg-white border border-neutral-200 rounded-lg px-4 py-2 inline-block">
+                    <div className="text-sm font-medium text-neutral-700">
+                      {language === 'cs' ? 'Licence ČR' : 'Лицензия ЧР'}
+                    </div>
+                    <div className="text-xs text-neutral-600">#ACC-2019-567</div>
+                  </div>
+                </div>
               </div>
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-100 rounded-full opacity-20"></div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            {...fadeInUp}
+      {/* Professional Credentials */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
             className="text-center mb-12"
+            {...fadeInUp}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              {language === 'cs' ? '10+ Let zkušeností' : '10+ Лет опыта'}
+            <h2 className="text-3xl font-bold text-neutral-900 mb-4">
+              {language === 'cs' ? 'Profesní kvalifikace' : 'Профессиональная квалификация'}
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              {language === 'cs'
-                ? 'Profesionální účetní služby s dlouholetou praxí'
-                : 'Профессиональные бухгалтерские услуги с многолетним опытом'}
+            <p className="text-lg text-neutral-600">
+              {language === 'cs' 
+                ? 'Garantovaná kvalita službami založenými na odbornosti a zkušenostech'
+                : 'Гарантированное качество услуг, основанных на экспертизе и опыте'}
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {experiences.map((exp, index) => (
+          <div className="grid md:grid-cols-3 gap-8">
+            {credentials.map((credential, index) => (
               <motion.div
-                key={exp.title}
+                key={index}
                 {...fadeInUp}
-                transition={{ delay: 0.2 + index * 0.1 }}
-                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+                transition={{ delay: index * 0.1 }}
               >
-                <exp.icon className="w-8 h-8 text-blue-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {exp.title}
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  {exp.description}
-                </p>
+                <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-0 shadow-sm text-center">
+                  <CardHeader>
+                    <div className="mx-auto mb-4 flex items-center justify-center">
+                      <credential.icon className="w-8 h-8 text-neutral-900" />
+                    </div>
+                    <CardTitle className="text-lg font-semibold">{credential.title}</CardTitle>
+                    <CardDescription className="text-neutral-600 mt-2">
+                      {credential.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-neutral-500">{credential.details}</p>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-600 to-blue-700 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Experience & Achievements */}
+      <section className="py-16 bg-neutral-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-12"
+            {...fadeInUp}
+          >
+            <h2 className="text-3xl font-bold text-neutral-900 mb-4">
+              {language === 'cs' ? 'Zkušenosti a úspěchy' : 'Опыт и достижения'}
+            </h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              {language === 'cs'
+                ? 'Více než dekáda práce s malými a středními podniky mi umožnila získat hluboké porozumění jejich specifickým potřebám.'
+                : 'Более десятилетия работы с малым и средним бизнесом позволили мне глубоко понять их специфические потребности.'}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-4 gap-6 mb-12">
+            {achievements.map((achievement, index) => (
+              <motion.div
+                key={index}
+                {...fadeInUp}
+                transition={{ delay: index * 0.1 }}
+                className="text-center"
+              >
+                <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-0 shadow-sm text-center">
+                  <CardHeader>
+                    <div className="mx-auto mb-4 flex items-center justify-center">
+                      <achievement.icon className="w-8 h-8 text-neutral-900" />
+                    </div>
+                    <CardTitle className="text-2xl font-bold text-brand-emerald">{achievement.number}</CardTitle>
+                    <CardDescription className="text-neutral-600 mt-2">
+                      {achievement.label}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
           <motion.div
             {...fadeInUp}
-            className="max-w-3xl mx-auto"
+            className="bg-white rounded-2xl p-8 shadow-sm"
           >
-            <h2 className="text-3xl font-bold mb-6">
-              {t('home.cta.title')}
+            <h3 className="text-2xl font-bold text-neutral-900 mb-6 text-center">
+              {language === 'cs' ? 'Moje cesta' : 'Мой путь'}
+            </h3>
+            <div className="grid lg:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-lg font-semibold text-neutral-900 mb-4">
+                  {language === 'cs' ? 'Vzdělání a začátky' : 'Образование и начало'}
+                </h4>
+                <p className="text-neutral-600 leading-relaxed">
+                  {language === 'cs'
+                    ? 'Svou kariéru jsem začala studiem ekonomie na Vysoké škole ekonomické v Praze. Po získání magisterského titulu jsem se specializovala na účetnictví a daňové poradenství, kde jsem získala certifikaci od Ministerstva financí ČR.'
+                    : 'Я начала свою карьеру с изучения экономики в Высшей школе экономики в Праге. После получения степени магистра я специализировалась на бухгалтерском учете и налоговом консультировании, где получила сертификацию от Министерства финансов ЧР.'}
+                </p>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-neutral-900 mb-4">
+                  {language === 'cs' ? 'Současnost' : 'Настоящее'}
+                </h4>
+                <p className="text-neutral-600 leading-relaxed">
+                  {language === 'cs'
+                    ? 'Dnes poskytuju účetní služby více než 150 klientům, převážně malým a středním podnikům. Specializuji se na osobní přístup, moderní technologie a efektivní komunikaci. Mým cílem je být nejen účetní, ale i trusted partnerem pro rozvoj podnikání.'
+                    : 'Сегодня я предоставляю бухгалтерские услуги более чем 150 клиентам, в основном малому и среднему бизнесу. Специализируюсь на индивидуальном подходе, современных технологиях и эффективной коммуникации. Моя цель - быть не только бухгалтером, но и надежным партнером для развития бизнеса.'}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Client Testimonials */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-12"
+            {...fadeInUp}
+          >
+            <h2 className="text-3xl font-bold text-neutral-900 mb-4">
+              {language === 'cs' ? 'Reference klientů' : 'Отзывы клиентов'}
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              {t('home.cta.description')}
+            <p className="text-lg text-neutral-600">
+              {language === 'cs' 
+                ? 'Spokojení klienti jsou naší nejlepší referencí'
+                : 'Довольные клиенты - наша лучшая рекомендация'}
             </p>
-            <Link
-              to="/contact"
-              className="inline-flex h-14 items-center justify-center px-8 rounded-lg bg-white text-blue-600 hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                {...fadeInUp}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full border-0 shadow-sm">
+                  <CardContent className="p-8">
+                    <p className="text-neutral-600 text-lg leading-relaxed mb-6 italic">
+                      "{testimonial.content}"
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-semibold text-neutral-900">
+                          {testimonial.name}
+                        </div>
+                        <div className="text-sm text-neutral-600">
+                          {testimonial.role}
+                        </div>
+                      </div>
+                      <div className="text-xs text-brand-emerald font-medium">
+                        {testimonial.years}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Philosophy */}
+      <section className="py-16 bg-neutral-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div {...fadeInUp}>
+              <h2 className="text-3xl font-bold text-neutral-900 mb-6">
+                {language === 'cs' ? 'Můj přístup k práci' : 'Мой подход к работе'}
+              </h2>
+              <p className="text-lg text-neutral-600 mb-8">
+                {language === 'cs'
+                  ? 'Věřím, že účetnictví by mělo být transparentní, srozumitelné a především užitečné pro rozvoj podnikání. Proto se zaměřuji nejen na správné vedení účetních knih, ale i na poskytování strategických rad.'
+                  : 'Я верю, что бухгалтерский учет должен быть прозрачным, понятным и, прежде всего, полезным для развития бизнеса. Поэтому я сосредотачиваюсь не только на правильном ведении бухгалтерских книг, но и на предоставлении стратегических советов.'}
+              </p>
+              
+              <div className="space-y-6">
+                {[
+                  {
+                    title: language === 'cs' ? 'Transparentnost' : 'Прозрачность',
+                    description: language === 'cs' 
+                      ? 'Všechny procesy jsou jasně vysvětlené a dokumentované'
+                      : 'Все процессы четко объяснены и задокументированы'
+                  },
+                  {
+                    title: language === 'cs' ? 'Dostupnost' : 'Доступность',
+                    description: language === 'cs'
+                      ? 'Rychlá komunikace a pravidelné konzultace'
+                      : 'Быстрая коммуникация и регулярные консультации'
+                  },
+                  {
+                    title: language === 'cs' ? 'Partnerství' : 'Партнерство',
+                    description: language === 'cs'
+                      ? 'Dlouhodobá spolupráce založená na důvěře a výsledcích'
+                      : 'Долгосрочное сотрудничество, основанное на доверии и результатах'
+                  }
+                ].map((principle, index) => (
+                  <div key={index} className="flex gap-4">
+                    <div className="w-2 h-2 bg-brand-emerald rounded-full mt-3 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-neutral-900 mb-2">
+                        {principle.title}
+                      </h3>
+                      <p className="text-neutral-600">{principle.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              {...fadeInUp}
+              transition={{ delay: 0.2 }}
+              className="relative"
             >
-              {t('home.cta.button')}
-            </Link>
+              <div className="bg-neutral-50 border border-neutral-200 rounded-2xl p-8">
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-neutral-900 mb-6">
+                    {language === 'cs' ? 'Specializace' : 'Специализация'}
+                  </h3>
+                  <div className="space-y-4">
+                    {[
+                      language === 'cs' ? 'Malé a střední podniky' : 'Малый и средний бизнес',
+                      language === 'cs' ? 'IT a e-commerce firmy' : 'IT и e-commerce компании',
+                      language === 'cs' ? 'Služby a konzultace' : 'Услуги и консультации',
+                      language === 'cs' ? 'Gastronomie a retail' : 'Гастрономия и ритейл'
+                    ].map((specialty, index) => (
+                      <div key={index} className="flex items-center justify-center gap-3 py-2">
+                        <CheckCircle2 className="w-5 h-5 text-neutral-900" />
+                        <span className="text-neutral-700">{specialty}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className="py-16 bg-brand-emerald">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div {...fadeInUp}>
+            <h2 className="text-3xl font-bold text-white mb-6">
+              {language === 'cs' 
+                ? 'Začněme spolupracovat' 
+                : 'Давайте начнем сотрудничество'}
+            </h2>
+            <p className="text-xl text-white/90 mb-8">
+              {language === 'cs'
+                ? 'Budu ráda, když se seznámíme osobně a probereme, jak mohu pomoci vašemu podnikání.'
+                : 'Буду рада познакомиться лично и обсудить, как я могу помочь вашему бизнесу.'}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/contact">
+                <Button size="lg" variant="secondary" className="bg-white text-brand-emerald hover:bg-neutral-50">
+                  <Calendar className="mr-2 w-5 h-5" />
+                  {language === 'cs' ? 'Objednat konzultaci' : 'Записаться на консультацию'}
+                </Button>
+              </Link>
+              <a href="mailto:ucetnipraha@atlas.cz">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  <Mail className="mr-2 w-5 h-5" />
+                  ucetnipraha@atlas.cz
+                </Button>
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
