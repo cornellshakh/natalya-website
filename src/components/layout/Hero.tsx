@@ -3,6 +3,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { Button } from '../ui/button';
 import { Link } from 'react-router-dom';
 import Container from './Container';
+import LazyImage from '../ui/LazyImage';
 import {
   ArrowRight,
   Shield,
@@ -12,7 +13,7 @@ import {
   Clock,
   Award,
   Star,
-  Calendar
+  Calendar,
 } from 'lucide-react';
 
 export default function Hero() {
@@ -20,10 +21,12 @@ export default function Hero() {
 
   // Real-world pain points that accounting clients face
   const painPoints = [
-    language === 'cs' ? 'Složité daňové předpisy vás stresují?' : 'Сложные налоговые правила вас напрягают?',
+    language === 'cs'
+      ? 'Složité daňové předpisy vás stresují?'
+      : 'Сложные налоговые правила вас напрягают?',
     language === 'cs' ? 'Nemáte čas na účetnictví?' : 'Нет времени на бухгалтерию?',
     language === 'cs' ? 'Bojíte se chyb ve výkazech?' : 'Боитесь ошибок в отчетах?',
-    language === 'cs' ? 'Potřebujete českého účetního?' : 'Нужен чешский бухгалтер?'
+    language === 'cs' ? 'Potřebujete českého účetního?' : 'Нужен чешский бухгалтер?',
   ];
 
   // Credibility indicators with specific numbers
@@ -32,20 +35,20 @@ export default function Hero() {
       icon: Award,
       value: '12+',
       label: language === 'cs' ? 'let praxe' : 'лет практики',
-      subtext: language === 'cs' ? 'Ministerstvo financí ČR' : 'Министерство финансов ЧР'
+      subtext: language === 'cs' ? 'Ministerstvo financí ČR' : 'Министерство финансов ЧР',
     },
     {
       icon: Users,
       value: '150+',
       label: language === 'cs' ? 'spokojených klientů' : 'довольных клиентов',
-      subtext: language === 'cs' ? 'Malé a střední firmy' : 'Малый и средний бизнес'
+      subtext: language === 'cs' ? 'Malé a střední firmy' : 'Малый и средний бизнес',
     },
     {
       icon: Shield,
       value: '100%',
       label: language === 'cs' ? 'bez pokut' : 'без штрафов',
-      subtext: language === 'cs' ? 'Compliance & audit' : 'Комплаенс и аудит'
-    }
+      subtext: language === 'cs' ? 'Compliance & audit' : 'Комплаенс и аудит',
+    },
   ];
 
   return (
@@ -55,10 +58,8 @@ export default function Hero() {
 
       <Container size="wide" className="relative z-10 w-full">
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-12 items-start">
-          
           {/* Left Content - Problem/Solution focused */}
           <div className="lg:col-span-7 space-y-4 sm:space-y-6 lg:space-y-6">
-            
             {/* Social proof badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -68,15 +69,23 @@ export default function Hero() {
             >
               <div className="flex -space-x-1">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-brand-emerald border-2 border-white flex items-center justify-center">
-                    <span className="text-xs sm:text-unified-xs text-white font-bold">{String.fromCharCode(65 + i)}</span>
+                  <div
+                    key={i}
+                    className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-brand-emerald border-2 border-white flex items-center justify-center"
+                  >
+                    <span className="text-xs sm:text-unified-xs text-white font-bold">
+                      {String.fromCharCode(65 + i)}
+                    </span>
                   </div>
                 ))}
               </div>
               <div className="text-unified-sm">
                 <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 fill-brand-gold text-brand-gold" />
+                    <Star
+                      key={i}
+                      className="w-3 h-3 sm:w-4 sm:h-4 fill-brand-gold text-brand-gold"
+                    />
                   ))}
                   <span className="ml-1 font-medium text-sm sm:text-base">4.9/5</span>
                 </div>
@@ -97,14 +106,12 @@ export default function Hero() {
                 {language === 'cs' ? (
                   <>
                     Účetnictví bez <span className="text-brand-emerald">stresu</span>
-                    <br />
-                    a bez <span className="text-destructive">chyb</span>
+                    <br />a bez <span className="text-destructive">chyb</span>
                   </>
                 ) : (
                   <>
                     Бухгалтерия без <span className="text-brand-emerald">стресса</span>
-                    <br />
-                    и без <span className="text-destructive">ошибок</span>
+                    <br />и без <span className="text-destructive">ошибок</span>
                   </>
                 )}
               </h1>
@@ -112,8 +119,7 @@ export default function Hero() {
               <p className="text-base sm:text-lg lg:text-xl xl:text-unified-xl text-neutral-600 leading-relaxed max-w-2xl">
                 {language === 'cs'
                   ? 'Osvobodíme vás od složitého účetnictví a daňových povinností. Soustřeďte se na své podnikání - o zbytek se postaráme.'
-                  : 'Освободим вас от сложной бухгалтерии и налоговых обязательств. Сосредоточьтесь на своем бизнесе - об остальном позаботимся мы.'
-                }
+                  : 'Освободим вас от сложной бухгалтерии и налоговых обязательств. Сосредоточьтесь на своем бизнесе - об остальном позаботимся мы.'}
               </p>
             </motion.div>
 
@@ -152,7 +158,11 @@ export default function Hero() {
               className="space-y-3 sm:space-y-4"
             >
               <div className="flex flex-col sm:flex-row gap-3">
-                <Button size="default" className="w-full sm:w-auto text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transition-shadow group min-h-[44px]" asChild>
+                <Button
+                  size="default"
+                  className="w-full sm:w-auto text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transition-shadow group min-h-[44px]"
+                  asChild
+                >
                   <Link to="/booking" className="flex items-center justify-center gap-2">
                     <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>
@@ -162,7 +172,12 @@ export default function Hero() {
                   </Link>
                 </Button>
 
-                <Button variant="outline" size="default" className="w-full sm:w-auto text-sm sm:text-base border-2 min-h-[44px]" asChild>
+                <Button
+                  variant="outline"
+                  size="default"
+                  className="w-full sm:w-auto text-sm sm:text-base border-2 min-h-[44px]"
+                  asChild
+                >
                   <Link to="tel:+420722243337" className="flex items-center justify-center gap-2">
                     <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>{language === 'cs' ? 'Zavolejte nyní' : 'Позвонить сейчас'}</span>
@@ -174,7 +189,11 @@ export default function Hero() {
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-xs sm:text-sm text-neutral-600">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-brand-emerald rounded-full animate-pulse" />
-                  <span>{language === 'cs' ? 'Konzultace zdarma (v hodnotě 2.500 Kč)' : 'Бесплатная консультация (стоимостью 2.500 крон)'}</span>
+                  <span>
+                    {language === 'cs'
+                      ? 'Konzultace zdarma (v hodnotě 2.500 Kč)'
+                      : 'Бесплатная консультация (стоимостью 2.500 крон)'}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="w-3 h-3 sm:w-4 sm:h-4 text-brand-emerald" />
@@ -186,7 +205,6 @@ export default function Hero() {
 
           {/* Right side - Credentials & Trust */}
           <div className="lg:col-span-5 space-y-4 sm:space-y-6">
-            
             {/* Professional photo with credentials */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -195,19 +213,17 @@ export default function Hero() {
               className="relative -mt-4 sm:-mt-6 lg:-mt-8"
             >
               <div className="relative rounded-lg sm:rounded-2xl overflow-hidden border border-gray-200 bg-white">
-                <img
+                <LazyImage
                   src="https://i.imgur.com/hdKkMAw.jpeg"
                   alt="Natalya Shakh - Professional Accountant"
-                  className="w-full h-80 sm:h-96 lg:h-[28rem] xl:h-[32rem] object-cover object-center"
-                  loading="eager"
-                  onError={(e) => {
-                    console.error('Image failed to load:', e);
-                    e.currentTarget.style.backgroundColor = '#f3f4f6';
-                    e.currentTarget.style.border = '2px dashed #d1d5db';
-                  }}
+                  className="w-full h-80 sm:h-96 lg:h-[28rem] xl:h-[32rem]"
+                  priority={true}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
+                  width={800}
+                  height={1000}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/30 to-transparent" />
-                
+
                 {/* Floating credential badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -250,14 +266,10 @@ export default function Hero() {
                   <div className="text-xs sm:text-unified-xs text-neutral-600 font-medium mb-1">
                     {cred.label}
                   </div>
-                  <div className="text-xs sm:text-unified-2xs text-neutral-500">
-                    {cred.subtext}
-                  </div>
+                  <div className="text-xs sm:text-unified-2xs text-neutral-500">{cred.subtext}</div>
                 </motion.div>
               ))}
             </motion.div>
-
-
           </div>
         </div>
       </Container>

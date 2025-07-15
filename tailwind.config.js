@@ -116,7 +116,7 @@ export default {
         xl: 'calc(var(--radius) + 4px)',
         '2xl': 'calc(var(--radius) + 8px)',
         '3xl': 'calc(var(--radius) + 12px)',
-      },
+        },
       boxShadow: {
         '2xs': 'var(--shadow-2xs)',
         xs: 'var(--shadow-xs)',

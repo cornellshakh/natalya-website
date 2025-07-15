@@ -20,9 +20,401 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Motion preferences and accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable specific animations that could cause issues */
+  .animate-spin,
+  .animate-ping,
+  .animate-pulse,
+  .animate-bounce {
+    animation: none !important;
+  }
+
+  /* Provide static alternatives for important indicators */
+  .animate-spin {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+
+  .animate-pulse {
+    opacity: 0.7;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .shadow-sm,
+  .shadow,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-xl {
+    box-shadow: 0 0 0 1px currentColor !important;
+  }
+
+  .border-neutral-200,
+  .border-neutral-300 {
+    border-color: currentColor !important;
+  }
+}
+
+/* Focus visibility enhancements */
+@media (prefers-reduced-motion: no-preference) {
+  :focus-visible {
+    transition: outline-offset 0.15s ease-out, box-shadow 0.15s ease-out;
+  }
+}
+
+/* Base styles with improved performance */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  /* Optimize for performance */
+  text-rendering: optimizeSpeed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  /* Performance optimizations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
 /* Additional utility classes */
 @layer utilities {
   .font-albert {
     font-family: 'Albert Sans', sans-serif;
+  }
+
+  /* GPU acceleration utilities */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+  }
+
+  /* Motion-safe utilities */
+  .motion-safe-transform {
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .motion-safe-transform {
+      transition: none;
+    }
+  }
+
+  /* Enhanced focus states */
+  .focus-outline-brand {
+    @apply focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2;
+  }
+
+  /* Screen reader only improvements */
+  .sr-only-focusable {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  .sr-only-focusable:focus {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: inherit !important;
+    margin: inherit !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+  }
+}
+
+/* Custom shimmer animation for skeleton loaders with reduced motion support */
+@keyframes shimmer {
+  0% { 
+    background-position: -200% 0; 
+  }
+  100% { 
+    background-position: 200% 0; 
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes shimmer {
+    0%, 100% { 
+      opacity: 0.7;
+    }
+    50% { 
+      opacity: 1;
+    }
+  }
+}
+
+/* Enhanced focus transitions with motion preference respect */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .focus-ring {
+    transition: all 0.2s ease-out;
+  }
+}
+
+/* Enhanced button hover states with performance optimization */
+.btn-hover {
+  @apply transition-all duration-200 ease-out;
+  will-change: transform, box-shadow;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn-hover:hover {
+    transform: translateY(-1px) scale(1.02);
+  }
+  
+  .btn-hover:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-hover {
+    transition: box-shadow 0.2s ease-out;
+  }
+  
+  .btn-hover:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Card hover effects with motion preferences */
+.card-hover {
+  @apply transition-all duration-300 ease-out;
+  will-change: transform, box-shadow;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-hover:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* Enhanced text selection with brand colors */
+::selection {
+  background-color: rgba(5, 150, 105, 0.2);
+  color: #059669;
+}
+
+::-moz-selection {
+  background-color: rgba(5, 150, 105, 0.2);
+  color: #059669;
+}
+
+/* Custom scrollbar with enhanced accessibility */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-neutral-100;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-300;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-400;
+}
+
+::-webkit-scrollbar-thumb:active {
+  @apply bg-neutral-500;
+}
+
+/* High contrast scrollbar */
+@media (prefers-contrast: high) {
+  ::-webkit-scrollbar-thumb {
+    @apply bg-black;
+  }
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(163 163 163) rgb(245 245 245);
+}
+
+/* Smooth page transitions with motion preference respect */
+.page-transition {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-transition {
+    @apply transition-all duration-300 ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    @apply transition-opacity duration-100 ease-out;
+  }
+}
+
+/* Enhanced form inputs with accessibility */
+.form-input-enhanced {
+  @apply transition-all duration-200 ease-out;
+  will-change: border-color, box-shadow;
+}
+
+.form-input-enhanced:focus {
+  @apply ring-2 ring-brand-emerald ring-offset-2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form-input-enhanced {
+    transition: border-color 0.15s ease-out;
+  }
+}
+
+/* Loading states with motion preference support */
+.loading-shimmer {
+  background: linear-gradient(90deg, var(--muted) 0%, var(--border) 50%, var(--muted) 100%);
+  background-size: 200% 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .loading-shimmer {
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-shimmer {
+    animation: shimmer 3s infinite;
+  }
+}
+
+/* Skip links enhancement */
+.skip-link {
+  @apply absolute -top-10 left-4 z-50 px-4 py-2 bg-brand-navy text-white rounded-lg shadow-lg;
+  @apply transform transition-all duration-200 ease-out;
+}
+
+.skip-link:focus {
+  @apply top-4;
+}
+
+/* Print styles for accessibility */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-visible {
+    display: block !important;
+  }
+  
+  /* Ensure text is readable when printed */
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  /* Ensure links are visible */
+  a[href]:after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+  }
+}
+
+/* Performance optimizations for animations */
+@layer utilities {
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .will-change-opacity {
+    will-change: opacity;
+  }
+  
+  .will-change-auto {
+    will-change: auto;
+  }
+  
+  /* Hardware acceleration for smooth animations */
+  .hardware-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+}
+
+/* Error boundary styling */
+.error-boundary {
+  @apply min-h-screen flex items-center justify-center bg-red-50 p-8;
+}
+
+.error-boundary-content {
+  @apply max-w-md mx-auto text-center bg-white rounded-lg shadow-lg p-6 border border-red-200;
+}
+
+/* Toast positioning for different screen sizes */
+@media (max-width: 640px) {
+  .toast-container {
+    @apply left-4 right-4 max-w-none;
+  }
+}
+
+/* Ensure proper contrast ratios */
+@media (prefers-contrast: high) {
+  .text-neutral-500,
+  .text-neutral-600 {
+    @apply text-black;
+  }
+  
+  .bg-neutral-50,
+  .bg-neutral-100 {
+    @apply bg-white;
+  }
+  
+  .border-neutral-200,
+  .border-neutral-300 {
+    @apply border-black;
   }
 }

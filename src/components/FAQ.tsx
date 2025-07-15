@@ -13,38 +13,34 @@ export default function FAQ() {
   const [openItems, setOpenItems] = useState<number[]>([]);
 
   const toggleItem = (index: number) => {
-    setOpenItems(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
+    setOpenItems(prev => (prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]));
   };
 
   const faqData: FAQItem[] = [
     {
       question: t('faq.items.0.question'),
-      answer: t('faq.items.0.answer')
+      answer: t('faq.items.0.answer'),
     },
     {
       question: t('faq.items.1.question'),
-      answer: t('faq.items.1.answer')
+      answer: t('faq.items.1.answer'),
     },
     {
       question: t('faq.items.2.question'),
-      answer: t('faq.items.2.answer')
+      answer: t('faq.items.2.answer'),
     },
     {
       question: t('faq.items.3.question'),
-      answer: t('faq.items.3.answer')
+      answer: t('faq.items.3.answer'),
     },
     {
       question: t('faq.items.4.question'),
-      answer: t('faq.items.4.answer')
+      answer: t('faq.items.4.answer'),
     },
     {
       question: t('faq.items.5.question'),
-      answer: t('faq.items.5.answer')
-    }
+      answer: t('faq.items.5.answer'),
+    },
   ];
 
   return (
@@ -76,9 +72,7 @@ export default function FAQ() {
                   className="w-full px-6 py-4 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-medium text-gray-900 pr-4">
-                      {item.question}
-                    </h3>
+                    <h3 className="text-lg font-medium text-gray-900 pr-4">{item.question}</h3>
                     <div className="flex-shrink-0">
                       {openItems.includes(index) ? (
                         <ChevronUp className="w-5 h-5 text-gray-500" />
@@ -88,7 +82,7 @@ export default function FAQ() {
                     </div>
                   </div>
                 </button>
-                
+
                 <AnimatePresence>
                   {openItems.includes(index) && (
                     <motion.div
@@ -99,9 +93,7 @@ export default function FAQ() {
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-4">
-                        <div className="text-gray-600 leading-relaxed">
-                          {item.answer}
-                        </div>
+                        <div className="text-gray-600 leading-relaxed">{item.answer}</div>
                       </div>
                     </motion.div>
                   )}

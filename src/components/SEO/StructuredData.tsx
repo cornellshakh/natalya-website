@@ -25,176 +25,187 @@ export default function StructuredData({
   type = 'organization',
   url = window.location.href,
   article,
-  service
+  service,
 }: StructuredDataProps) {
   const { language } = useLanguage();
 
   const getOrganizationData = () => ({
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Natalya Shakh - Účetní služby",
-    "alternateName": "Natalya Shakh - Accounting Services",
-    "url": "https://natalya-website.vercel.app",
-    "logo": "https://natalya-website.vercel.app/favicon/favicon-32x32.png",
-    "image": "https://natalya-website.vercel.app/favicon/favicon-32x32.png",
-    "description": language === 'cs' 
-      ? "Profesionální účetní služby, daňové poradenství a vedení účetnictví pro malé a střední podniky v České republice."
-      : "Professional accounting services, tax consulting and bookkeeping for small and medium enterprises in Czech Republic.",
-    "founder": {
-      "@type": "Person",
-      "name": "Natalya Shakh",
-      "jobTitle": language === 'cs' ? "Účetní specialistka" : "Accounting Specialist"
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Natalya Shakh - Účetní služby',
+    alternateName: 'Natalya Shakh - Accounting Services',
+    url: 'https://natalya-website.vercel.app',
+    logo: 'https://natalya-website.vercel.app/favicon/favicon-32x32.png',
+    image: 'https://natalya-website.vercel.app/favicon/favicon-32x32.png',
+    description:
+      language === 'cs'
+        ? 'Profesionální účetní služby, daňové poradenství a vedení účetnictví pro malé a střední podniky v České republice.'
+        : 'Professional accounting services, tax consulting and bookkeeping for small and medium enterprises in Czech Republic.',
+    founder: {
+      '@type': 'Person',
+      name: 'Natalya Shakh',
+      jobTitle: language === 'cs' ? 'Účetní specialistka' : 'Accounting Specialist',
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+420-XXX-XXX-XXX",
-      "contactType": "customer service",
-      "availableLanguage": ["cs", "ru", "en"]
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+420 123 456 789',
+      contactType: 'customer service',
+      availableLanguage: ['cs', 'ru', 'en'],
     },
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "CZ",
-      "addressLocality": "Prague"
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'CZ',
+      addressLocality: 'Prague',
     },
-    "serviceArea": {
-      "@type": "Country",
-      "name": "Czech Republic"
+    serviceArea: {
+      '@type': 'Country',
+      name: 'Czech Republic',
     },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Accounting Services",
-      "itemListElement": [
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Accounting Services',
+      itemListElement: [
         {
-          "@type": "OfferCatalog",
-          "name": language === 'cs' ? "Vedení účetnictví" : "Bookkeeping",
-          "itemListElement": [
+          '@type': 'OfferCatalog',
+          name: language === 'cs' ? 'Vedení účetnictví' : 'Bookkeeping',
+          itemListElement: [
             {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": language === 'cs' ? "Kompletní vedení účetnictví" : "Complete bookkeeping services"
-              }
-            }
-          ]
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name:
+                  language === 'cs'
+                    ? 'Kompletní vedení účetnictví'
+                    : 'Complete bookkeeping services',
+              },
+            },
+          ],
         },
         {
-          "@type": "OfferCatalog",
-          "name": language === 'cs' ? "Daňové poradenství" : "Tax consulting",
-          "itemListElement": [
+          '@type': 'OfferCatalog',
+          name: language === 'cs' ? 'Daňové poradenství' : 'Tax consulting',
+          itemListElement: [
             {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": language === 'cs' ? "Daňová přiznání" : "Tax returns"
-              }
-            }
-          ]
-        }
-      ]
-    }
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: language === 'cs' ? 'Daňová přiznání' : 'Tax returns',
+              },
+            },
+          ],
+        },
+      ],
+    },
   });
 
   const getLocalBusinessData = () => ({
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://natalya-website.vercel.app",
-    "name": "Natalya Shakh - Účetní služby",
-    "image": "https://natalya-website.vercel.app/favicon/favicon-32x32.png",
-    "description": language === 'cs' 
-      ? "Profesionální účetní služby, daňové poradenství a vedení účetnictví pro malé a střední podniky v České republice."
-      : "Professional accounting services, tax consulting and bookkeeping for small and medium enterprises in Czech Republic.",
-    "url": "https://natalya-website.vercel.app",
-    "telephone": "+420-XXX-XXX-XXX",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "CZ",
-      "addressLocality": "Prague"
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': 'https://natalya-website.vercel.app',
+    name: 'Natalya Shakh - Účetní služby',
+    image: 'https://natalya-website.vercel.app/favicon/favicon-32x32.png',
+    description:
+      language === 'cs'
+        ? 'Profesionální účetní služby, daňové poradenství a vedení účetnictví pro malé a střední podniky v České republice.'
+        : 'Professional accounting services, tax consulting and bookkeeping for small and medium enterprises in Czech Republic.',
+    url: 'https://natalya-website.vercel.app',
+    telephone: '+420 123 456 789',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'CZ',
+      addressLocality: 'Prague',
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 50.0755,
-      "longitude": 14.4378
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 50.0755,
+      longitude: 14.4378,
     },
-    "openingHours": "Mo-Fr 09:00-17:00",
-    "priceRange": "$$",
-    "serviceArea": {
-      "@type": "Country",
-      "name": "Czech Republic"
+    openingHours: 'Mo-Fr 09:00-17:00',
+    priceRange: '$$',
+    serviceArea: {
+      '@type': 'Country',
+      name: 'Czech Republic',
     },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Accounting Services",
-      "itemListElement": [
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Accounting Services',
+      itemListElement: [
         {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": language === 'cs' ? "Vedení účetnictví" : "Bookkeeping",
-            "description": language === 'cs' 
-              ? "Kompletní vedení účetnictví pro malé a střední podniky"
-              : "Complete bookkeeping services for small and medium enterprises"
-          }
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: language === 'cs' ? 'Vedení účetnictví' : 'Bookkeeping',
+            description:
+              language === 'cs'
+                ? 'Kompletní vedení účetnictví pro malé a střední podniky'
+                : 'Complete bookkeeping services for small and medium enterprises',
+          },
         },
         {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": language === 'cs' ? "Daňové poradenství" : "Tax consulting",
-            "description": language === 'cs' 
-              ? "Profesionální daňové poradenství a příprava daňových přiznání"
-              : "Professional tax consulting and tax return preparation"
-          }
-        }
-      ]
-    }
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: language === 'cs' ? 'Daňové poradenství' : 'Tax consulting',
+            description:
+              language === 'cs'
+                ? 'Profesionální daňové poradenství a příprava daňových přiznání'
+                : 'Professional tax consulting and tax return preparation',
+          },
+        },
+      ],
+    },
   });
 
-  const getServiceData = () => service && ({
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": service.name,
-    "description": service.description,
-    "provider": {
-      "@type": "Organization",
-      "name": "Natalya Shakh - Účetní služby"
-    },
-    "serviceType": "Accounting Services",
-    "areaServed": {
-      "@type": "Country",
-      "name": "Czech Republic"
-    },
-    ...(service.price && { "offers": {
-      "@type": "Offer",
-      "price": service.price,
-      "priceCurrency": "CZK"
-    }})
-  });
+  const getServiceData = () =>
+    service && {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: service.name,
+      description: service.description,
+      provider: {
+        '@type': 'Organization',
+        name: 'Natalya Shakh - Účetní služby',
+      },
+      serviceType: 'Accounting Services',
+      areaServed: {
+        '@type': 'Country',
+        name: 'Czech Republic',
+      },
+      ...(service.price && {
+        offers: {
+          '@type': 'Offer',
+          price: service.price,
+          priceCurrency: 'CZK',
+        },
+      }),
+    };
 
-  const getArticleData = () => article && ({
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": article.title,
-    "description": article.description,
-    "datePublished": article.publishDate,
-    "author": {
-      "@type": "Person",
-      "name": article.author
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Natalya Shakh - Účetní služby",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://natalya-website.vercel.app/favicon/favicon-32x32.png"
-      }
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": url
-    },
-    "articleSection": article.category,
-    "inLanguage": language
-  });
+  const getArticleData = () =>
+    article && {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: article.title,
+      description: article.description,
+      datePublished: article.publishDate,
+      author: {
+        '@type': 'Person',
+        name: article.author,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Natalya Shakh - Účetní služby',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://natalya-website.vercel.app/favicon/favicon-32x32.png',
+        },
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': url,
+      },
+      articleSection: article.category,
+      inLanguage: language,
+    };
 
   const getStructuredData = () => {
     switch (type) {
@@ -215,9 +226,7 @@ export default function StructuredData({
 
   return (
     <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
+      <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
     </Helmet>
   );
 }

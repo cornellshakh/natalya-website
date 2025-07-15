@@ -54,7 +54,10 @@ export default function Header() {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <a href="mailto:info@natalyashakh.cz" className="hover:text-brand-gold transition-colors">
+                <a
+                  href="mailto:info@natalyashakh.cz"
+                  className="hover:text-brand-gold transition-colors"
+                >
                   info@natalyashakh.cz
                 </a>
               </div>
@@ -63,7 +66,7 @@ export default function Header() {
                 <span>Praha, Česká republika</span>
               </div>
             </div>
-            
+
             {/* Language switcher */}
             <div className="flex items-center space-x-2">
               <Globe className="w-4 h-4" />
@@ -71,8 +74,8 @@ export default function Header() {
                 onClick={() => setLanguage('cs')}
                 className={cn(
                   'px-2 py-1 rounded text-xs font-medium transition-colors',
-                  language === 'cs' 
-                    ? 'bg-primary text-primary-foreground' 
+                  language === 'cs'
+                    ? 'bg-primary text-primary-foreground'
                     : 'hover:text-primary text-gray-600'
                 )}
               >
@@ -83,8 +86,8 @@ export default function Header() {
                 onClick={() => setLanguage('ru')}
                 className={cn(
                   'px-2 py-1 rounded text-xs font-medium transition-colors',
-                  language === 'ru' 
-                    ? 'bg-primary text-primary-foreground' 
+                  language === 'ru'
+                    ? 'bg-primary text-primary-foreground'
                     : 'hover:text-primary text-gray-600'
                 )}
               >
@@ -96,7 +99,7 @@ export default function Header() {
       </div>
 
       {/* Main navigation */}
-      <header 
+      <header
         className={cn(
           'sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b transition-all duration-300',
           isScrolled ? 'shadow-sm border-neutral-200' : 'border-transparent'
@@ -173,11 +176,7 @@ export default function Header() {
                     exit={{ opacity: 0, rotate: 90 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {isMobileMenuOpen ? (
-                      <X className="w-6 h-6" />
-                    ) : (
-                      <Menu className="w-6 h-6" />
-                    )}
+                    {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                   </motion.div>
                 </AnimatePresence>
               </button>
@@ -212,7 +211,7 @@ export default function Header() {
                     {label}
                   </Link>
                 ))}
-                
+
                 <div className="pt-4 border-t border-neutral-200">
                   <Button asChild className="w-full">
                     <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
@@ -228,8 +227,8 @@ export default function Header() {
                       onClick={() => setLanguage('cs')}
                       className={cn(
                         'px-3 py-1 rounded text-sm font-medium transition-colors',
-                        language === 'cs' 
-                          ? 'bg-brand-emerald text-white' 
+                        language === 'cs'
+                          ? 'bg-brand-emerald text-white'
                           : 'text-neutral-700 hover:text-brand-emerald'
                       )}
                     >
@@ -239,8 +238,8 @@ export default function Header() {
                       onClick={() => setLanguage('ru')}
                       className={cn(
                         'px-3 py-1 rounded text-sm font-medium transition-colors',
-                        language === 'ru' 
-                          ? 'bg-brand-emerald text-white' 
+                        language === 'ru'
+                          ? 'bg-brand-emerald text-white'
                           : 'text-neutral-700 hover:text-brand-emerald'
                       )}
                     >

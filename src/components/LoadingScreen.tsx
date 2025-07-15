@@ -29,7 +29,7 @@ export default function LoadingScreen() {
           transition={{
             duration: 1.5,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: 'easeInOut',
           }}
           className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full"
         />

@@ -20,11 +20,11 @@ interface TimeSlotPickerProps {
   unavailableSlots?: string[];
 }
 
-export default function TimeSlotPicker({ 
-  selectedDate, 
-  selectedTime, 
-  onTimeSelect, 
-  unavailableSlots = [] 
+export default function TimeSlotPicker({
+  selectedDate,
+  selectedTime,
+  onTimeSelect,
+  unavailableSlots = [],
 }: TimeSlotPickerProps) {
   const { language } = useLanguage();
 
@@ -45,9 +45,7 @@ export default function TimeSlotPicker({
       }
 
       const timeString = `${hour.toString().padStart(2, '0')}:00`;
-      const timeLabel = language === 'cs' 
-        ? `${hour}:00`
-        : `${hour}:00`;
+      const timeLabel = language === 'cs' ? `${hour}:00` : `${hour}:00`;
 
       // Check if this time slot is in the past (for today only)
       let isPastToday = false;
@@ -67,7 +65,7 @@ export default function TimeSlotPicker({
         time: timeString,
         label: timeLabel,
         available: !isPastToday && !isUnavailable,
-        isPastToday
+        isPastToday,
       });
     }
 
@@ -95,7 +93,7 @@ export default function TimeSlotPicker({
             <div className="text-center py-8 text-neutral-500">
               <Calendar className="w-12 h-12 mx-auto mb-3 text-neutral-300" />
               <p>
-                {language === 'cs' 
+                {language === 'cs'
                   ? 'Nejprve vyberte datum pro zobrazení dostupných časů'
                   : 'Сначала выберите дату для отображения доступного времени'}
               </p>
@@ -119,9 +117,7 @@ export default function TimeSlotPicker({
             {language === 'cs' ? 'Vyberte čas' : 'Выберите время'}
           </CardTitle>
           <div className="flex items-center gap-2 text-sm text-neutral-600">
-            <span>
-              {format(selectedDate, language === 'cs' ? 'dd.MM.yyyy' : 'dd.MM.yyyy')}
-            </span>
+            <span>{format(selectedDate, language === 'cs' ? 'dd.MM.yyyy' : 'dd.MM.yyyy')}</span>
             <Badge variant="outline" className="text-xs">
               {availableSlots.length} {language === 'cs' ? 'dostupných' : 'доступно'}
             </Badge>
@@ -135,7 +131,7 @@ export default function TimeSlotPicker({
                 {language === 'cs' ? 'Žádné dostupné termíny' : 'Нет доступных слотов'}
               </h3>
               <p className="text-sm text-neutral-500">
-                {language === 'cs' 
+                {language === 'cs'
                   ? 'Pro tento den nejsou k dispozici žádné volné termíny. Zkuste vybrat jiný den.'
                   : 'На этот день нет свободных слотов. Попробуйте выбрать другой день.'}
               </p>
@@ -194,8 +190,8 @@ export default function TimeSlotPicker({
                         {language === 'cs' ? 'Vybraný termín:' : 'Выбранное время:'}
                       </p>
                       <p className="text-sm text-neutral-700">
-                        {format(selectedDate, language === 'cs' ? 'dd.MM.yyyy' : 'dd.MM.yyyy')} 
-                        {' '}{language === 'cs' ? 'v' : 'в'} {selectedTime.label}
+                        {format(selectedDate, language === 'cs' ? 'dd.MM.yyyy' : 'dd.MM.yyyy')}{' '}
+                        {language === 'cs' ? 'v' : 'в'} {selectedTime.label}
                       </p>
                     </div>
                   </div>
@@ -205,9 +201,7 @@ export default function TimeSlotPicker({
               <div className="mt-4 space-y-2 text-xs text-neutral-500">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-brand-emerald/20 rounded border border-brand-emerald/30" />
-                  <span>
-                    {language === 'cs' ? 'Dostupné termíny' : 'Доступные слоты'}
-                  </span>
+                  <span>{language === 'cs' ? 'Dostupné termíny' : 'Доступные слоты'}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-neutral-100 rounded border border-neutral-200" />
@@ -217,9 +211,7 @@ export default function TimeSlotPicker({
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-brand-emerald rounded border border-brand-emerald" />
-                  <span>
-                    {language === 'cs' ? 'Vybraný termín' : 'Выбранное время'}
-                  </span>
+                  <span>{language === 'cs' ? 'Vybraný termín' : 'Выбранное время'}</span>
                 </div>
               </div>
 
@@ -229,17 +221,17 @@ export default function TimeSlotPicker({
                 </h4>
                 <ul className="text-xs text-blue-700 space-y-1">
                   <li>
-                    {language === 'cs' 
+                    {language === 'cs'
                       ? '• Termíny lze rezervovat minimálně 2 hodiny dopředu'
                       : '• Встречи можно бронировать минимум за 2 часа'}
                   </li>
                   <li>
-                    {language === 'cs' 
+                    {language === 'cs'
                       ? '• Pracovní doba: 9:00-17:00 (přestávka 12:00-13:00)'
                       : '• Рабочее время: 9:00-17:00 (перерыв 12:00-13:00)'}
                   </li>
                   <li>
-                    {language === 'cs' 
+                    {language === 'cs'
                       ? '• Každý termín trvá 1 hodinu'
                       : '• Каждая встреча длится 1 час'}
                   </li>
@@ -251,4 +243,4 @@ export default function TimeSlotPicker({
       </Card>
     </motion.div>
   );
-} 
+}

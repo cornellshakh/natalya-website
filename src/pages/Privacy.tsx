@@ -10,7 +10,7 @@ export default function Privacy() {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.6 }
+    transition: { duration: 0.6 },
   };
 
   return (
@@ -33,20 +33,14 @@ export default function Privacy() {
           <h1 className="text-4xl font-serif font-bold text-brand-navy mb-4">
             {t('privacy.title')}
           </h1>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-            {t('privacy.subtitle')}
-          </p>
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">{t('privacy.subtitle')}</p>
         </motion.div>
       </Section>
 
       {/* Content */}
       <Section spacing="sm" containerSize="content">
-        <motion.div
-          {...fadeInUp}
-          className="prose prose-lg max-w-none"
-        >
+        <motion.div {...fadeInUp} className="prose prose-lg max-w-none">
           <div className="space-y-8">
-            
             <section>
               <h2 className="text-2xl font-bold text-brand-navy mb-4 border-b border-neutral-200 pb-2">
                 {t('privacy.dataProcessing.title')}
@@ -64,10 +58,18 @@ export default function Privacy() {
                 {t('privacy.dataCollection.content')}
               </p>
               <ul className="space-y-2 ml-6">
-                <li className="text-neutral-700 list-disc">{t('privacy.dataCollection.items.0')}</li>
-                <li className="text-neutral-700 list-disc">{t('privacy.dataCollection.items.1')}</li>
-                <li className="text-neutral-700 list-disc">{t('privacy.dataCollection.items.2')}</li>
-                <li className="text-neutral-700 list-disc">{t('privacy.dataCollection.items.3')}</li>
+                <li className="text-neutral-700 list-disc">
+                  {t('privacy.dataCollection.items.0')}
+                </li>
+                <li className="text-neutral-700 list-disc">
+                  {t('privacy.dataCollection.items.1')}
+                </li>
+                <li className="text-neutral-700 list-disc">
+                  {t('privacy.dataCollection.items.2')}
+                </li>
+                <li className="text-neutral-700 list-disc">
+                  {t('privacy.dataCollection.items.3')}
+                </li>
               </ul>
             </section>
 
@@ -99,9 +101,7 @@ export default function Privacy() {
               <h2 className="text-2xl font-bold text-brand-navy mb-4 border-b border-neutral-200 pb-2">
                 {t('privacy.rights.title')}
               </h2>
-              <p className="text-neutral-700 leading-relaxed mb-4">
-                {t('privacy.rights.content')}
-              </p>
+              <p className="text-neutral-700 leading-relaxed mb-4">{t('privacy.rights.content')}</p>
               <ul className="space-y-2 ml-6">
                 <li className="text-neutral-700 list-disc">{t('privacy.rights.items.0')}</li>
                 <li className="text-neutral-700 list-disc">{t('privacy.rights.items.1')}</li>
@@ -132,19 +132,17 @@ export default function Privacy() {
               <h2 className="text-2xl font-bold text-brand-navy mb-4 border-b border-neutral-200 pb-2">
                 {t('privacy.updates.title')}
               </h2>
-              <p className="text-neutral-700 leading-relaxed">
-                {t('privacy.updates.content')}
-              </p>
+              <p className="text-neutral-700 leading-relaxed">{t('privacy.updates.content')}</p>
             </section>
 
             <section className="border-t border-neutral-200 pt-6">
               <div className="bg-neutral-50 p-3 rounded border">
                 <p className="text-sm text-neutral-600 font-medium">
-                  {t('privacy.lastUpdated')}: {language === 'cs' ? '15. července 2025' : '15 июля 2025 г.'}
+                  {t('privacy.lastUpdated')}:{' '}
+                  {language === 'cs' ? '15. července 2025' : '15 июля 2025 г.'}
                 </p>
               </div>
             </section>
-
           </div>
         </motion.div>
       </Section>

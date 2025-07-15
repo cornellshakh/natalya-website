@@ -13,43 +13,46 @@ export default function Booking() {
     {
       icon: CheckCircle2,
       title: language === 'cs' ? 'Rychlé a jednoduché' : 'Быстро и просто',
-      description: language === 'cs' 
-        ? 'Rezervace termínu za 3 kroky'
-        : 'Бронирование за 3 шага'
+      description: language === 'cs' ? 'Rezervace termínu za 3 kroky' : 'Бронирование за 3 шага',
     },
     {
       icon: Shield,
       title: language === 'cs' ? 'Bezpečné a důvěryhodné' : 'Безопасно и надежно',
-      description: language === 'cs' 
-        ? 'Vaše údaje jsou v bezpečí'
-        : 'Ваши данные в безопасности'
+      description: language === 'cs' ? 'Vaše údaje jsou v bezpečí' : 'Ваши данные в безопасности',
     },
     {
       icon: Headphones,
       title: language === 'cs' ? 'Okamžité potvrzení' : 'Мгновенное подтверждение',
-      description: language === 'cs' 
-        ? 'E-mail potvrzení během 24 hodin'
-        : 'Email подтверждение в течение 24 часов'
+      description:
+        language === 'cs'
+          ? 'E-mail potvrzení během 24 hodin'
+          : 'Email подтверждение в течение 24 часов',
     },
     {
       icon: Award,
       title: language === 'cs' ? 'Profesionální služby' : 'Профессиональные услуги',
-      description: language === 'cs' 
-        ? 'Více než 10 let zkušeností'
-        : 'Более 10 лет опыта'
-    }
+      description: language === 'cs' ? 'Více než 10 let zkušeností' : 'Более 10 лет опыта',
+    },
   ];
 
   return (
     <div className="min-h-screen bg-white">
       <SEOHead
-        title={language === 'cs' ? 'Rezervace termínu - Natalya Shakh' : 'Бронирование встречи - Natalya Shakh'}
-        description={language === 'cs' 
-          ? 'Rezervujte si termín pro konzultaci s naším účetním týmem. Rychlé a jednoduché online rezervace dostupné 24/7.'
-          : 'Забронируйте встречу для консультации с нашей бухгалтерской командой. Быстрое и простое онлайн бронирование доступно 24/7.'}
-        keywords={language === 'cs' 
-          ? 'rezervace termínu, účetní konzultace, online booking, daňové poradenství, Praha'
-          : 'бронирование встречи, бухгалтерская консультация, онлайн бронирование, налоговое консультирование, Прага'}
+        title={
+          language === 'cs'
+            ? 'Rezervace termínu - Natalya Shakh'
+            : 'Бронирование встречи - Natalya Shakh'
+        }
+        description={
+          language === 'cs'
+            ? 'Rezervujte si termín pro konzultaci s naším účetním týmem. Rychlé a jednoduché online rezervace dostupné 24/7.'
+            : 'Забронируйте встречу для консультации с нашей бухгалтерской командой. Быстрое и простое онлайн бронирование доступно 24/7.'
+        }
+        keywords={
+          language === 'cs'
+            ? 'rezervace termínu, účetní konzultace, online booking, daňové poradenství, Praha'
+            : 'бронирование встречи, бухгалтерская консультация, онлайн бронирование, налоговое консультирование, Прага'
+        }
         canonical="https://natalya-website.vercel.app/booking"
       />
       <StructuredData type="service" />
@@ -67,16 +70,14 @@ export default function Booking() {
               {language === 'cs' ? 'Online rezervace' : 'Онлайн бронирование'}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-              {language === 'cs' 
-                ? 'Rezervujte si termín'
-                : 'Забронируйте встречу'}
+              {language === 'cs' ? 'Rezervujte si termín' : 'Забронируйте встречу'}
             </h1>
             <p className="text-xl text-blue-100 mb-8">
-              {language === 'cs' 
+              {language === 'cs'
                 ? 'Rychlé a jednoduché online rezervace pro vaše účetní a daňové potřeby'
                 : 'Быстрое и простое онлайн бронирование для ваших бухгалтерских и налоговых потребностей'}
             </p>
-            
+
             <div className="flex items-center justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
@@ -101,10 +102,12 @@ export default function Booking() {
             className="text-center mb-8"
           >
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-brand-navy mb-4">
-              {language === 'cs' ? 'Proč si vybrat naše rezervace?' : 'Почему выбрать наше бронирование?'}
+              {language === 'cs'
+                ? 'Proč si vybrat naše rezervace?'
+                : 'Почему выбрать наше бронирование?'}
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              {language === 'cs' 
+              {language === 'cs'
                 ? 'Jednoduché, rychlé a bezpečné rezervace termínů online'
                 : 'Простое, быстрое и безопасное бронирование встреч онлайн'}
             </p>
@@ -144,13 +147,13 @@ export default function Booking() {
               {language === 'cs' ? 'Rezervujte si termín' : 'Забронируйте встречу'}
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              {language === 'cs' 
+              {language === 'cs'
                 ? 'Následujte jednoduchý průvodce pro rezervaci termínu. Celý proces trvá pouze několik minut.'
                 : 'Следуйте простому мастеру для бронирования встречи. Весь процесс займет всего несколько минут.'}
             </p>
           </motion.div>
 
-          <BookingForm 
+          <BookingForm
             onSuccess={() => {
               // Could add analytics tracking here
               console.log('Booking completed successfully');
@@ -169,17 +172,19 @@ export default function Booking() {
             className="text-center"
           >
             <h3 className="text-2xl font-serif font-bold text-brand-navy mb-4">
-              {language === 'cs' ? 'Potřebujete pomoc s rezervací?' : 'Нужна помощь с бронированием?'}
+              {language === 'cs'
+                ? 'Potřebujete pomoc s rezervací?'
+                : 'Нужна помощь с бронированием?'}
             </h3>
             <p className="text-neutral-600 mb-6">
-              {language === 'cs' 
+              {language === 'cs'
                 ? 'Neváhejte nás kontaktovat, pokud máte jakékoli otázky nebo potřebujete pomoc.'
                 : 'Не стесняйтесь связаться с нами, если у вас есть вопросы или нужна помощь.'}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm">
-              <a 
-                href="tel:+420123456789" 
+              <a
+                href="tel:+420123456789"
                 className="flex items-center gap-2 text-brand-emerald hover:text-brand-emerald/80 transition-colors"
               >
                 <span className="w-8 h-8 border border-brand-emerald/20 rounded-full flex items-center justify-center">
@@ -187,8 +192,8 @@ export default function Booking() {
                 </span>
                 +420 123 456 789
               </a>
-              <a 
-                href="mailto:info@natalyashakh.cz" 
+              <a
+                href="mailto:info@natalyashakh.cz"
                 className="flex items-center gap-2 text-brand-emerald hover:text-brand-emerald/80 transition-colors"
               >
                 <span className="w-8 h-8 border border-brand-emerald/20 rounded-full flex items-center justify-center">
@@ -202,7 +207,7 @@ export default function Booking() {
               <p className="text-sm text-blue-800">
                 <strong>{language === 'cs' ? 'Důležité:' : 'Важно:'}</strong>
                 <br />
-                {language === 'cs' 
+                {language === 'cs'
                   ? 'Rezervace bude potvrzena e-mailem do 24 hodin. V případě nutnosti vás budeme kontaktovat telefonicky.'
                   : 'Бронирование будет подтверждено по электронной почте в течение 24 часов. При необходимости мы свяжемся с вами по телефону.'}
               </p>
@@ -212,4 +217,4 @@ export default function Booking() {
       </section>
     </div>
   );
-} 
+}

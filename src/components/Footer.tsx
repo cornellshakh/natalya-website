@@ -8,9 +8,7 @@ export default function Footer() {
     <footer className="bg-white border-t border-gray-100">
       <div className="container-pad py-8">
         <div className="flex flex-col items-center text-center">
-          <p className="text-sm text-gray-500 mb-4">
-            {t('footer.description')}
-          </p>
+          <p className="text-sm text-gray-500 mb-4">{t('footer.description')}</p>
           <div className="flex flex-wrap justify-center gap-4 mb-4">
             <Link to="/privacy" className="text-sm text-gray-400 hover:text-gray-600">
               {t('privacy.title')}

@@ -14,7 +14,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   // Initialize with localStorage or default to 'cs'
   const [language, setLanguageState] = useState<Language>(() => {
     const saved = localStorage.getItem('language');
-    return (saved === 'cs' || saved === 'ru') ? saved : 'cs';
+    return saved === 'cs' || saved === 'ru' ? saved : 'cs';
   });
 
   const setLanguage = (lang: Language) => {
@@ -31,7 +31,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     try {
       const keys = path.split('.');
       let current: any = translations[language];
-      
+
       for (const key of keys) {
         if (current[key] === undefined) {
           console.warn(`Translation missing for key: ${path}`);
@@ -39,7 +39,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         }
         current = current[key];
       }
-      
+
       return current;
     } catch (error) {
       console.error(`Error getting translation for key: ${path}`, error);

@@ -18,12 +18,24 @@ import { User, Mail, Phone, MessageSquare, Calendar, Clock, CheckCircle, Send } 
 import { format } from 'date-fns';
 
 // Form validation schema
-const createBookingSchema = (language: 'cs' | 'ru') => z.object({
-  name: z.string().min(2, language === 'cs' ? 'Jméno musí mít alespoň 2 znaky' : 'Имя должно содержать минимум 2 символа'),
-  email: z.string().email(language === 'cs' ? 'Neplatná e-mailová adresa' : 'Неверный адрес электронной почты'),
-  phone: z.string().min(9, language === 'cs' ? 'Neplatné telefonní číslo' : 'Неверный номер телефона'),
-  message: z.string().optional(),
-});
+const createBookingSchema = (language: 'cs' | 'ru') =>
+  z.object({
+    name: z
+      .string()
+      .min(
+        2,
+        language === 'cs'
+          ? 'Jméno musí mít alespoň 2 znaky'
+          : 'Имя должно содержать минимум 2 символа'
+      ),
+    email: z
+      .string()
+      .email(language === 'cs' ? 'Neplatná e-mailová adresa' : 'Неверный адрес электронной почты'),
+    phone: z
+      .string()
+      .min(9, language === 'cs' ? 'Neplatné telefonní číslo' : 'Неверный номер телефона'),
+    message: z.string().optional(),
+  });
 
 type BookingFormData = z.infer<ReturnType<typeof createBookingSchema>>;
 
@@ -33,8 +45,8 @@ interface BookingFormProps {
 
 export default function BookingForm({ onSuccess }: BookingFormProps) {
   const { language } = useLanguage();
-  const { addToast } = useToast();
-  
+  const { showToast } = useToast();
+
   // Booking state
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedService, setSelectedService] = useState<ServiceOption | null>(null);
@@ -48,9 +60,9 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm<BookingFormData>({
-    resolver: zodResolver(bookingSchema)
+    resolver: zodResolver(bookingSchema),
   });
 
   // Step navigation
@@ -63,10 +75,14 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
 
   const canProceedToStep = (step: number) => {
     switch (step) {
-      case 2: return selectedService !== null;
-      case 3: return selectedService !== null && selectedDate !== null;
-      case 4: return selectedService !== null && selectedDate !== null && selectedTime !== null;
-      default: return true;
+      case 2:
+        return selectedService !== null;
+      case 3:
+        return selectedService !== null && selectedDate !== null;
+      case 4:
+        return selectedService !== null && selectedDate !== null && selectedTime !== null;
+      default:
+        return true;
     }
   };
 
@@ -84,12 +100,13 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
 
   const onSubmit = async (data: BookingFormData) => {
     if (!selectedService || !selectedDate || !selectedTime) {
-      addToast({
+      showToast({
         type: 'error',
         title: language === 'cs' ? 'Chyba' : 'Ошибка',
-        description: language === 'cs' 
-          ? 'Prosím vyberte službu, datum a čas'
-          : 'Пожалуйста, выберите услугу, дату и время'
+        description:
+          language === 'cs'
+            ? 'Prosím vyberte službu, datum a čas'
+            : 'Пожалуйста, выберите услугу, дату и время',
       });
       return;
     }
@@ -124,12 +141,13 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
       );
 
       // Success feedback
-      addToast({
+      showToast({
         type: 'success',
         title: language === 'cs' ? 'Úspěch!' : 'Успех!',
-        description: language === 'cs' 
-          ? 'Vaše rezervace byla úspěšně odeslána. Brzy vás budeme kontaktovat.'
-          : 'Ваша бронь была успешно отправлена. Мы скоро с вами свяжемся.'
+        description:
+          language === 'cs'
+            ? 'Vaše rezervace byla úspěšně odeslána. Brzy vás budeme kontaktovat.'
+            : 'Ваша бронь была успешно отправлена. Мы скоро с вами свяжемся.',
       });
 
       // Reset form
@@ -140,15 +158,15 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
       setCurrentStep(1);
 
       onSuccess?.();
-
     } catch (error) {
       console.error('Booking Error:', error);
-      addToast({
+      showToast({
         type: 'error',
         title: language === 'cs' ? 'Chyba' : 'Ошибка',
-        description: language === 'cs' 
-          ? 'Došlo k chybě při odesílání rezervace. Zkuste to prosím znovu.'
-          : 'Произошла ошибка при отправке брони. Пожалуйста, попробуйте еще раз.'
+        description:
+          language === 'cs'
+            ? 'Došlo k chybě při odesílání rezervace. Zkuste to prosím znovu.'
+            : 'Произошла ошибка при отправке брони. Пожалуйста, попробуйте еще раз.',
       });
     } finally {
       setIsSubmitting(false);
@@ -164,11 +182,13 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
             {steps.map((step, index) => (
               <div key={step.id} className="flex items-center">
                 <div className="flex items-center">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
-                    currentStep >= step.id 
-                      ? 'bg-brand-emerald text-white' 
-                      : 'bg-neutral-200 text-neutral-500'
-                  }`}>
+                  <div
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                      currentStep >= step.id
+                        ? 'bg-brand-emerald text-white'
+                        : 'bg-neutral-200 text-neutral-500'
+                    }`}
+                  >
                     {currentStep > step.id ? (
                       <CheckCircle className="w-5 h-5" />
                     ) : (
@@ -176,17 +196,21 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
                     )}
                   </div>
                   <div className="ml-3 hidden sm:block">
-                    <p className={`text-sm font-medium ${
-                      currentStep >= step.id ? 'text-brand-emerald' : 'text-neutral-500'
-                    }`}>
+                    <p
+                      className={`text-sm font-medium ${
+                        currentStep >= step.id ? 'text-brand-emerald' : 'text-neutral-500'
+                      }`}
+                    >
                       {step.name}
                     </p>
                   </div>
                 </div>
                 {index < steps.length - 1 && (
-                  <div className={`flex-1 h-0.5 mx-4 ${
-                    currentStep > step.id ? 'bg-brand-emerald' : 'bg-neutral-200'
-                  }`} />
+                  <div
+                    className={`flex-1 h-0.5 mx-4 ${
+                      currentStep > step.id ? 'bg-brand-emerald' : 'bg-neutral-200'
+                    }`}
+                  />
                 )}
               </div>
             ))}
@@ -200,7 +224,7 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
         {currentStep === 1 && (
           <ServiceSelector
             selectedService={selectedService}
-            onServiceSelect={(service) => {
+            onServiceSelect={service => {
               setSelectedService(service);
               if (service) {
                 setTimeout(() => handleNext(), 500);
@@ -213,7 +237,7 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
         {currentStep === 2 && (
           <BookingCalendar
             selectedDate={selectedDate}
-            onDateSelect={(date) => {
+            onDateSelect={date => {
               setSelectedDate(date);
               if (date) {
                 setTimeout(() => handleNext(), 500);
@@ -227,7 +251,7 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
           <TimeSlotPicker
             selectedDate={selectedDate}
             selectedTime={selectedTime}
-            onTimeSelect={(timeSlot) => {
+            onTimeSelect={timeSlot => {
               setSelectedTime(timeSlot);
               if (timeSlot) {
                 setTimeout(() => handleNext(), 500);
@@ -265,7 +289,10 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-1">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-neutral-700 mb-1"
+                      >
                         {language === 'cs' ? 'Jméno a příjmení' : 'Имя и фамилия'} *
                       </label>
                       <div className="relative">
@@ -282,7 +309,10 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
                     </div>
 
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-1">
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-medium text-neutral-700 mb-1"
+                      >
                         {language === 'cs' ? 'Telefon' : 'Телефон'} *
                       </label>
                       <div className="relative">
@@ -300,7 +330,10 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-1">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-neutral-700 mb-1"
+                    >
                       {language === 'cs' ? 'E-mail' : 'E-mail'} *
                     </label>
                     <div className="relative">
@@ -318,15 +351,20 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-1">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-neutral-700 mb-1"
+                    >
                       {language === 'cs' ? 'Zpráva (volitelně)' : 'Сообщение (необязательно)'}
                     </label>
                     <Textarea
                       {...register('message')}
                       rows={3}
-                      placeholder={language === 'cs' 
-                        ? 'Další informace o vašich potřebách...'
-                        : 'Дополнительная информация о ваших потребностях...'}
+                      placeholder={
+                        language === 'cs'
+                          ? 'Další informace o vašich potřebách...'
+                          : 'Дополнительная информация о ваших потребностях...'
+                      }
                     />
                   </div>
 
@@ -361,17 +399,10 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
         <Card>
           <CardContent className="p-4">
             <div className="flex justify-between">
-              <Button
-                variant="outline"
-                onClick={handlePrevious}
-                disabled={currentStep === 1}
-              >
+              <Button variant="outline" onClick={handlePrevious} disabled={currentStep === 1}>
                 {language === 'cs' ? 'Zpět' : 'Назад'}
               </Button>
-              <Button
-                onClick={handleNext}
-                disabled={!canProceedToStep(currentStep + 1)}
-              >
+              <Button onClick={handleNext} disabled={!canProceedToStep(currentStep + 1)}>
                 {language === 'cs' ? 'Pokračovat' : 'Продолжить'}
               </Button>
             </div>
@@ -380,4 +411,4 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
       )}
     </div>
   );
-} 
+}

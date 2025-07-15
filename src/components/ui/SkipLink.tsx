@@ -2,7 +2,7 @@ import { useLanguage } from '../../context/LanguageContext';
 
 export default function SkipLink() {
   const { language } = useLanguage();
-  
+
   const skipText = language === 'cs' ? 'Přeskočit na obsah' : 'Перейти к содержанию';
 
   return (

@@ -24,10 +24,10 @@ export default function SEOHead({
   canonical,
   image = '/favicon/favicon-32x32.png',
   type = 'website',
-  article
+  article,
 }: SEOHeadProps) {
   const { language } = useLanguage();
-  
+
   const siteTitle = 'Natalya Shakh - Účetní služby';
   const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
   const siteUrl = 'https://natalya-website.vercel.app';
@@ -72,15 +72,10 @@ export default function SEOHead({
           {article.modifiedTime && (
             <meta property="article:modified_time" content={article.modifiedTime} />
           )}
-          {article.author && (
-            <meta property="article:author" content={article.author} />
-          )}
-          {article.section && (
-            <meta property="article:section" content={article.section} />
-          )}
-          {article.tags && article.tags.map(tag => (
-            <meta key={tag} property="article:tag" content={tag} />
-          ))}
+          {article.author && <meta property="article:author" content={article.author} />}
+          {article.section && <meta property="article:section" content={article.section} />}
+          {article.tags &&
+            article.tags.map(tag => <meta key={tag} property="article:tag" content={tag} />)}
         </>
       )}
 
@@ -98,7 +93,7 @@ export default function SEOHead({
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <meta name="apple-mobile-web-app-title" content={siteTitle} />
       <meta name="application-name" content={siteTitle} />
-      
+
       {/* Geo tags */}
       <meta name="geo.region" content="CZ" />
       <meta name="geo.placename" content="Prague" />

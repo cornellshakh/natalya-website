@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Building, TrendingUp, Users, Award, ArrowRight, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -34,21 +34,21 @@ export default function Portfolio() {
       results: [
         t('portfolio.cases.0.results.0'),
         t('portfolio.cases.0.results.1'),
-        t('portfolio.cases.0.results.2')
+        t('portfolio.cases.0.results.2'),
       ],
       metrics: [
         {
           label: t('portfolio.cases.0.metrics.0.label'),
           value: t('portfolio.cases.0.metrics.0.value'),
-          improvement: t('portfolio.cases.0.metrics.0.improvement')
+          improvement: t('portfolio.cases.0.metrics.0.improvement'),
         },
         {
           label: t('portfolio.cases.0.metrics.1.label'),
           value: t('portfolio.cases.0.metrics.1.value'),
-          improvement: t('portfolio.cases.0.metrics.1.improvement')
-        }
+          improvement: t('portfolio.cases.0.metrics.1.improvement'),
+        },
       ],
-      icon: Building
+      icon: Building,
     },
     {
       id: 2,
@@ -60,21 +60,21 @@ export default function Portfolio() {
       results: [
         t('portfolio.cases.1.results.0'),
         t('portfolio.cases.1.results.1'),
-        t('portfolio.cases.1.results.2')
+        t('portfolio.cases.1.results.2'),
       ],
       metrics: [
         {
           label: t('portfolio.cases.1.metrics.0.label'),
           value: t('portfolio.cases.1.metrics.0.value'),
-          improvement: t('portfolio.cases.1.metrics.0.improvement')
+          improvement: t('portfolio.cases.1.metrics.0.improvement'),
         },
         {
           label: t('portfolio.cases.1.metrics.1.label'),
           value: t('portfolio.cases.1.metrics.1.value'),
-          improvement: t('portfolio.cases.1.metrics.1.improvement')
-        }
+          improvement: t('portfolio.cases.1.metrics.1.improvement'),
+        },
       ],
-      icon: TrendingUp
+      icon: TrendingUp,
     },
     {
       id: 3,
@@ -86,22 +86,22 @@ export default function Portfolio() {
       results: [
         t('portfolio.cases.2.results.0'),
         t('portfolio.cases.2.results.1'),
-        t('portfolio.cases.2.results.2')
+        t('portfolio.cases.2.results.2'),
       ],
       metrics: [
         {
           label: t('portfolio.cases.2.metrics.0.label'),
           value: t('portfolio.cases.2.metrics.0.value'),
-          improvement: t('portfolio.cases.2.metrics.0.improvement')
+          improvement: t('portfolio.cases.2.metrics.0.improvement'),
         },
         {
           label: t('portfolio.cases.2.metrics.1.label'),
           value: t('portfolio.cases.2.metrics.1.value'),
-          improvement: t('portfolio.cases.2.metrics.1.improvement')
-        }
+          improvement: t('portfolio.cases.2.metrics.1.improvement'),
+        },
       ],
-      icon: Users
-    }
+      icon: Users,
+    },
   ];
 
   const toggleCase = (caseId: number) => {
@@ -146,7 +146,7 @@ export default function Portfolio() {
                       <p className="text-sm text-blue-600 font-medium">{caseStudy.category}</p>
                     </div>
                   </div>
-                  <ArrowRight 
+                  <ArrowRight
                     className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
                       selectedCase === caseStudy.id ? 'rotate-90' : ''
                     }`}
@@ -169,11 +169,15 @@ export default function Portfolio() {
                       {/* Challenge & Solution */}
                       <div className="space-y-6">
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-3">{t('portfolio.challenge')}</h4>
+                          <h4 className="font-semibold text-gray-900 mb-3">
+                            {t('portfolio.challenge')}
+                          </h4>
                           <p className="text-gray-600">{caseStudy.challenge}</p>
                         </div>
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-3">{t('portfolio.solution')}</h4>
+                          <h4 className="font-semibold text-gray-900 mb-3">
+                            {t('portfolio.solution')}
+                          </h4>
                           <p className="text-gray-600">{caseStudy.solution}</p>
                         </div>
                       </div>
@@ -181,7 +185,9 @@ export default function Portfolio() {
                       {/* Results & Metrics */}
                       <div className="space-y-6">
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-3">{t('portfolio.results')}</h4>
+                          <h4 className="font-semibold text-gray-900 mb-3">
+                            {t('portfolio.results')}
+                          </h4>
                           <ul className="space-y-2">
                             {caseStudy.results.map((result, resultIndex) => (
                               <li key={resultIndex} className="flex items-start">
@@ -193,15 +199,24 @@ export default function Portfolio() {
                         </div>
 
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-3">{t('portfolio.metrics')}</h4>
+                          <h4 className="font-semibold text-gray-900 mb-3">
+                            {t('portfolio.metrics')}
+                          </h4>
                           <div className="space-y-3">
                             {caseStudy.metrics.map((metric, metricIndex) => (
-                              <div key={metricIndex} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                              <div
+                                key={metricIndex}
+                                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                              >
                                 <div>
-                                  <div className="text-sm font-medium text-gray-900">{metric.label}</div>
+                                  <div className="text-sm font-medium text-gray-900">
+                                    {metric.label}
+                                  </div>
                                   <div className="text-xs text-gray-500">{metric.improvement}</div>
                                 </div>
-                                <div className="text-xl font-bold text-blue-600">{metric.value}</div>
+                                <div className="text-xl font-bold text-blue-600">
+                                  {metric.value}
+                                </div>
                               </div>
                             ))}
                           </div>

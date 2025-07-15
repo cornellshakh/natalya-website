@@ -1,43 +1,41 @@
 # project_config.md
-_Last updated: 2025-07-15_
+_Last updated: 2025-01-27_
 
 ## Goal  
-Professional multilingual (Czech/Russian) accounting website for Natalya Shakh. Static responsive SPA with smooth animations and clear service presentation.
+Professional multilingual website for Natalya Shakh's accounting services in Prague. Provides Czech and Russian language support for comprehensive accounting, tax consulting, and financial advisory services targeting both local and expatriate clients.
 
 ## Tech Stack  
 - Language: TypeScript 5  
-- Framework: React 18 + Vite
-- Routing: React Router v7
-- Styling: Tailwind CSS + @tailwindcss/typography
-- Animation: Framer Motion
-- Icons: Lucide React
-- Fonts: Inter, Albert Sans (@fontsource)
-- UI Components: @headlessui/react
-- Deployment: Vercel (static site)
+- Framework: React 18 with Vite 5
+- Styling: Tailwind CSS 3 with custom design system
+- UI Components: Radix UI primitives + Headless UI
+- Animation: Framer Motion  
+- Forms: React Hook Form + Zod validation
+- Routing: React Router DOM 7
+- PWA: Service Worker + Web App Manifest
+- Deployment: Vercel
+- Build Tools: Vite, PostCSS, Terser
 
 ## Patterns  
-- Functional React components with hooks
-- PascalCase component files with default exports
-- TypeScript strict mode with proper interfaces
-- Custom contexts for state management (LanguageContext)
-- Tailwind utility classes, custom color palette
-- Import order: React/3rd party → local components → utils/contexts
-- No backend - static site with content in markdown/context
+- Functional components with hooks pattern
+- kebab-case files; camelCase variables  
+- Strict TypeScript with no `any` types
+- Custom CSS design system with CSS variables
+- Lazy-loaded pages for code splitting
+- Responsive-first design approach
+- Multilingual i18n architecture
 
 ## Constraints  
-- Responsive design (mobile-first)
-- Internationalization (Czech/Russian only)
-- Performance optimized (Vite bundling)
-- SEO friendly structure
-- Accessibility considerations
+- Bundle ≤ 300 KB per chunk (Vite optimized)
+- Core Web Vitals compliance
+- WCAG 2.1 AA accessibility standards
+- SEO optimized with structured data
+- PWA compliant for offline functionality
 
 ## Tokenization  
-- 3.5 ch/token, 8 K cap.  
-- Summarize when `workflow_state.md` > 12 K.
+- 3.5 ch/token, 8 K cap  
+- Summarize when `workflow_state.md` > 12 K
 
 ## Changelog
-- 2025-07-15: Completed Phase 3 item - Added comprehensive blog system with search, filtering, and content management
-- 2025-07-15: Completed Phase 2 enhancement - Added professional portfolio and enhanced About section with certifications and values
-- 2025-07-15: Completed Phase 1 enhancement - Added functional contact form, FAQ section, legal pages, and client testimonials
-- 2025-07-15: Updated for Natalya accounting website project
-- 2025-07-13: Cleansed out.
+- 2025-01-27: Updated to reflect actual React/Vite tech stack and project details
+- 2025-07-13: Initial template creation

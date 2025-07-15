@@ -66,8 +66,8 @@ export default function HeaderFixed() {
             <div className="flex items-center space-x-4 xl:space-x-6">
               <div className="flex items-center space-x-2">
                 <Phone className="w-3 h-3 xl:w-4 xl:h-4" />
-                <a 
-                  href="tel:+420123456789" 
+                <a
+                  href="tel:+420123456789"
                   className="hover:text-brand-gold transition-colors duration-200"
                 >
                   +420 123 456 789
@@ -75,8 +75,8 @@ export default function HeaderFixed() {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-3 h-3 xl:w-4 xl:h-4" />
-                <a 
-                  href="mailto:info@natalyashakh.cz" 
+                <a
+                  href="mailto:info@natalyashakh.cz"
                   className="hover:text-brand-gold transition-colors duration-200"
                 >
                   info@natalyashakh.cz
@@ -87,7 +87,7 @@ export default function HeaderFixed() {
                 <span>Praha, Česká republika</span>
               </div>
             </div>
-            
+
             {/* Language switcher */}
             <div className="flex items-center space-x-2">
               <Globe className="w-3 h-3 xl:w-4 xl:h-4" />
@@ -95,8 +95,8 @@ export default function HeaderFixed() {
                 onClick={() => setLanguage('cs')}
                 className={cn(
                   'px-2 py-1 rounded text-xs font-medium transition-colors duration-200',
-                  language === 'cs' 
-                    ? 'bg-primary text-primary-foreground' 
+                  language === 'cs'
+                    ? 'bg-primary text-primary-foreground'
                     : 'hover:text-primary text-gray-600'
                 )}
                 aria-label="Switch to Czech"
@@ -108,8 +108,8 @@ export default function HeaderFixed() {
                 onClick={() => setLanguage('ru')}
                 className={cn(
                   'px-2 py-1 rounded text-xs font-medium transition-colors duration-200',
-                  language === 'ru' 
-                    ? 'bg-primary text-primary-foreground' 
+                  language === 'ru'
+                    ? 'bg-primary text-primary-foreground'
                     : 'hover:text-primary text-gray-600'
                 )}
                 aria-label="Switch to Russian"
@@ -122,7 +122,7 @@ export default function HeaderFixed() {
       </div>
 
       {/* Main navigation */}
-      <header 
+      <header
         className={cn(
           'sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b transition-all duration-300',
           isScrolled ? 'shadow-md border-neutral-200' : 'border-transparent'
@@ -137,6 +137,10 @@ export default function HeaderFixed() {
                 src="https://i.imgur.com/mHlm62R.png"
                 alt="Natalya Shakh Logo"
                 className="h-8 sm:h-10 w-auto transition-transform group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                width="40"
+                height="40"
               />
               <div className="flex flex-col">
                 <span className="text-lg sm:text-xl font-serif font-bold text-brand-navy leading-tight">
@@ -183,8 +187,8 @@ export default function HeaderFixed() {
                   onClick={() => setLanguage('cs')}
                   className={cn(
                     'px-2 py-1 rounded text-xs font-medium transition-colors duration-200',
-                    language === 'cs' 
-                      ? 'bg-brand-emerald text-white' 
+                    language === 'cs'
+                      ? 'bg-brand-emerald text-white'
                       : 'text-neutral-700 hover:text-brand-emerald'
                   )}
                   aria-label="Switch to Czech"
@@ -195,8 +199,8 @@ export default function HeaderFixed() {
                   onClick={() => setLanguage('ru')}
                   className={cn(
                     'px-2 py-1 rounded text-xs font-medium transition-colors duration-200',
-                    language === 'ru' 
-                      ? 'bg-brand-emerald text-white' 
+                    language === 'ru'
+                      ? 'bg-brand-emerald text-white'
                       : 'text-neutral-700 hover:text-brand-emerald'
                   )}
                   aria-label="Switch to Russian"
@@ -207,9 +211,7 @@ export default function HeaderFixed() {
 
               {/* CTA Button */}
               <Button asChild size="sm" className="hidden sm:inline-flex">
-                <Link to="/contact">
-                  {language === 'cs' ? 'Konzultace' : 'Консультация'}
-                </Link>
+                <Link to="/contact">{language === 'cs' ? 'Konzultace' : 'Консультация'}</Link>
               </Button>
 
               {/* Mobile menu button */}
@@ -228,11 +230,7 @@ export default function HeaderFixed() {
                     exit={{ opacity: 0, rotate: 90 }}
                     transition={{ duration: 0.15 }}
                   >
-                    {isMobileMenuOpen ? (
-                      <X className="w-5 h-5" />
-                    ) : (
-                      <Menu className="w-5 h-5" />
-                    )}
+                    {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                   </motion.div>
                 </AnimatePresence>
               </button>
@@ -267,7 +265,7 @@ export default function HeaderFixed() {
                     {label}
                   </Link>
                 ))}
-                
+
                 <div className="pt-4 border-t border-neutral-200">
                   <Button asChild className="w-full">
                     <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
@@ -278,15 +276,15 @@ export default function HeaderFixed() {
 
                 {/* Mobile contact info */}
                 <div className="pt-4 border-t border-neutral-200 space-y-2">
-                  <a 
-                    href="tel:+420123456789" 
+                  <a
+                    href="tel:+420123456789"
                     className="flex items-center space-x-2 text-sm text-neutral-600 hover:text-brand-emerald transition-colors"
                   >
                     <Phone className="w-4 h-4" />
                     <span>+420 123 456 789</span>
                   </a>
-                  <a 
-                    href="mailto:info@natalyashakh.cz" 
+                  <a
+                    href="mailto:info@natalyashakh.cz"
                     className="flex items-center space-x-2 text-sm text-neutral-600 hover:text-brand-emerald transition-colors"
                   >
                     <Mail className="w-4 h-4" />

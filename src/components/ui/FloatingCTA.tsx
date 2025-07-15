@@ -21,45 +21,45 @@ export default function FloatingCTA() {
   }, []);
 
   const ctaVariants = {
-    hidden: { 
-      opacity: 0, 
-      scale: 0.8, 
-      y: 100 
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+      y: 100,
     },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
+    visible: {
+      opacity: 1,
+      scale: 1,
       y: 0,
       transition: {
         type: 'spring',
         stiffness: 300,
-        damping: 30
-      }
-    }
+        damping: 30,
+      },
+    },
   };
 
   const expandedVariants = {
-    hidden: { 
-      opacity: 0, 
-      scale: 0.9, 
-      y: 20 
+    hidden: {
+      opacity: 0,
+      scale: 0.9,
+      y: 20,
     },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
+    visible: {
+      opacity: 1,
+      scale: 1,
       y: 0,
       transition: {
         type: 'spring',
         stiffness: 400,
         damping: 25,
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0 }
+    visible: { opacity: 1, x: 0 },
   };
 
   return (
@@ -94,9 +94,7 @@ export default function FloatingCTA() {
                 animate="visible"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-semibold text-gray-900">
-                    {t('contact.getInTouch')}
-                  </h3>
+                  <h3 className="font-semibold text-gray-900">{t('contact.getInTouch')}</h3>
                   <button
                     onClick={() => setIsExpanded(false)}
                     className="text-gray-400 hover:text-gray-600 p-1"
@@ -105,7 +103,7 @@ export default function FloatingCTA() {
                     <X className="w-4 h-4" />
                   </button>
                 </div>
-                
+
                 <div className="space-y-3">
                   <motion.div variants={itemVariants}>
                     <Link
@@ -161,9 +159,7 @@ export default function FloatingCTA() {
                 </div>
 
                 <motion.div variants={itemVariants} className="mt-4 pt-3 border-t border-gray-100">
-                  <p className="text-xs text-gray-500 text-center">
-                    {t('contact.responseTime')}
-                  </p>
+                  <p className="text-xs text-gray-500 text-center">{t('contact.responseTime')}</p>
                 </motion.div>
               </motion.div>
             )}

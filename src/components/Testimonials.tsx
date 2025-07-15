@@ -1,199 +1,337 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
+import { Button } from './ui/button';
+
+import { SkeletonTestimonial } from './ui/Skeleton';
 
 interface Testimonial {
   id: number;
   name: string;
+  role: string;
   company: string;
   content: string;
   rating: number;
   image?: string;
+  location: string;
 }
 
 export default function Testimonials() {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [direction, setDirection] = useState(1); // 1 for next, -1 for previous
+
+  // Simulate loading state
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      name: t('testimonials.items.0.name'),
-      company: t('testimonials.items.0.company'),
-      content: t('testimonials.items.0.content'),
-      rating: 5
+      name: 'Jana Novákova',
+      role: language === 'cs' ? 'Majitelka' : 'Владелица',
+      company: 'Café Praha',
+      content:
+        language === 'cs'
+          ? 'Natalya mi pomohla s účetnictvím mé kavárny od samého začátku. Její profesionalita a ochota jsou na nejvyšší úrovni. Díky jejím radám jsem ušetřila spoustu času i peněz.'
+          : 'Наталья помогла мне с бухгалтерией моего кафе с самого начала. Ее профессионализм и готовность помочь на высшем уровне. Благодаря ее советам я сэкономила много времени и денег.',
+      rating: 5,
+      location: 'Praha, ČR',
     },
     {
       id: 2,
-      name: t('testimonials.items.1.name'),
-      company: t('testimonials.items.1.company'),
-      content: t('testimonials.items.1.content'),
-      rating: 5
+      name: 'Mikhail Petrov',
+      role: language === 'cs' ? 'IT Konzultant' : 'IT Консультант',
+      company: 'TechSolutions s.r.o.',
+      content:
+        language === 'cs'
+          ? 'Vynikající služby! Natalya mi nejen vedla účetnictví, ale také poradila s optimalizací daní. Její znalost českého i ruského trhu je neocenitelná.'
+          : 'Превосходные услуги! Наталья не только вела мою бухгалтерию, но и посоветовала оптимизацию налогов. Ее знание чешского и российского рынка бесценно.',
+      rating: 5,
+      location: 'Brno, ČR',
     },
     {
       id: 3,
-      name: t('testimonials.items.2.name'),
-      company: t('testimonials.items.2.company'),
-      content: t('testimonials.items.2.content'),
-      rating: 5
+      name: 'Eva Svobodova',
+      role: language === 'cs' ? 'Designérka' : 'Дизайнер',
+      company: 'Creative Studio',
+      content:
+        language === 'cs'
+          ? 'S Natalyou spolupracuji už tři roky a jsem naprosto spokojená. Vždy se na ni mohu spolehnout a její rady mi pomáhají v rozvoji podnikání.'
+          : 'Я сотрудничаю с Натальей уже три года и полностью довольна. Всегда могу на нее положиться, и ее советы помогают мне в развитии бизнеса.',
+      rating: 5,
+      location: 'Ostrava, ČR',
     },
     {
       id: 4,
-      name: t('testimonials.items.3.name'),
-      company: t('testimonials.items.3.company'),
-      content: t('testimonials.items.3.content'),
-      rating: 5
-    }
+      name: 'Pavel Černý',
+      role: language === 'cs' ? 'Obchodník' : 'Торговец',
+      company: 'Import/Export CZ',
+      content:
+        language === 'cs'
+          ? 'Díky Natalye mám účetnictví konečně pod kontrolou. Její komunikace v češtině i ruštině je pro můj mezinárodní byznys zásadní.'
+          : 'Благодаря Наталье у меня наконец-то под контролем бухгалтерия. Ее общение на чешском и русском языках критично для моего международного бизнеса.',
+      rating: 5,
+      location: 'Praha, ČR',
+    },
   ];
 
   const nextTestimonial = () => {
+    setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
 
   const prevTestimonial = () => {
+    setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
-  const goToTestimonial = (index: number) => {
-    setCurrentIndex(index);
-  };
-
-  // Auto-play functionality
+  // Auto-advance testimonials
   useEffect(() => {
-    if (!isAutoPlaying) return;
-
+    if (isLoading) return;
+    
     const interval = setInterval(() => {
       nextTestimonial();
-    }, 5000);
+    }, 6000);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying, currentIndex]);
+  }, [currentIndex, isLoading]);
 
-  const handleMouseEnter = () => setIsAutoPlaying(false);
-  const handleMouseLeave = () => setIsAutoPlaying(true);
-
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <Star
-        key={index}
-        className={`w-4 h-4 ${
-          index < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
-        }`}
-      />
-    ));
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.9,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.9,
+    }),
   };
 
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+  };
+
+  if (isLoading) {
+    return (
+      <section className="py-16 bg-gradient-to-br from-neutral-50 to-white overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="w-16 h-1 bg-neutral-200 rounded mx-auto mb-4 animate-pulse"></div>
+            <div className="w-48 h-8 bg-neutral-200 rounded mx-auto mb-4 animate-pulse"></div>
+            <div className="w-96 h-6 bg-neutral-200 rounded mx-auto animate-pulse"></div>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {Array.from({ length: 3 }, (_, i) => (
+              <SkeletonTestimonial key={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section className="py-16 bg-gradient-to-br from-blue-50 to-white">
-      <div className="container-pad">
+    <section className="py-16 bg-gradient-to-br from-neutral-50 to-white overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('testimonials.title')}</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">{t('testimonials.subtitle')}</p>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="w-16 h-1 bg-brand-emerald rounded mx-auto mb-6"
+          />
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-neutral-900 mb-4">
+            {language === 'cs' ? 'Co říkají naši klienti' : 'Что говорят наши клиенты'}
+          </h2>
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+            {language === 'cs'
+              ? 'Více než 150 spokojených klientů důvěřuje našim službám'
+              : 'Более 150 довольных клиентов доверяют нашим услугам'}
+          </p>
         </motion.div>
 
-        <div
-          className="relative max-w-4xl mx-auto"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          {/* Main testimonial display */}
-          <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
-            <AnimatePresence mode="wait">
+        {/* Featured Testimonial Carousel */}
+        <div className="relative">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-8 max-w-4xl mx-auto border border-neutral-100"
+          >
+            {/* Quote Icon */}
+            <div className="absolute -top-4 left-8">
+              <div className="w-8 h-8 bg-brand-emerald rounded-full flex items-center justify-center shadow-lg">
+                <Quote className="w-4 h-4 text-white" />
+              </div>
+            </div>
+
+            <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
                 key={currentIndex}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="p-8 md:p-12"
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: 'spring', stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 },
+                  scale: { duration: 0.3 },
+                }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1}
+                onDragEnd={(_, { offset, velocity }) => {
+                  const swipe = swipePower(offset.x, velocity.x);
+
+                  if (swipe < -swipeConfidenceThreshold) {
+                    nextTestimonial();
+                  } else if (swipe > swipeConfidenceThreshold) {
+                    prevTestimonial();
+                  }
+                }}
+                className="text-center"
               >
-                <div className="flex items-center justify-center mb-6">
-                  <Quote className="w-8 h-8 text-blue-500 opacity-50" />
+                {/* Stars */}
+                <div className="flex justify-center space-x-1 mb-6">
+                  {Array.from({ length: testimonials[currentIndex].rating }, (_, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: i * 0.1 + 0.3 }}
+                    >
+                      <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    </motion.div>
+                  ))}
                 </div>
 
-                <blockquote className="text-lg md:text-xl text-gray-700 text-center mb-8 leading-relaxed">
+                {/* Content */}
+                <blockquote className="text-xl md:text-2xl text-neutral-700 leading-relaxed mb-8 italic font-medium">
                   "{testimonials[currentIndex].content}"
                 </blockquote>
 
-                <div className="flex items-center justify-center mb-4">
-                  {renderStars(testimonials[currentIndex].rating)}
-                </div>
-
-                <div className="text-center">
-                  <div className="font-semibold text-gray-900 text-lg">
-                    {testimonials[currentIndex].name}
+                {/* Author */}
+                <div className="flex items-center justify-center space-x-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-brand-emerald to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    {testimonials[currentIndex].name.charAt(0)}
                   </div>
-                  <div className="text-gray-500 text-sm mt-1">
-                    {testimonials[currentIndex].company}
+                  <div className="text-left">
+                    <div className="font-semibold text-neutral-900 text-lg">
+                      {testimonials[currentIndex].name}
+                    </div>
+                    <div className="text-neutral-600">
+                      {testimonials[currentIndex].role}
+                    </div>
+                    <div className="text-sm text-neutral-500">
+                      {testimonials[currentIndex].company} • {testimonials[currentIndex].location}
+                    </div>
                   </div>
                 </div>
               </motion.div>
             </AnimatePresence>
-          </div>
 
-          {/* Navigation buttons */}
-          <button
-            onClick={prevTestimonial}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
-            aria-label="Previous testimonial"
-          >
-            <ChevronLeft className="w-5 h-5 text-gray-600" />
-          </button>
+            {/* Navigation Buttons */}
+            <div className="absolute top-1/2 -translate-y-1/2 left-4 right-4 flex justify-between pointer-events-none">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={prevTestimonial}
+                className="pointer-events-auto shadow-lg backdrop-blur-sm bg-white/80 border-white/50 hover:bg-white hover:scale-110"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={nextTestimonial}
+                className="pointer-events-auto shadow-lg backdrop-blur-sm bg-white/80 border-white/50 hover:bg-white hover:scale-110"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+            </div>
+          </motion.div>
 
-          <button
-            onClick={nextTestimonial}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
-            aria-label="Next testimonial"
-          >
-            <ChevronRight className="w-5 h-5 text-gray-600" />
-          </button>
-
-          {/* Dot indicators */}
-          <div className="flex justify-center mt-6 space-x-2">
+          {/* Indicators */}
+          <div className="flex justify-center space-x-2">
             {testimonials.map((_, index) => (
-              <button
+              <motion.button
                 key={index}
-                onClick={() => goToTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  index === currentIndex ? 'bg-blue-500' : 'bg-gray-300'
+                onClick={() => {
+                  setDirection(index > currentIndex ? 1 : -1);
+                  setCurrentIndex(index);
+                }}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'bg-brand-emerald shadow-lg scale-110'
+                    : 'bg-neutral-300 hover:bg-neutral-400'
                 }`}
-                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
         </div>
 
-        {/* Stats section */}
+        {/* Trust Indicators */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
         >
-          <div>
-            <div className="text-3xl font-bold text-blue-600 mb-2">98%</div>
-            <div className="text-sm text-gray-600">{t('testimonials.stats.satisfaction')}</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-blue-600 mb-2">150+</div>
-            <div className="text-sm text-gray-600">{t('testimonials.stats.clients')}</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-blue-600 mb-2">10+</div>
-            <div className="text-sm text-gray-600">{t('testimonials.stats.years')}</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-blue-600 mb-2">24h</div>
-            <div className="text-sm text-gray-600">{t('testimonials.stats.response')}</div>
-          </div>
+          {[
+            {
+              number: '150+',
+              label: language === 'cs' ? 'Spokojených klientů' : 'Довольных клиентов',
+            },
+            {
+              number: '99%',
+              label: language === 'cs' ? 'Míra spokojenosti' : 'Уровень удовлетворенности',
+            },
+            {
+              number: '12+',
+              label: language === 'cs' ? 'Let zkušeností' : 'Лет опыта',
+            },
+          ].map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              className="p-6 bg-white rounded-xl shadow-sm border border-neutral-100 hover:shadow-md transition-all duration-300"
+            >
+              <div className="text-3xl font-bold text-brand-emerald mb-2">{stat.number}</div>
+              <div className="text-neutral-600 font-medium">{stat.label}</div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

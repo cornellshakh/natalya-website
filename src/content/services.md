@@ -5,6 +5,7 @@ S dlouholetými zkušenostmi na českém trhu poskytujeme odborná účetní ře
 ## Naše služby
 
 ### Daňové poradenství a podání
+
 - Odborné vedení v oblasti české daňové legislativy a požadavků
 - Příprava daňových přiznání pro fyzické i právnické osoby
 - Registrace k DPH a pravidelná podání
@@ -12,6 +13,7 @@ S dlouholetými zkušenostmi na českém trhu poskytujeme odborná účetní ře
 - Zastupování při daňových kontrolách
 
 ### Účetnictví a finanční výkazy
+
 - Kompletní účetní služby pro firmy všech velikostí
 - Měsíční/čtvrtletní finanční výkazy
 - Odsouhlasení a správa účtů
@@ -19,6 +21,7 @@ S dlouholetými zkušenostmi na českém trhu poskytujeme odborná účetní ře
 - Finanční výkaznictví v souladu s českými standardy
 
 ### Zpracování mezd
+
 - Komplexní správa mezd
 - Výpočet daní zaměstnanců
 - Správa sociálního a zdravotního pojištění
@@ -26,6 +29,7 @@ S dlouholetými zkušenostmi na českém trhu poskytujeme odborná účetní ře
 - Zákonné výkaznictví a compliance
 
 ### Finanční poradenství
+
 - Analýza výkonnosti podnikání
 - Řízení a plánování cash flow
 - Rozpočtování a prognózování
@@ -33,6 +37,7 @@ S dlouholetými zkušenostmi na českém trhu poskytujeme odborná účetní ře
 - Konzultace investičního plánování
 
 ### Podpora podnikání
+
 - Založení a registrace společnosti
 - Nastavení a optimalizace účetního systému
 - Vývoj interních procesů
@@ -56,6 +61,7 @@ S dlouholetými zkušenostmi na českém trhu poskytujeme odborná účetní ře
 ## Наши услуги
 
 ### Налоговое консультирование и подача отчетности
+
 - Экспертное руководство по чешскому налоговому законодательству и требованиям
 - Подготовка налоговых деклараций для физических и юридических лиц
 - Регистрация НДС и регулярная отчетность
@@ -63,6 +69,7 @@ S dlouholetými zkušenostmi na českém trhu poskytujeme odborná účetní ře
 - Представительство при налоговых проверках
 
 ### Бухгалтерский учет и финансовая отчетность
+
 - Полное бухгалтерское обслуживание для компаний любого размера
 - Месячная/квартальная финансовая отчетность
 - Сверка и управление счетами
@@ -70,6 +77,7 @@ S dlouholetými zkušenostmi na českém trhu poskytujeme odborná účetní ře
 - Финансовая отчетность в соответствии с чешскими стандартами
 
 ### Расчет заработной платы
+
 - Комплексное управление заработной платой
 - Расчет налогов сотрудников
 - Администрирование социального и медицинского страхования
@@ -77,6 +85,7 @@ S dlouholetými zkušenostmi na českém trhu poskytujeme odborná účetní ře
 - Законодательная отчетность и соответствие требованиям
 
 ### Финансовое консультирование
+
 - Анализ эффективности бизнеса
 - Управление и планирование денежных потоков
 - Бюджетирование и прогнозирование
@@ -84,6 +93,7 @@ S dlouholetými zkušenostmi na českém trhu poskytujeme odborná účetní ře
 - Консультации по инвестиционному планированию
 
 ### Поддержка бизнеса
+
 - Создание и регистрация компании
 - Настройка и оптимизация бухгалтерской системы
 - Разработка внутренних процессов

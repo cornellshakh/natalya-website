@@ -14,10 +14,10 @@ interface BookingCalendarProps {
   unavailableDates?: Date[];
 }
 
-export default function BookingCalendar({ 
-  selectedDate, 
-  onDateSelect, 
-  unavailableDates = [] 
+export default function BookingCalendar({
+  selectedDate,
+  onDateSelect,
+  unavailableDates = [],
 }: BookingCalendarProps) {
   const { language } = useLanguage();
   const [activeDate, setActiveDate] = useState(new Date());
@@ -29,49 +29,45 @@ export default function BookingCalendar({
   const isDateAvailable = (date: Date) => {
     // Disable weekends
     if (isWeekend(date)) return false;
-    
+
     // Disable past dates
     if (date < today) return false;
-    
+
     // Disable unavailable dates
     if (unavailableDates.some(unavailableDate => isSameDay(date, unavailableDate))) {
       return false;
     }
-    
+
     return true;
   };
 
   // Custom tile content for calendar
   const tileContent = ({ date }: { date: Date }) => {
     if (selectedDate && isSameDay(date, selectedDate)) {
-      return (
-        <div className="absolute inset-0 bg-brand-emerald rounded-lg opacity-20" />
-      );
+      return <div className="absolute inset-0 bg-brand-emerald rounded-lg opacity-20" />;
     }
-    
+
     if (!isDateAvailable(date)) {
-      return (
-        <div className="absolute inset-0 bg-neutral-200 rounded-lg opacity-50" />
-      );
+      return <div className="absolute inset-0 bg-neutral-200 rounded-lg opacity-50" />;
     }
-    
+
     return null;
   };
 
   // Custom tile class names
   const tileClassName = ({ date }: { date: Date }) => {
     const classes = ['calendar-tile'];
-    
+
     if (selectedDate && isSameDay(date, selectedDate)) {
       classes.push('selected');
     }
-    
+
     if (!isDateAvailable(date)) {
       classes.push('unavailable');
     } else {
       classes.push('available');
     }
-    
+
     return classes.join(' ');
   };
 
@@ -109,7 +105,7 @@ export default function BookingCalendar({
               onChange={handleDateChange}
               value={selectedDate}
               activeStartDate={activeDate}
-              onActiveStartDateChange={({ activeStartDate }) => 
+              onActiveStartDateChange={({ activeStartDate }) =>
                 setActiveDate(activeStartDate || new Date())
               }
               minDate={today}
@@ -120,22 +116,48 @@ export default function BookingCalendar({
               showNeighboringMonth={false}
               locale={language === 'cs' ? 'cs-CZ' : 'ru-RU'}
               formatShortWeekday={(_, date) => {
-                const weekdays = language === 'cs' 
-                  ? ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So']
-                  : ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+                const weekdays =
+                  language === 'cs'
+                    ? ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So']
+                    : ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
                 return weekdays[date.getDay()];
               }}
               formatMonthYear={(_, date) => {
-                const months = language === 'cs'
-                  ? ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen',
-                     'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec']
-                  : ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
-                     'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+                const months =
+                  language === 'cs'
+                    ? [
+                        'Leden',
+                        'Únor',
+                        'Březen',
+                        'Duben',
+                        'Květen',
+                        'Červen',
+                        'Červenec',
+                        'Srpen',
+                        'Září',
+                        'Říjen',
+                        'Listopad',
+                        'Prosinec',
+                      ]
+                    : [
+                        'Январь',
+                        'Февраль',
+                        'Март',
+                        'Апрель',
+                        'Май',
+                        'Июнь',
+                        'Июль',
+                        'Август',
+                        'Сентябрь',
+                        'Октябрь',
+                        'Ноябрь',
+                        'Декабрь',
+                      ];
                 return `${months[date.getMonth()]} ${date.getFullYear()}`;
               }}
             />
           </div>
-          
+
           {selectedDate && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -143,7 +165,7 @@ export default function BookingCalendar({
               className="mt-4 p-3 bg-brand-emerald/5 border border-brand-emerald/20 rounded-lg"
             >
               <p className="text-sm font-medium text-brand-emerald">
-                {language === 'cs' ? 'Vybrané datum:' : 'Выбранная дата:'} {' '}
+                {language === 'cs' ? 'Vybrané datum:' : 'Выбранная дата:'}{' '}
                 {format(selectedDate, language === 'cs' ? 'dd.MM.yyyy' : 'dd.MM.yyyy')}
               </p>
             </motion.div>
@@ -151,18 +173,18 @@ export default function BookingCalendar({
 
           <div className="mt-4 text-xs text-neutral-500 space-y-1">
             <p>
-              {language === 'cs' 
-                ? '• Termíny jsou dostupné pondělí až pátek' 
+              {language === 'cs'
+                ? '• Termíny jsou dostupné pondělí až pátek'
                 : '• Встречи доступны с понедельника по пятницу'}
             </p>
             <p>
-              {language === 'cs' 
-                ? '• Pracovní doba: 9:00 - 17:00' 
+              {language === 'cs'
+                ? '• Pracovní doba: 9:00 - 17:00'
                 : '• Рабочее время: 9:00 - 17:00'}
             </p>
             <p>
-              {language === 'cs' 
-                ? '• Rezervace možná do 2 měsíců dopředu' 
+              {language === 'cs'
+                ? '• Rezervace možná do 2 měsíců dopředu'
                 : '• Бронирование возможно на 2 месяца вперед'}
             </p>
           </div>
@@ -170,4 +192,4 @@ export default function BookingCalendar({
       </Card>
     </motion.div>
   );
-} 
+}

@@ -16,7 +16,7 @@ export default function MobileMenu({ navItems, isActive, onClose, id }: MobileMe
   useEffect(() => {
     // Disable body scroll when menu is open
     document.body.style.overflow = 'hidden';
-    
+
     // Focus trap
     const focusableElements = menuRef.current?.querySelectorAll(
       'a[href], button, [tabindex]:not([tabindex="-1"])'
@@ -28,7 +28,7 @@ export default function MobileMenu({ navItems, isActive, onClose, id }: MobileMe
       if (e.key === 'Escape') {
         onClose();
       }
-      
+
       if (e.key === 'Tab') {
         if (e.shiftKey) {
           if (document.activeElement === firstElement) {
@@ -103,14 +103,17 @@ export default function MobileMenu({ navItems, isActive, onClose, id }: MobileMe
               className={`
                 flex items-center justify-between w-full px-4 py-3 rounded-lg
                 text-sm font-medium transition-all duration-200
-                ${isActive(path)
-                  ? 'bg-[#eaf4e5] text-[#4c7c42]'
-                  : 'text-gray-600 hover:bg-[#eaf4e5] hover:text-gray-900'
+                ${
+                  isActive(path)
+                    ? 'bg-[#eaf4e5] text-[#4c7c42]'
+                    : 'text-gray-600 hover:bg-[#eaf4e5] hover:text-gray-900'
                 }
               `}
             >
               <span>{label}</span>
-              <ChevronRight className={`w-4 h-4 transition-transform ${isActive(path) ? 'text-[#4c7c42]' : 'text-gray-400'}`} />
+              <ChevronRight
+                className={`w-4 h-4 transition-transform ${isActive(path) ? 'text-[#4c7c42]' : 'text-gray-400'}`}
+              />
             </Link>
           </motion.div>
         ))}

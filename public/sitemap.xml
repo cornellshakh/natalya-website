@@ -4,79 +4,79 @@
   
   <!-- Home Page -->
   <url>
-    <loc>https://natalya-website.vercel.app/</loc>
-    <lastmod>2025-07-15</lastmod>
+    <loc>https://www.natalyashakh.cz/</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://natalya-website.vercel.app/?lang=cs" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://natalya-website.vercel.app/?lang=ru" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://natalya-website.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.natalyashakh.cz/?lang=cs" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.natalyashakh.cz/?lang=ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.natalyashakh.cz/" />
   </url>
 
   <!-- About Page -->
   <url>
-    <loc>https://natalya-website.vercel.app/about</loc>
-    <lastmod>2025-07-15</lastmod>
+    <loc>https://www.natalyashakh.cz/about</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://natalya-website.vercel.app/about?lang=cs" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://natalya-website.vercel.app/about?lang=ru" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://natalya-website.vercel.app/about" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.natalyashakh.cz/about?lang=cs" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.natalyashakh.cz/about?lang=ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.natalyashakh.cz/about" />
   </url>
 
   <!-- Services Page -->
   <url>
-    <loc>https://natalya-website.vercel.app/services</loc>
-    <lastmod>2025-07-15</lastmod>
+    <loc>https://www.natalyashakh.cz/services</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://natalya-website.vercel.app/services?lang=cs" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://natalya-website.vercel.app/services?lang=ru" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://natalya-website.vercel.app/services" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.natalyashakh.cz/services?lang=cs" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.natalyashakh.cz/services?lang=ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.natalyashakh.cz/services" />
   </url>
 
   <!-- Contact Page -->
   <url>
-    <loc>https://natalya-website.vercel.app/contact</loc>
-    <lastmod>2025-07-15</lastmod>
+    <loc>https://www.natalyashakh.cz/contact</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://natalya-website.vercel.app/contact?lang=cs" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://natalya-website.vercel.app/contact?lang=ru" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://natalya-website.vercel.app/contact" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.natalyashakh.cz/contact?lang=cs" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.natalyashakh.cz/contact?lang=ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.natalyashakh.cz/contact" />
   </url>
 
   <!-- Blog Page -->
   <url>
-    <loc>https://natalya-website.vercel.app/blog</loc>
-    <lastmod>2025-07-15</lastmod>
+    <loc>https://www.natalyashakh.cz/blog</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://natalya-website.vercel.app/blog?lang=cs" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://natalya-website.vercel.app/blog?lang=ru" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://natalya-website.vercel.app/blog" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.natalyashakh.cz/blog?lang=cs" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.natalyashakh.cz/blog?lang=ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.natalyashakh.cz/blog" />
   </url>
 
   <!-- Privacy Policy Page -->
   <url>
-    <loc>https://natalya-website.vercel.app/privacy</loc>
-    <lastmod>2025-07-15</lastmod>
+    <loc>https://www.natalyashakh.cz/privacy</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://natalya-website.vercel.app/privacy?lang=cs" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://natalya-website.vercel.app/privacy?lang=ru" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://natalya-website.vercel.app/privacy" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.natalyashakh.cz/privacy?lang=cs" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.natalyashakh.cz/privacy?lang=ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.natalyashakh.cz/privacy" />
   </url>
 
   <!-- Terms of Service Page -->
   <url>
-    <loc>https://natalya-website.vercel.app/terms</loc>
-    <lastmod>2025-07-15</lastmod>
+    <loc>https://www.natalyashakh.cz/terms</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://natalya-website.vercel.app/terms?lang=cs" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://natalya-website.vercel.app/terms?lang=ru" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://natalya-website.vercel.app/terms" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.natalyashakh.cz/terms?lang=cs" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.natalyashakh.cz/terms?lang=ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.natalyashakh.cz/terms" />
   </url>
 
 </urlset>

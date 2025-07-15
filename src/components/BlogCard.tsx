@@ -28,13 +28,13 @@ export default function BlogCard({ post, featured = false }: BlogCardProps) {
     return date.toLocaleDateString(language === 'cs' ? 'cs-CZ' : 'ru-RU', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     });
   };
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
@@ -65,25 +65,23 @@ export default function BlogCard({ post, featured = false }: BlogCardProps) {
           </div>
 
           {/* Title */}
-          <h3 className={`font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors ${
-            featured ? 'text-2xl' : 'text-xl'
-          }`}>
+          <h3
+            className={`font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors ${
+              featured ? 'text-2xl' : 'text-xl'
+            }`}
+          >
             {post.title}
           </h3>
 
           {/* Excerpt */}
-          <p className={`text-gray-600 mb-4 leading-relaxed ${
-            featured ? 'text-lg' : 'text-base'
-          }`}>
+          <p className={`text-gray-600 mb-4 leading-relaxed ${featured ? 'text-lg' : 'text-base'}`}>
             {post.excerpt}
           </p>
 
           {/* Read More */}
           <div className="flex items-center justify-between">
             <div className="flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors">
-              <span className="mr-2">
-                {language === 'cs' ? 'Číst více' : 'Читать далее'}
-              </span>
+              <span className="mr-2">{language === 'cs' ? 'Číst více' : 'Читать далее'}</span>
               <ArrowRight className="w-4 h-4" />
             </div>
             {featured && (
