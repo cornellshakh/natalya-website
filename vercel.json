@@ -1,6 +1,9 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    {
+      "source": "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|sw.js|.*\\.(js|css|woff2?|png|jpg|jpeg|gif|svg|ico|webp)).*)",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {
