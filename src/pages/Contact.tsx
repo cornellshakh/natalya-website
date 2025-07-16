@@ -5,6 +5,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { Button } from '../components/ui/button';
 import Section from '../components/layout/Section';
 import SEOHead from '../components/SEO/SEOHead';
+import FormErrorBoundary from '../components/FormErrorBoundary';
+
 import {
   Phone,
   Mail,
@@ -274,220 +276,231 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <motion.form
-          onSubmit={handleSubmit}
-          className="space-y-6"
-          {...fadeInUp}
-          transition={{ delay: 0.2 }}
+        <FormErrorBoundary
+          preserveFormData={true}
+          formName="contact-form"
+          onFormError={(error, formData) => {
+            console.error('Contact form error:', error);
+            console.log('Preserved form data:', formData);
+          }}
         >
-          <div className="grid md:grid-cols-2 gap-6">
+          <motion.form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            {...fadeInUp}
+            transition={{ delay: 0.2 }}
+          >
+          <FormErrorBoundary>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-unified-sm font-medium text-neutral-700 mb-2"
+                >
+                  {language === 'cs' ? 'Jméno a příjmení *' : 'Имя и фамилия *'}
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base ${
+                            formErrors.name ? 'border-red-300 bg-red-50' : 'border-neutral-300'
+                          }`}
+                          placeholder={language === 'cs' ? 'Vaše jméno' : 'Ваше имя'}
+                        />
+                        {formErrors.name && (
+                          <p className="text-sm text-red-600 mt-1">{formErrors.name}</p>
+                        )}
+              </div>
+
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-unified-sm font-medium text-neutral-700 mb-2"
+                >
+                  {language === 'cs' ? 'Email *' : 'Email *'}
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base ${
+                            formErrors.email ? 'border-red-300 bg-red-50' : 'border-neutral-300'
+                          }`}
+                          placeholder={language === 'cs' ? 'vas@email.cz' : 'your@email.com'}
+                        />
+                        {formErrors.email && (
+                          <p className="text-sm text-red-600 mt-1">{formErrors.email}</p>
+                        )}
+              </div>
+
+              <div>
+                <label
+                  htmlFor="phone"
+                  className="block text-unified-sm font-medium text-neutral-700 mb-2"
+                >
+                  {language === 'cs' ? 'Telefon' : 'Телефон'}
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base"
+                  placeholder="+420 123 456 789"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="company"
+                  className="block text-unified-sm font-medium text-neutral-700 mb-2"
+                >
+                  {language === 'cs' ? 'Společnost' : 'Компания'}
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base"
+                  placeholder={language === 'cs' ? 'Název společnosti' : 'Название компании'}
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label
+                  htmlFor="serviceType"
+                  className="block text-unified-sm font-medium text-neutral-700 mb-2"
+                >
+                  {language === 'cs' ? 'Typ služby' : 'Тип услуги'}
+                </label>
+                <select
+                  id="serviceType"
+                  name="serviceType"
+                  value={formData.serviceType}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base"
+                >
+                  <option value="">{language === 'cs' ? 'Vyberte službu' : 'Выберите услугу'}</option>
+                  {serviceTypes.map((service, index) => (
+                    <option key={index} value={service}>
+                      {service}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
             <div>
               <label
-                htmlFor="name"
+                htmlFor="message"
                 className="block text-unified-sm font-medium text-neutral-700 mb-2"
               >
-                {language === 'cs' ? 'Jméno a příjmení *' : 'Имя и фамилия *'}
+                {language === 'cs' ? 'Zpráva *' : 'Сообщение *'}
               </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
+              <textarea
+                id="message"
+                name="message"
                 required
-                value={formData.name}
+                rows={6}
+                value={formData.message}
                 onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base ${
-                          formErrors.name ? 'border-red-300 bg-red-50' : 'border-neutral-300'
-                        }`}
-                        placeholder={language === 'cs' ? 'Vaše jméno' : 'Ваше имя'}
+                              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors resize-none text-unified-base ${
+                  formErrors.message ? 'border-red-300 bg-red-50' : 'border-neutral-300'
+                }`}
+                placeholder={
+                  language === 'cs'
+                    ? 'Popište vaše potřeby a my vám připravíme nabídku na míru...'
+                    : 'Опишите ваши потребности, и мы подготовим персональное предложение...'
+                }
+                        />
+                        {formErrors.message && (
+                          <p className="text-sm text-red-600 mt-1">{formErrors.message}</p>
+                        )}
+            </div>
+
+            <div className="text-center">
+              <Button
+                type="submit"
+                size="lg"
+                disabled={isSubmitting}
+                className="bg-brand-emerald hover:bg-brand-emerald/90 min-w-[200px]"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="mr-2 w-5 h-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                    {language === 'cs' ? 'Odesílání...' : 'Отправка...'}
+                  </>
+                ) : (
+                  <>
+                    <Send className="mr-2 w-5 h-5" />
+                    {language === 'cs' ? 'Odeslat zprávu' : 'Отправить сообщение'}
+                  </>
+                )}
+              </Button>
+
+              {/* Success Message */}
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg"
+                >
+                  <div className="flex items-center text-green-800">
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
                       />
-                      {formErrors.name && (
-                        <p className="text-sm text-red-600 mt-1">{formErrors.name}</p>
-                      )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-unified-sm font-medium text-neutral-700 mb-2"
-              >
-                {language === 'cs' ? 'Email *' : 'Email *'}
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base ${
-                          formErrors.email ? 'border-red-300 bg-red-50' : 'border-neutral-300'
-                        }`}
-                        placeholder={language === 'cs' ? 'vas@email.cz' : 'your@email.com'}
-                      />
-                      {formErrors.email && (
-                        <p className="text-sm text-red-600 mt-1">{formErrors.email}</p>
-                      )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="phone"
-                className="block text-unified-sm font-medium text-neutral-700 mb-2"
-              >
-                {language === 'cs' ? 'Telefon' : 'Телефон'}
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base"
-                placeholder="+420 123 456 789"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="company"
-                className="block text-unified-sm font-medium text-neutral-700 mb-2"
-              >
-                {language === 'cs' ? 'Společnost' : 'Компания'}
-              </label>
-              <input
-                type="text"
-                id="company"
-                name="company"
-                value={formData.company}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base"
-                placeholder={language === 'cs' ? 'Název společnosti' : 'Название компании'}
-              />
-            </div>
-
-            <div className="md:col-span-2">
-              <label
-                htmlFor="serviceType"
-                className="block text-unified-sm font-medium text-neutral-700 mb-2"
-              >
-                {language === 'cs' ? 'Typ služby' : 'Тип услуги'}
-              </label>
-              <select
-                id="serviceType"
-                name="serviceType"
-                value={formData.serviceType}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors text-unified-base"
-              >
-                <option value="">{language === 'cs' ? 'Vyberte službu' : 'Выберите услугу'}</option>
-                {serviceTypes.map((service, index) => (
-                  <option key={index} value={service}>
-                    {service}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label
-              htmlFor="message"
-              className="block text-unified-sm font-medium text-neutral-700 mb-2"
-            >
-              {language === 'cs' ? 'Zpráva *' : 'Сообщение *'}
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows={6}
-              value={formData.message}
-              onChange={handleChange}
-                            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-colors resize-none text-unified-base ${
-                formErrors.message ? 'border-red-300 bg-red-50' : 'border-neutral-300'
-              }`}
-              placeholder={
-                language === 'cs'
-                  ? 'Popište vaše potřeby a my vám připravíme nabídku na míru...'
-                  : 'Опишите ваши потребности, и мы подготовим персональное предложение...'
-              }
-                      />
-                      {formErrors.message && (
-                        <p className="text-sm text-red-600 mt-1">{formErrors.message}</p>
-                      )}
-          </div>
-
-          <div className="text-center">
-            <Button
-              type="submit"
-              size="lg"
-              disabled={isSubmitting}
-              className="bg-brand-emerald hover:bg-brand-emerald/90 min-w-[200px]"
-            >
-              {isSubmitting ? (
-                <>
-                  <div className="mr-2 w-5 h-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                  {language === 'cs' ? 'Odesílání...' : 'Отправка...'}
-                </>
-              ) : (
-                <>
-                  <Send className="mr-2 w-5 h-5" />
-                  {language === 'cs' ? 'Odeslat zprávu' : 'Отправить сообщение'}
-                </>
+                    </svg>
+                    {language === 'cs'
+                      ? 'Zpráva byla úspěšně odeslána! Ozveme se vám do 24 hodin.'
+                      : 'Сообщение успешно отправлено! Мы свяжемся с вами в течение 24 часов.'}
+                  </div>
+                </motion.div>
               )}
-            </Button>
 
-            {/* Success Message */}
-            {submitStatus === 'success' && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg"
-              >
-                <div className="flex items-center text-green-800">
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {language === 'cs'
-                    ? 'Zpráva byla úspěšně odeslána! Ozveme se vám do 24 hodin.'
-                    : 'Сообщение успешно отправлено! Мы свяжемся с вами в течение 24 часов.'}
-                </div>
-              </motion.div>
-            )}
+              {/* Error Message */}
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg"
+                >
+                  <div className="flex items-center text-red-800">
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    {language === 'cs'
+                      ? 'Došlo k chybě při odesílání zprávy. Zkuste to prosím znovu nebo nás kontaktujte přímo.'
+                      : 'Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте еще раз или свяжитесь с нами напрямую.'}
+                  </div>
+                </motion.div>
+              )}
 
-            {/* Error Message */}
-            {submitStatus === 'error' && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg"
-              >
-                <div className="flex items-center text-red-800">
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {language === 'cs'
-                    ? 'Došlo k chybě při odesílání zprávy. Zkuste to prosím znovu nebo nás kontaktujte přímo.'
-                    : 'Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте еще раз или свяжитесь с нами напрямую.'}
-                </div>
-              </motion.div>
-            )}
-
-            <p className="text-unified-sm text-neutral-600 mt-4">
-              {language === 'cs'
-                ? 'Odesláním souhlasíte s našimi podmínkami ochrany osobních údajů'
-                : 'Отправляя форму, вы соглашаетесь с нашими условиями защиты персональных данных'}
-            </p>
-          </div>
-        </motion.form>
+              <p className="text-unified-sm text-neutral-600 mt-4">
+                {language === 'cs'
+                  ? 'Odesláním souhlasíte s našimi podmínkami ochrany osobních údajů'
+                  : 'Отправляя форму, вы соглашаетесь с нашими условиями защиты персональных данных'}
+              </p>
+            </div>
+          </FormErrorBoundary>
+          </motion.form>
+        </FormErrorBoundary>
       </Section>
 
       {/* Benefits */}

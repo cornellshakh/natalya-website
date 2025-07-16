@@ -1,9 +1,20 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { Badge } from '../components/ui/badge';
-import { Calendar, Clock, CheckCircle2, Shield, Headphones, Award } from 'lucide-react';
-import BookingForm from '../components/booking/BookingForm';
 import SEOHead from '../components/SEO/SEOHead';
+
+import BookingForm from '../components/booking/BookingForm';
+import FormErrorBoundary from '../components/FormErrorBoundary';
+import AsyncErrorBoundary from '../components/AsyncErrorBoundary';
+import {
+  Calendar,
+  Clock,
+
+  CheckCircle2,
+  Shield,
+  Headphones,
+  Award,
+} from 'lucide-react';
+import { Badge } from '../components/ui/badge';
 import StructuredData from '../components/SEO/StructuredData';
 
 export default function Booking() {
@@ -153,12 +164,32 @@ export default function Booking() {
             </p>
           </motion.div>
 
-          <BookingForm
-            onSuccess={() => {
-              // Could add analytics tracking here
-              console.log('Booking completed successfully');
+          <AsyncErrorBoundary
+            checkConnection={true}
+            onAsyncError={(error) => {
+              console.error('Booking async error:', error);
             }}
-          />
+            retryFn={async () => {
+              // Retry logic could be implemented here
+              console.log('Retrying booking process...');
+            }}
+          >
+            <FormErrorBoundary
+              preserveFormData={true}
+              formName="booking-form"
+              onFormError={(error, formData) => {
+                console.error('Booking form error:', error);
+                console.log('Preserved booking data:', formData);
+              }}
+            >
+              <BookingForm
+                onSuccess={() => {
+                  // Could add analytics tracking here
+                  console.log('Booking completed successfully');
+                }}
+              />
+            </FormErrorBoundary>
+          </AsyncErrorBoundary>
         </div>
       </section>
 

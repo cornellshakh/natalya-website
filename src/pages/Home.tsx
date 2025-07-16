@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, Phone, Calendar, Building2, TrendingUp, Briefcase, PieChart, BarChart3, Users2, Zap, Coins, Car, ShoppingCart, Utensils, Home as HomeIcon } from 'lucide-react';
+import { CheckCircle2, Calendar, Building2, Briefcase, Users2, Coins, Car, ShoppingCart, Utensils, Home as HomeIcon } from 'lucide-react';
 
 import { Button } from '../components/ui/button';
 import Hero from '../components/layout/Hero';
@@ -74,28 +74,7 @@ export default function Home() {
     }
   ];
 
-  const keyBenefits = [
-    {
-      icon: TrendingUp,
-      title: language === 'cs' ? 'Až 40% úspora na daních' : 'До 40% экономии на налогах',
-      subtitle: language === 'cs' ? 'Legální optimalizace' : 'Легальная оптимизация'
-    },
-    {
-      icon: Zap,
-      title: language === 'cs' ? '100% včasnost' : '100% соблюдение сроков',
-      subtitle: language === 'cs' ? 'Automatické procesy' : 'Автоматизированные процессы'
-    },
-    {
-      icon: PieChart,
-      title: language === 'cs' ? 'Digitální účetnictví' : 'Цифровая отчетность',
-      subtitle: language === 'cs' ? 'Moderní nástroje' : 'Современные инструменты'
-    },
-    {
-      icon: BarChart3,
-      title: language === 'cs' ? 'Průhledné reporty' : 'Прозрачная отчетность',
-      subtitle: language === 'cs' ? 'Realtime přehled' : 'Данные в реальном времени'
-    }
-  ];
+
 
 
 

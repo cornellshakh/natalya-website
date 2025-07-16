@@ -365,24 +365,176 @@ body {
 
 /* Performance optimizations for animations */
 @layer utilities {
+  /* GPU acceleration utilities */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+  }
+
+  .transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .transform-gpu-scale {
+    transform: translateZ(0);
+    will-change: transform, scale;
+  }
+
+  .transform-gpu-opacity {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+
+  /* Hardware acceleration classes */
   .will-change-transform {
     will-change: transform;
   }
-  
+
   .will-change-opacity {
     will-change: opacity;
   }
-  
+
+  .will-change-scroll {
+    will-change: scroll-position;
+  }
+
   .will-change-auto {
     will-change: auto;
   }
-  
-  /* Hardware acceleration for smooth animations */
-  .hardware-accelerated {
+
+  /* Optimized animation classes */
+  .animate-gpu-spin {
+    animation: gpu-spin 1s linear infinite;
     transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
   }
+
+  .animate-gpu-pulse {
+    animation: gpu-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    transform: translateZ(0);
+  }
+
+  .animate-gpu-bounce {
+    animation: gpu-bounce 1s infinite;
+    transform: translateZ(0);
+  }
+
+  /* Force compositing layer for better performance */
+  .force-gpu-layer {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000;
+  }
+
+  /* Smooth transitions with GPU acceleration */
+  .transition-gpu {
+    transition-property: transform, opacity;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition-duration: 200ms;
+    transform: translateZ(0);
+  }
+
+  .transition-gpu-fast {
+    transition-property: transform, opacity;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition-duration: 150ms;
+    transform: translateZ(0);
+  }
+
+  .transition-gpu-slow {
+    transition-property: transform, opacity;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition-duration: 300ms;
+    transform: translateZ(0);
+  }
+}
+
+/* GPU-optimized keyframe animations */
+@keyframes gpu-spin {
+  0% { 
+    transform: translate3d(0, 0, 0) rotate(0deg); 
+  }
+  100% { 
+    transform: translate3d(0, 0, 0) rotate(360deg); 
+  }
+}
+
+@keyframes gpu-pulse {
+  0%, 100% { 
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    opacity: 1; 
+  }
+  50% { 
+    transform: translate3d(0, 0, 0) scale3d(1.05, 1.05, 1);
+    opacity: 0.5; 
+  }
+}
+
+@keyframes gpu-bounce {
+  0%, 100% { 
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1); 
+  }
+  50% { 
+    transform: translate3d(0, -25%, 0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1); 
+  }
+}
+
+/* Enhanced shimmer animation with GPU acceleration */
+@keyframes shimmer-gpu {
+  0% { 
+    transform: translate3d(-100%, 0, 0); 
+  }
+  100% { 
+    transform: translate3d(100%, 0, 0); 
+  }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, var(--muted) 0%, var(--border) 50%, var(--muted) 100%);
+  background-size: 200% 100%;
+  transform: translateZ(0); /* Force GPU layer */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .loading-shimmer {
+    animation: shimmer-gpu 1.5s infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-shimmer {
+    animation: shimmer-gpu 3s infinite;
+  }
+}
+
+/* Hardware acceleration for common patterns */
+.card-hover-gpu {
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+  transition: transform 200ms cubic-bezier(0.25, 0.1, 0.25, 1), 
+              box-shadow 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.card-hover-gpu:hover {
+  transform: translate3d(0, -2px, 0);
+}
+
+/* Button animations with GPU acceleration */
+.button-gpu {
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.button-gpu:hover {
+  transform: translate3d(0, -1px, 0) scale3d(1.02, 1.02, 1);
+}
+
+.button-gpu:active {
+  transform: translate3d(0, 0, 0) scale3d(0.98, 0.98, 1);
 }
 
 /* Error boundary styling */
@@ -418,3 +570,6 @@ body {
     @apply border-black;
   }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import 'highlight.js/styles/github.css';

@@ -150,7 +150,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           success && 'bg-green-500 hover:bg-green-600',
           error && 'bg-red-500 hover:bg-red-600',
           !prefersReducedMotion && isClicked && variant !== 'link' && 'scale-95',
-          'transform-gpu' // Enable hardware acceleration
+          // Enhanced GPU acceleration
+          'transform-gpu button-gpu force-gpu-layer'
         )}
         disabled={disabled || loading}
         onClick={handleClick}

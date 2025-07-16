@@ -29,14 +29,43 @@ export default function ScrollToTop() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
+          initial={{ 
+            opacity: 0, 
+            // Use transform3d for GPU acceleration
+            transform: 'translate3d(0, 20px, 0)',
+          }}
+          animate={{ 
+            opacity: 1, 
+            // Use transform3d for GPU acceleration
+            transform: 'translate3d(0, 0, 0)',
+          }}
+          exit={{ 
+            opacity: 0, 
+            // Use transform3d for GPU acceleration
+            transform: 'translate3d(0, 20px, 0)',
+          }}
+          transition={{
+            type: 'spring',
+            stiffness: 300,
+            damping: 30,
+          }}
           onClick={scrollToTop}
           className="fixed bottom-8 right-8 z-40 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 
-                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                     transform-gpu button-gpu"
+          whileHover={{ 
+            // Use transform3d for GPU acceleration
+            transform: 'translate3d(0, 0, 0) scale3d(1.1, 1.1, 1)',
+          }}
+          whileTap={{ 
+            // Use transform3d for GPU acceleration
+            transform: 'translate3d(0, 0, 0) scale3d(0.9, 0.9, 1)',
+          }}
+          style={{
+            willChange: 'transform, opacity',
+            backfaceVisibility: 'hidden',
+            perspective: 1000,
+          }}
         >
           <ArrowUp className="w-6 h-6" />
         </motion.button>

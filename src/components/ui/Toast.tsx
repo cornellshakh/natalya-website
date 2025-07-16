@@ -2,6 +2,7 @@ import { createContext, useContext, ReactNode, useState, useCallback, useRef, us
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, XCircle, AlertCircle, Info, X } from 'lucide-react';
 import { useMotionPreference, announceToScreenReader } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 
 type ToastType = 'success' | 'error' | 'warning' | 'info';
 
@@ -232,14 +233,38 @@ function ToastItem({ toast, onRemove, prefersReducedMotion }: ToastItemProps) {
         exit: { opacity: 0 },
       }
     : {
-        initial: { opacity: 0, x: 100, scale: 0.3 },
-        animate: { opacity: 1, x: 0, scale: 1 },
-        exit: { opacity: 0, x: 100, scale: 0.5 },
+        initial: { 
+          opacity: 0, 
+          x: 100, 
+          scale: 0.3,
+          // GPU acceleration
+          transform: 'translate3d(100px, 0, 0) scale3d(0.3, 0.3, 1)',
+        },
+        animate: { 
+          opacity: 1, 
+          x: 0, 
+          scale: 1,
+          // GPU acceleration
+          transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1)',
+        },
+        exit: { 
+          opacity: 0, 
+          x: 100, 
+          scale: 0.5,
+          // GPU acceleration
+          transform: 'translate3d(100px, 0, 0) scale3d(0.5, 0.5, 1)',
+        },
       };
 
   const animationTransition = prefersReducedMotion
     ? { duration: 0 }
-    : { type: 'spring', stiffness: 300, damping: 30 };
+    : { 
+        type: 'spring', 
+        stiffness: 300, 
+        damping: 30,
+        // GPU optimization
+        ease: [0.25, 0.1, 0.25, 1],
+      };
 
   return (
     <motion.div
@@ -249,20 +274,28 @@ function ToastItem({ toast, onRemove, prefersReducedMotion }: ToastItemProps) {
       animate="animate"
       exit="exit"
       transition={animationTransition}
-      layout={!prefersReducedMotion}
-      className={`
-        max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto 
-        ring-1 ring-black ring-opacity-5 overflow-hidden border
-        focus:outline-none focus:ring-2 focus:ring-offset-2
-        ${styles[toast.type]}
-      `}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onKeyDown={handleKeyDown}
+      className={cn(
+        'relative max-w-sm w-full pointer-events-auto overflow-hidden rounded-lg border shadow-lg ring-1 ring-black ring-opacity-5 p-4',
+        'backdrop-blur-sm', // Add backdrop blur for visual depth
+        // GPU acceleration classes
+        'gpu-accelerated will-change-transform transform-gpu',
+        styles[toast.type],
+        'focus:outline-none focus:ring-2 focus:ring-offset-2'
+      )}
       tabIndex={toast.type === 'error' ? 0 : -1}
       role="alert"
       aria-live={toast.type === 'error' ? 'assertive' : 'polite'}
       aria-atomic="true"
+      aria-describedby={`toast-content-${toast.id}`}
+      onKeyDown={handleKeyDown}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      // Performance optimization: prevent layout recalculation
+      style={{
+        willChange: prefersReducedMotion ? 'auto' : 'transform, opacity',
+        backfaceVisibility: 'hidden',
+        perspective: 1000,
+      }}
     >
       <div className="p-4">
         <div className="flex items-start">

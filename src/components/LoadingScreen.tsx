@@ -18,20 +18,33 @@ export default function LoadingScreen() {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-white"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-white transform-gpu"
+      style={{
+        willChange: 'opacity',
+        backfaceVisibility: 'hidden',
+        transform: 'translateZ(0)',
+      }}
     >
       <div className="flex flex-col items-center">
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 180, 360],
+            // Use transform3d for GPU acceleration - only transform properties
+            transform: [
+              'translate3d(0, 0, 0) scale3d(1, 1, 1) rotate(0deg)',
+              'translate3d(0, 0, 0) scale3d(1.2, 1.2, 1) rotate(180deg)',
+              'translate3d(0, 0, 0) scale3d(1, 1, 1) rotate(360deg)',
+            ],
           }}
           transition={{
             duration: 1.5,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full"
+          className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full transform-gpu"
+          style={{
+            willChange: 'transform',
+            backfaceVisibility: 'hidden',
+          }}
         />
         <motion.span
           initial={{ opacity: 0 }}

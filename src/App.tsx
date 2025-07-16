@@ -20,6 +20,7 @@ const Contact = lazy(() => import('./pages/Contact'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Booking = lazy(() => import('./pages/Booking'));
 
 // Enhanced loading fallback component with accessibility
@@ -82,18 +83,18 @@ const createPageVariants = (prefersReducedMotion: boolean) => {
   return {
     initial: {
       opacity: 0,
-      y: 20,
-      scale: 0.98,
+      // Use transform3d for GPU acceleration
+      transform: 'translate3d(0, 20px, 0) scale3d(0.98, 0.98, 1)',
     },
     in: {
       opacity: 1,
-      y: 0,
-      scale: 1,
+      // Use transform3d for GPU acceleration
+      transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1)',
     },
     out: {
       opacity: 0,
-      y: -20,
-      scale: 1.02,
+      // Use transform3d for GPU acceleration
+      transform: 'translate3d(0, -20px, 0) scale3d(1.02, 1.02, 1)',
     },
   };
 };
@@ -105,8 +106,10 @@ const createPageTransition = (prefersReducedMotion: boolean) => {
 
   return {
     type: 'tween',
-    ease: 'anticipate',
+    ease: [0.25, 0.1, 0.25, 1], // Optimized cubic-bezier
     duration: 0.4,
+    // Force hardware acceleration
+    transformTemplate: ({ transform }: any) => `${transform} translateZ(0)`,
   };
 };
 
@@ -127,6 +130,13 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
       // Announce page changes to screen readers
       aria-live="polite"
       aria-atomic="true"
+      // GPU acceleration optimizations
+      style={{
+        willChange: prefersReducedMotion ? 'auto' : 'transform, opacity',
+        backfaceVisibility: 'hidden',
+        perspective: 1000,
+        transform: 'translateZ(0)', // Force hardware layer
+      }}
     >
       {children}
     </motion.div>
@@ -225,6 +235,14 @@ function AnimatedRoutes() {
           element={
             <PageWrapper>
               <Blog />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/blog/:slug"
+          element={
+            <PageWrapper>
+              <BlogPost />
             </PageWrapper>
           }
         />

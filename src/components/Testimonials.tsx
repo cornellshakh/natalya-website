@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import { Button } from './ui/button';
 
-import { SkeletonTestimonial } from './ui/Skeleton';
+import { Skeleton } from './ui/Skeleton';
 
 interface Testimonial {
   id: number;
@@ -137,7 +137,23 @@ export default function Testimonials() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {Array.from({ length: 3 }, (_, i) => (
-              <SkeletonTestimonial key={i} />
+              <div key={i} className="p-6 border rounded-lg space-y-4 bg-white text-center">
+                <Skeleton variant="circular" width={64} height={64} className="mx-auto" />
+                <div className="space-y-2">
+                  <Skeleton width="60%" height={16} className="mx-auto" />
+                  <Skeleton width="40%" height={14} className="mx-auto" />
+                </div>
+                <div className="space-y-2">
+                  <Skeleton width="100%" height={14} />
+                  <Skeleton width="90%" height={14} />
+                  <Skeleton width="80%" height={14} />
+                </div>
+                <div className="flex justify-center space-x-1">
+                  {[...Array(5)].map((_, star) => (
+                    <Skeleton key={star} width={16} height={16} />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>

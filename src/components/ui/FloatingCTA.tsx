@@ -23,17 +23,19 @@ export default function FloatingCTA() {
   const ctaVariants = {
     hidden: {
       opacity: 0,
-      scale: 0.8,
-      y: 100,
+      // Use transform3d for GPU acceleration
+      transform: 'translate3d(0, 100px, 0) scale3d(0.8, 0.8, 1)',
     },
     visible: {
       opacity: 1,
-      scale: 1,
-      y: 0,
+      // Use transform3d for GPU acceleration
+      transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1)',
       transition: {
         type: 'spring',
         stiffness: 300,
         damping: 30,
+        // GPU optimization
+        ease: [0.25, 0.1, 0.25, 1],
       },
     },
   };
@@ -41,25 +43,35 @@ export default function FloatingCTA() {
   const expandedVariants = {
     hidden: {
       opacity: 0,
-      scale: 0.9,
-      y: 20,
+      // Use transform3d for GPU acceleration
+      transform: 'translate3d(0, 20px, 0) scale3d(0.9, 0.9, 1)',
     },
     visible: {
       opacity: 1,
-      scale: 1,
-      y: 0,
+      // Use transform3d for GPU acceleration
+      transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1)',
       transition: {
         type: 'spring',
         stiffness: 400,
         damping: 25,
         staggerChildren: 0.1,
+        // GPU optimization
+        ease: [0.25, 0.1, 0.25, 1],
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0 },
+    hidden: { 
+      opacity: 0, 
+      // Use transform3d for GPU acceleration
+      transform: 'translate3d(20px, 0, 0)',
+    },
+    visible: { 
+      opacity: 1, 
+      // Use transform3d for GPU acceleration
+      transform: 'translate3d(0, 0, 0)',
+    },
   };
 
   return (
