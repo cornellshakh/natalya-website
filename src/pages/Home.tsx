@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, Calendar, Building2, Briefcase, Users2, Coins, Car, ShoppingCart, Utensils, Home as HomeIcon } from 'lucide-react';
+import { CheckCircle2, Calendar, Building2, Briefcase, Users2, Coins, Car, ShoppingCart, Utensils, Home as HomeIcon, ArrowRight, LucidePanelRightOpen, Search, Book, Brain } from 'lucide-react';
 
 import { Button } from '../components/ui/button';
 import Hero from '../components/layout/Hero';
@@ -191,34 +191,39 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Right side - Top 4 Expertise Areas */}
-                <div className="space-y-11">
-                  {expertiseAreas.slice(0, 4).map((area, index) => (
-                    <div key={index} className="flex items-start gap-4">
-                      <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
-                        <area.icon className="w-8 h-8 text-neutral-700" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-bold text-neutral-900 text-lg mb-1">
-                          {area.title}
-                        </h4>
-                        <p className="text-neutral-600">
-                          {area.description}
+                {/* Right side - Professional image */}
+                <div className="flex items-start justify-center">
+                  <div className="relative rounded-lg overflow-hidden border border-gray-200 bg-white w-full max-w-sm">
+                    <img
+                      src="https://i.imgur.com/SzPAm8h.jpeg"
+                      alt="Professional accounting services"
+                      className="w-full h-96 object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent" />
+                    
+                    {/* Floating badge */}
+                    <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-sm rounded-lg p-3 border border-gray-200">
+                      <div className="text-center">
+                        <p className="font-bold text-brand-navy text-sm">
+                          {language === 'cs' ? 'Certifikovaný lektor účetnictví' : 'Сертифицированный преподаватель бухучета'}
+                        </p>
+                        <p className="text-xs text-neutral-600">
+                          {language === 'cs' ? 'Vzdělávání budoucích účetních' : 'Обучение будущих бухгалтеров'}
                         </p>
                       </div>
                     </div>
-                  ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Remaining Expertise Areas - Wide cards with dark background */}
+          {/* All Expertise Areas - Wide cards */}
           <div className="mb-0 mt-4">
-            <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-              {expertiseAreas.slice(4).map((area, index) => (
+            <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+              {expertiseAreas.map((area, index) => (
                 <motion.div 
-                  key={index + 4}
+                  key={index}
                   className="group cursor-pointer"
                   {...fadeInUp} 
                   transition={{ delay: index * 0.1 }}
@@ -241,11 +246,20 @@ export default function Home() {
 
           {/* Bottom CTA */}
           <motion.div className="text-center pt-8" {...fadeInUp} transition={{ delay: 0.8 }}>
-            <Link to="/contact">
-              <Button size="lg" className="bg-brand-emerald hover:bg-brand-emerald/90 text-white font-semibold">
-                <Calendar className="mr-2 w-5 h-5" />
-                {language === 'cs' ? 'Konzultace zdarma' : 'Бесплатная консультация'}
-              </Button>
+            <Link to="/about">
+             <Button
+                  size="default"
+                  className="w-full sm:w-auto text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transition-shadow group min-h-[44px]"
+                  asChild
+                >
+                  <Link to="/booking" className="flex items-center justify-center gap-2">
+                    <Search className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span>
+                      {language === 'cs' ? 'Zjistit víc o nás' : 'Узнать больше о нас'}
+                    </span>
+                    <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
             </Link>
           </motion.div>
         </motion.div>
