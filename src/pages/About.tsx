@@ -2,17 +2,15 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import {
   Calendar,
-  Award,
   CheckCircle2,
   Phone,
   Mail,
-  GraduationCap,
   Users,
-  BookOpen,
-  TrendingUp,
+  Award,
+  Shield,
+  Star,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import SEOHead from '../components/SEO/SEOHead';
 import StructuredData from '../components/SEO/StructuredData';
@@ -27,30 +25,6 @@ export default function About() {
     transition: { duration: 0.6 },
   };
 
-  const credentials = [
-    {
-      icon: Award,
-      title: language === 'cs' ? 'Certifikovaný účetní' : 'Сертифицированный бухгалтер',
-      description: language === 'cs' ? 'Licence ČR #ACC-2019-567' : 'Лицензия ЧР #ACC-2019-567',
-      details: language === 'cs' ? 'Ministerstvo financí ČR' : 'Министерство финансов ЧР',
-    },
-    {
-      icon: GraduationCap,
-      title: language === 'cs' ? 'Magisterské vzdělání' : 'Магистерское образование',
-      description: language === 'cs' ? 'Ekonomika a management' : 'Экономика и менеджмент',
-      details: language === 'cs' ? 'Vysoká škola ekonomická Praha' : 'Высшая школа экономики Прага',
-    },
-    {
-      icon: BookOpen,
-      title: language === 'cs' ? 'Kontinuální vzdělávání' : 'Непрерывное образование',
-      description:
-        language === 'cs'
-          ? 'Pravidelné školení a certifikace'
-          : 'Регулярные тренинги и сертификации',
-      details: language === 'cs' ? 'Komora účetních ČR' : 'Палата бухгалтеров ЧР',
-    },
-  ];
-
   const achievements = [
     {
       icon: Users,
@@ -58,40 +32,19 @@ export default function About() {
       label: language === 'cs' ? 'Spokojených klientů' : 'Довольных клиентов',
     },
     {
-      icon: Calendar,
+      icon: Award,
       number: '12+',
       label: language === 'cs' ? 'Let zkušeností' : 'Лет опыта',
     },
     {
-      icon: CheckCircle2,
+      icon: Star,
       number: '98%',
       label: language === 'cs' ? 'Míra spokojenosti' : 'Уровень удовлетворенности',
     },
     {
-      icon: TrendingUp,
+      icon: Shield,
       number: '0',
       label: language === 'cs' ? 'Pokut za 24 měsíců' : 'Штрафов за 24 месяца',
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: language === 'cs' ? 'Pavel Novák' : 'Павел Новак',
-      role: language === 'cs' ? 'Ředitel, TechStart s.r.o.' : 'Директор, TechStart s.r.o.',
-      content:
-        language === 'cs'
-          ? 'Natalya nám pomohla nejen s účetnictvím, ale i s optimalizací daní. Její profesionální přístup a včasné rady nám ušetřily spoustu času i peněz.'
-          : 'Наталья помогла нам не только с бухгалтерией, но и с оптимизацией налогов. Ее профессиональный подход и своевременные советы сэкономили нам много времени и денег.',
-      years: language === 'cs' ? 'Klient od 2020' : 'Клиент с 2020',
-    },
-    {
-      name: language === 'cs' ? 'Marie Svobodová' : 'Мария Свободова',
-      role: language === 'cs' ? 'Majitelka, Design Studio' : 'Владелица, Design Studio',
-      content:
-        language === 'cs'
-          ? 'Konečně mám účetní, která rozumí potřebám malého podnikání. Vždy dostanu jasnou odpověď a cítím se s účetnictvím bezpečně.'
-          : 'Наконец-то у меня есть бухгалтер, который понимает потребности малого бизнеса. Всегда получаю ясный ответ и чувствую себя с бухгалтерией в безопасности.',
-      years: language === 'cs' ? 'Klientka od 2019' : 'Клиентка с 2019',
     },
   ];
 
@@ -116,15 +69,15 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeInUp}>
               <h1 className="text-4xl font-bold text-neutral-900 mb-6">
-                {language === 'cs' ? 'Natalya Shakh' : 'Наталья Шах'}
+                {language === 'cs' ? 'Natalya Shakh & Partners' : 'Natalya Shakh & Partners'}
               </h1>
               <div className="text-xl text-brand-emerald font-medium mb-6">
-                {language === 'cs' ? 'Certifikovaný účetní' : 'Сертифицированный бухгалтер'}
+                {language === 'cs' ? 'Vaše spolehlivá účetní firma' : 'Ваша надежная бухгалтерская фирма'}
               </div>
               <p className="text-lg text-neutral-600 leading-relaxed mb-8">
                 {language === 'cs'
-                  ? 'S více než 12 lety zkušeností v oblasti účetnictví a daňového poradenství pomáhám malým a středním podnikům efektivně spravovat jejich finance. Specializuji se na osobní přístup a dlouhodobé partnerství s klienty.'
-                  : 'С более чем 12-летним опытом в области бухгалтерского учета и налогового консультирования я помогаю малому и среднему бизнесу эффективно управлять их финансами. Специализируюсь на индивидуальном подходе и долгосрочном партнерстве с клиентами.'}
+                  ? 'S více než 12 lety zkušeností v oblasti účetnictví a daňového poradenství pomáháme malým a středním podnikům efektivně spravovat jejich finance. Specializujeme se na osobní přístup a dlouhodobé partnerství s klienty.'
+                  : 'С более чем 12-летним опытом в области бухгалтерского учета и налогового консультирования мы помогаем малому и среднему бизнесу эффективно управлять их финансами. Специализируемся на индивидуальном подходе и долгосрочном партнерстве с клиентами.'}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -144,16 +97,79 @@ export default function About() {
             </motion.div>
 
             <motion.div {...fadeInUp} transition={{ delay: 0.2 }} className="relative">
-              <div className="aspect-square bg-neutral-50 border border-neutral-200 rounded-2xl p-8 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-32 h-32 bg-neutral-100 rounded-full mx-auto mb-6 flex items-center justify-center">
-                    <div className="text-4xl font-bold text-brand-emerald">NS</div>
-                  </div>
-                  <div className="bg-white border border-neutral-200 rounded-lg px-4 py-2 inline-block">
-                    <div className="text-sm font-medium text-neutral-700">
-                      {language === 'cs' ? 'Licence ČR' : 'Лицензия ЧР'}
+              <div className="bg-white border border-neutral-200 rounded-2xl p-8 shadow-sm">
+                <div className="text-center mb-6">
+                  
+                  <h3 className="text-xl font-bold text-neutral-900 mb-2">
+                    {language === 'cs' ? 'Co říkají naši klienti' : 'Что говорят наши клиенты'}
+                  </h3>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="bg-neutral-50 rounded-lg p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-white font-semibold text-sm">P</span>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm text-neutral-700 italic mb-2">
+                          "{language === 'cs' 
+                            ? 'Profesionální přístup a spolehlivost.' 
+                            : 'Профессиональный подход и надежность.'}"
+                        </p>
+                        <div className="text-xs text-neutral-600">
+                          {language === 'cs' ? 'Pavel N., TechStart s.r.o.' : 'Павел Н., TechStart s.r.o.'}
+                        </div>
+                      </div>
                     </div>
-                    <div className="text-xs text-neutral-600">#ACC-2019-567</div>
+                  </div>
+                  
+                  <div className="bg-neutral-50 rounded-lg p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-white font-semibold text-sm">M</span>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm text-neutral-700 italic mb-2">
+                          "{language === 'cs' 
+                            ? 'Rychlé odpovědi a jasné vysvětlení.' 
+                            : 'Быстрые ответы и четкие объяснения.'}"
+                        </p>
+                        <div className="text-xs text-neutral-600">
+                          {language === 'cs' ? 'Marie S., Design Studio' : 'Мария С., Design Studio'}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Statistics at bottom */}
+                <div className="mt-6 pt-4 border-t border-neutral-200">
+                  <div className="grid grid-cols-4 gap-1">
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-brand-emerald font-mono">150+</div>
+                      <div className="text-sm text-neutral-600">
+                        {language === 'cs' ? 'klientů' : 'клиентов'}
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-brand-emerald font-mono">12+</div>
+                      <div className="text-sm text-neutral-600">
+                        {language === 'cs' ? 'let' : 'лет'}
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-brand-emerald font-mono">98%</div>
+                      <div className="text-sm text-neutral-600">
+                        {language === 'cs' ? 'spokojenost' : 'довольны'}
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-brand-emerald font-mono">0</div>
+                      <div className="text-sm text-neutral-600">
+                        {language === 'cs' ? 'pokut' : 'штрафов'}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -162,224 +178,140 @@ export default function About() {
         </div>
       </section>
 
-      {/* Professional Credentials */}
+      {/* Experience, Achievements & Approach */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-12" {...fadeInUp}>
             <h2 className="text-3xl font-bold text-neutral-900 mb-4">
-              {language === 'cs' ? 'Profesní kvalifikace' : 'Профессиональная квалификация'}
-            </h2>
-            <p className="text-lg text-neutral-600">
-              {language === 'cs'
-                ? 'Garantovaná kvalita službami založenými na odbornosti a zkušenostech'
-                : 'Гарантированное качество услуг, основанных на экспертизе и опыте'}
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {credentials.map((credential, index) => (
-              <motion.div key={index} {...fadeInUp} transition={{ delay: index * 0.1 }}>
-                <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-0 shadow-sm text-center">
-                  <CardHeader>
-                    <div className="mx-auto mb-4 flex items-center justify-center">
-                      <credential.icon className="w-8 h-8 text-neutral-900" />
-                    </div>
-                    <CardTitle className="text-lg font-semibold">{credential.title}</CardTitle>
-                    <CardDescription className="text-neutral-600 mt-2">
-                      {credential.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-neutral-500">{credential.details}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Experience & Achievements */}
-      <section className="py-16 bg-neutral-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-12" {...fadeInUp}>
-            <h2 className="text-3xl font-bold text-neutral-900 mb-4">
-              {language === 'cs' ? 'Zkušenosti a úspěchy' : 'Опыт и достижения'}
+              {language === 'cs' ? 'Naše zkušenosti a přístup' : 'Наш опыт и подход'}
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
               {language === 'cs'
-                ? 'Více než dekáda práce s malými a středními podniky mi umožnila získat hluboké porozumění jejich specifickým potřebám.'
-                : 'Более десятилетия работы с малым и средним бизнесом позволили мне глубоко понять их специфические потребности.'}
+                ? 'Více než dekáda práce s malými a středními podniky nám umožnila vyvinout transparentní přístup s cílenými řešeními'
+                : 'Более десятилетия работы с малым и средним бизнесом позволили нам разработать прозрачный подход с целевыми решениями'}
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-4 gap-6 mb-12">
+          {/* Stats */}
+          <div className="grid md:grid-cols-4 gap-4 mb-16 relative">
             {achievements.map((achievement, index) => (
               <motion.div
                 key={index}
                 {...fadeInUp}
                 transition={{ delay: index * 0.1 }}
-                className="text-center"
+                className="text-center group relative"
               >
-                <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-0 shadow-sm text-center">
-                  <CardHeader>
-                    <div className="mx-auto mb-4 flex items-center justify-center">
-                      <achievement.icon className="w-8 h-8 text-neutral-900" />
-                    </div>
-                    <CardTitle className="text-2xl font-bold text-brand-emerald">
-                      {achievement.number}
-                    </CardTitle>
-                    <CardDescription className="text-neutral-600 mt-2">
-                      {achievement.label}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div {...fadeInUp} className="bg-white rounded-2xl p-8 shadow-sm">
-            <h3 className="text-2xl font-bold text-neutral-900 mb-6 text-center">
-              {language === 'cs' ? 'Moje cesta' : 'Мой путь'}
-            </h3>
-            <div className="grid lg:grid-cols-2 gap-8">
-              <div>
-                <h4 className="text-lg font-semibold text-neutral-900 mb-4">
-                  {language === 'cs' ? 'Vzdělání a začátky' : 'Образование и начало'}
-                </h4>
-                <p className="text-neutral-600 leading-relaxed">
-                  {language === 'cs'
-                    ? 'Svou kariéru jsem začala studiem ekonomie na Vysoké škole ekonomické v Praze. Po získání magisterského titulu jsem se specializovala na účetnictví a daňové poradenství, kde jsem získala certifikaci od Ministerstva financí ČR.'
-                    : 'Я начала свою карьеру с изучения экономики в Высшей школе экономики в Праге. После получения степени магистра я специализировалась на бухгалтерском учете и налоговом консультировании, где получила сертификацию от Министерства финансов ЧР.'}
-                </p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-neutral-900 mb-4">
-                  {language === 'cs' ? 'Současnost' : 'Настоящее'}
-                </h4>
-                <p className="text-neutral-600 leading-relaxed">
-                  {language === 'cs'
-                    ? 'Dnes poskytuju účetní služby více než 150 klientům, převážně malým a středním podnikům. Specializuji se na osobní přístup, moderní technologie a efektivní komunikaci. Mým cílem je být nejen účetní, ale i trusted partnerem pro rozvoj podnikání.'
-                    : 'Сегодня я предоставляю бухгалтерские услуги более чем 150 клиентам, в основном малому и среднему бизнесу. Специализируюсь на индивидуальном подходе, современных технологиях и эффективной коммуникации. Моя цель - быть не только бухгалтером, но и надежным партнером для развития бизнеса.'}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Client Testimonials */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-12" {...fadeInUp}>
-            <h2 className="text-3xl font-bold text-neutral-900 mb-4">
-              {language === 'cs' ? 'Reference klientů' : 'Отзывы клиентов'}
-            </h2>
-            <p className="text-lg text-neutral-600">
-              {language === 'cs'
-                ? 'Spokojení klienti jsou naší nejlepší referencí'
-                : 'Довольные клиенты - наша лучшая рекомендация'}
-            </p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div key={index} {...fadeInUp} transition={{ delay: index * 0.1 }}>
-                <Card className="h-full border-0 shadow-sm">
-                  <CardContent className="p-8">
-                    <p className="text-neutral-600 text-lg leading-relaxed mb-6 italic">
-                      "{testimonial.content}"
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="font-semibold text-neutral-900">{testimonial.name}</div>
-                        <div className="text-sm text-neutral-600">{testimonial.role}</div>
-                      </div>
-                      <div className="text-xs text-brand-emerald font-medium">
-                        {testimonial.years}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services Philosophy */}
-      <section className="py-16 bg-neutral-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div {...fadeInUp}>
-              <h2 className="text-3xl font-bold text-neutral-900 mb-6">
-                {language === 'cs' ? 'Můj přístup k práci' : 'Мой подход к работе'}
-              </h2>
-              <p className="text-lg text-neutral-600 mb-8">
-                {language === 'cs'
-                  ? 'Věřím, že účetnictví by mělo být transparentní, srozumitelné a především užitečné pro rozvoj podnikání. Proto se zaměřuji nejen na správné vedení účetních knih, ale i na poskytování strategických rad.'
-                  : 'Я верю, что бухгалтерский учет должен быть прозрачным, понятным и, прежде всего, полезным для развития бизнеса. Поэтому я сосредотачиваюсь не только на правильном ведении бухгалтерских книг, но и на предоставлении стратегических советов.'}
-              </p>
-
-              <div className="space-y-6">
-                {[
-                  {
-                    title: language === 'cs' ? 'Transparentnost' : 'Прозрачность',
-                    description:
-                      language === 'cs'
-                        ? 'Všechny procesy jsou jasně vysvětlené a dokumentované'
-                        : 'Все процессы четко объяснены и задокументированы',
-                  },
-                  {
-                    title: language === 'cs' ? 'Dostupnost' : 'Доступность',
-                    description:
-                      language === 'cs'
-                        ? 'Rychlá komunikace a pravidelné konzultace'
-                        : 'Быстрая коммуникация и регулярные консультации',
-                  },
-                  {
-                    title: language === 'cs' ? 'Partnerství' : 'Партнерство',
-                    description:
-                      language === 'cs'
-                        ? 'Dlouhodobá spolupráce založená na důvěře a výsledcích'
-                        : 'Долгосрочное сотрудничество, основанное на доверии и результатах',
-                  },
-                ].map((principle, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="w-2 h-2 bg-brand-emerald rounded-full mt-3 flex-shrink-0" />
-                    <div>
-                      <h3 className="text-lg font-semibold text-neutral-900 mb-2">
-                        {principle.title}
-                      </h3>
-                      <p className="text-neutral-600">{principle.description}</p>
-                    </div>
+                <div className="transition-all duration-300 rounded-xl p-4">
+                  <div className="mx-auto mb-4 flex items-center justify-center">
+                    <achievement.icon className="w-12 h-12 text-brand-emerald transition-colors duration-300" />
                   </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div {...fadeInUp} transition={{ delay: 0.2 }} className="relative">
-              <div className="bg-neutral-50 border border-neutral-200 rounded-2xl p-8">
-                <div className="text-center">
-                  <h3 className="text-xl font-bold text-neutral-900 mb-6">
-                    {language === 'cs' ? 'Specializace' : 'Специализация'}
-                  </h3>
-                  <div className="space-y-4">
-                    {[
-                      language === 'cs' ? 'Malé a střední podniky' : 'Малый и средний бизнес',
-                      language === 'cs' ? 'IT a e-commerce firmy' : 'IT и e-commerce компании',
-                      language === 'cs' ? 'Služby a konzultace' : 'Услуги и консультации',
-                      language === 'cs' ? 'Gastronomie a retail' : 'Гастрономия и ритейл',
-                    ].map((specialty, index) => (
-                      <div key={index} className="flex items-center justify-center gap-3 py-2">
-                        <CheckCircle2 className="w-5 h-5 text-neutral-900" />
-                        <span className="text-neutral-700">{specialty}</span>
-                      </div>
-                    ))}
+                  <div className="text-2xl font-bold text-neutral-900 mb-1 font-mono">
+                    {achievement.number}
+                  </div>
+                  <div className="text-neutral-900 text-sm">
+                    {achievement.label}
                   </div>
                 </div>
-              </div>
-            </motion.div>
+                
+                {/* Connecting dots - only show for first 3 items on medium screens and up */}
+                {index < 3 && (
+                  <div className="hidden md:block absolute top-1/2 -right-8 transform -translate-y-1/2 z-10">
+                    <div className="flex space-x-1">
+                      <div className="w-2 h-2 bg-brand-emerald/40 rounded-full"></div>
+                      <div className="w-2 h-2 bg-brand-emerald/60 rounded-full"></div>
+                      <div className="w-2 h-2 bg-brand-emerald/40 rounded-full"></div>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Approach & Values */}
+          <div className="bg-white rounded-2xl shadow-sm">
+            <div className="grid md:grid-cols-2 gap-8">
+              <motion.div {...fadeInUp}>
+                <div className="space-y-4">
+                  {[
+                    {
+                      icon: CheckCircle2,
+                      title: language === 'cs' ? 'Transparentní procesy' : 'Прозрачные процессы',
+                      desc: language === 'cs' ? 'Jasné vysvětlení všech kroků a postupů' : 'Четкое объяснение всех шагов и процедур'
+                    },
+                    {
+                      icon: Mail,
+                      title: language === 'cs' ? 'Rychlá komunikace' : 'Быстрая коммуникация',
+                      desc: language === 'cs' ? 'Odpovědi do 24 hodin a proaktivní komunikace' : 'Ответы в течение 24 часов и проактивная коммуникация'
+                    },
+                    {
+                      icon: Users,
+                      title: language === 'cs' ? 'Dlouhodobé partnerství' : 'Долгосрочное партнерство',
+                      desc: language === 'cs' ? 'Spolupráce založená na důvěře a porozumění' : 'Сотрудничество, основанное на доверии'
+                    }
+                  ].map((item, index) => (
+                    <motion.div 
+                      key={index}
+                      className="group cursor-pointer"
+                      {...fadeInUp} 
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <div className="bg-neutral-50 rounded-lg p-4 hover:bg-white hover:shadow-md transition-all duration-300 border border-transparent hover:border-neutral-200">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
+                            <item.icon className="w-6 h-6 text-neutral-700 group-hover:text-brand-emerald transition-colors duration-300" />
+                          </div>
+                          <div>
+                            <h5 className="font-semibold text-neutral-900">{item.title}</h5>
+                            <p className="text-neutral-600 text-sm">{item.desc}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div {...fadeInUp} transition={{ delay: 0.2 }}>
+                <div className="space-y-4">
+                  {[
+                    {
+                      icon: Shield,
+                      title: language === 'cs' ? 'Spolehlivost' : 'Надежность',
+                      desc: language === 'cs' ? 'Dodržujeme termíny a závazky vůči klientům' : 'Соблюдаем сроки и обязательства перед клиентами'
+                    },
+                    {
+                      icon: Award,
+                      title: language === 'cs' ? 'Odbornost' : 'Экспертность',
+                      desc: language === 'cs' ? 'Neustále se vzdělávame a sledujeme legislativu' : 'Постоянно повышаем квалификацию и следим за законодательством'
+                    },
+                    {
+                      icon: Star,
+                      title: language === 'cs' ? 'Osobní přístup' : 'Индивидуальный подход',
+                      desc: language === 'cs' ? 'Každý klient je pro nás jedinečný' : 'Каждый клиент для нас уникален'
+                    }
+                  ].map((item, index) => (
+                    <motion.div 
+                      key={index}
+                      className="group cursor-pointer"
+                      {...fadeInUp} 
+                      transition={{ delay: index * 0.1 + 0.1 }}
+                    >
+                      <div className="bg-neutral-50 rounded-lg p-4 hover:bg-white hover:shadow-md transition-all duration-300 border border-transparent hover:border-neutral-200">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
+                            <item.icon className="w-6 h-6 text-neutral-700 group-hover:text-brand-emerald transition-colors duration-300" />
+                          </div>
+                          <div>
+                            <h5 className="font-semibold text-neutral-900">{item.title}</h5>
+                            <p className="text-neutral-600 text-sm">{item.desc}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -393,8 +325,8 @@ export default function About() {
             </h2>
             <p className="text-xl text-white/90 mb-8">
               {language === 'cs'
-                ? 'Budu ráda, když se seznámíme osobně a probereme, jak mohu pomoci vašemu podnikání.'
-                : 'Буду рада познакомиться лично и обсудить, как я могу помочь вашему бизнесу.'}
+                ? 'Budeme rádi, když se seznámíme osobně a probereme, jak můžeme pomoci vašemu podnikání.'
+                : 'Будем рады познакомиться лично и обсудить, как мы можем помочь вашему бизнесу.'}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
