@@ -1,8 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import  { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { Search, Filter } from 'lucide-react';
-import { Badge } from '../components/ui/badge';
+import { Search } from 'lucide-react';
 import { Input } from '../components/ui/Input';
 import SEOHead from '../components/SEO/SEOHead';
 import BlogCard from '../components/BlogCard';

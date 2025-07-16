@@ -5,13 +5,11 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import { useLanguage } from '../context/LanguageContext';
-import { getBlogPostBySlug, getRelatedPosts, type BlogPost } from '../data/blogPosts';
+import { getBlogPostBySlug, getRelatedPosts, type BlogPost as BlogPostType } from '../data/blogPosts';
 import SEOHead from '../components/SEO/SEOHead';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { 
-  Calendar, 
-  Clock, 
   ArrowLeft, 
   Share2, 
   Twitter, 
@@ -30,8 +28,8 @@ export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const { language } = useLanguage();
   const { showToast } = useToast();
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+  const [post, setPost] = useState<BlogPostType | null>(null);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPostType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [shareMenuOpen, setShareMenuOpen] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
@@ -88,8 +86,8 @@ export default function BlogPost() {
             title: language === 'cs' ? 'Zkopírováno!' : 'Скопировано!',
             description: language === 'cs' ? 'Odkaz byl zkopírován do schránky' : 'Ссылка была скопирована в буфер обмена'
           });
-        } catch (err) {
-          console.error('Failed to copy: ', err);
+        } catch {
+          // Handle copy error silently or show toast
         }
         break;
     }
@@ -326,7 +324,7 @@ export default function BlogPost() {
               {language === 'cs' ? 'Štítky' : 'Теги'}
             </h3>
             <div className="flex flex-wrap gap-3">
-              {post.tags.map((tag) => (
+              {post.tags.map((tag: string) => (
                 <Badge
                   key={tag}
                   variant="outline"
