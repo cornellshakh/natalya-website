@@ -23,7 +23,7 @@ export default function BlogCard({ post }: BlogCardProps) {
 
   return (
     <motion.article
-      className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-neutral-200 overflow-hidden group"
+      className="bg-neutral-50 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-neutral-200 overflow-hidden group"
     >
       <Link to={`/blog/${post.slug}`} className="block">
         <div className="p-8">
@@ -63,13 +63,10 @@ export default function BlogCard({ post }: BlogCardProps) {
           </p>
 
           {/* Read More */}
-          <div className="flex items-center justify-between pt-6 border-t border-neutral-100">
+          <div className="flex items-center justify-between pt-6">
             <div className="flex items-center text-brand-emerald font-medium group-hover:text-brand-emerald/80 transition-colors">
               <span className="mr-2 text-lg">{language === 'cs' ? 'Číst více' : 'Читать далее'}</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </div>
-            <div className="text-sm text-neutral-400">
-              {language === 'cs' ? 'Klikněte pro čtení' : 'Нажмите для чтения'}
             </div>
           </div>
         </div>

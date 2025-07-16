@@ -75,13 +75,13 @@ export default function Blog() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="max-w-md mx-auto"
           >
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
+            <div className="relative group">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/70 group-focus-within:text-white transition-colors duration-200" />
               <Input
                 placeholder={t('blog.search.placeholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 pr-4 py-3 bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder-white/60 focus:bg-white/20 focus:border-white/40 transition-all duration-200"
+                className="pl-12 pr-4 py-3 bg-white/20 border-white/30 text-white !placeholder-white/70 group-focus-within:!placeholder-white focus:bg-white/30 focus:border-white/50 focus:text-white transition-all duration-200"
               />
             </div>
           </motion.div>
