@@ -558,11 +558,6 @@ export const translations: Record<'cs' | 'ru', Translation> = {
     blog: {
       title: 'Blog a novinky',
       subtitle: 'Aktuální informace ze světa účetnictví, daní a podnikání',
-      featured: 'Doporučujeme',
-      readMore: 'Číst více',
-      allPosts: 'Všechny články',
-      searchPlaceholder: 'Vyhledat články...',
-      tryDifferentSearch: 'Zkuste jiné hledané slovo nebo vyberte jinou kategorii',
       search: {
         placeholder: 'Vyhledat články...',
       },
@@ -1194,11 +1189,6 @@ export const translations: Record<'cs' | 'ru', Translation> = {
     blog: {
       title: 'Блог и новости',
       subtitle: 'Актуальная информация из мира бухгалтерского учета, налогов и бизнеса',
-      featured: 'Рекомендуемое',
-      readMore: 'Читать далее',
-      allPosts: 'Все статьи',
-      searchPlaceholder: 'Поиск статей...',
-      tryDifferentSearch: 'Попробуйте другие ключевые слова или выберите другую категорию',
       search: {
         placeholder: 'Поиск статей...',
       },

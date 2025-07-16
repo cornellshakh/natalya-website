@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, Calendar, Building2, Briefcase, Users2, Coins, Car, ShoppingCart, Utensils, Home as HomeIcon, ArrowRight, LucidePanelRightOpen, Search, Book, Brain } from 'lucide-react';
+import { CheckCircle2, Calendar, Building2, Briefcase, Users2, Coins, Car, ShoppingCart, Utensils, Home as HomeIcon, ArrowRight, Search } from 'lucide-react';
 
 import { Button } from '../components/ui/button';
 import Hero from '../components/layout/Hero';
